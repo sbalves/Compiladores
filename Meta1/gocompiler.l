@@ -67,8 +67,9 @@ RESERVED    "" /*???*/
 {General_comments}      {printf("General comments");}
 
 /* Tokens */
-{ID}        {printf(" ID ");}
+{ID}        {printf(" ID(yytext) ");}
 {STRLIT}    {printf(" STRLIT ");}
+{INTLIT}    {printf(" INTLIT(yytext) ");}
 {INTLIT}    {for(int i=0; i<yyleng; i++){
                 if(yytext[i] == A||a){
                     yytext[i] = 10;
@@ -90,45 +91,45 @@ RESERVED    "" /*???*/
                 }
             }
             printf(" intlit ");}
-{REALLIT}   {printf(" reallit ");}
-{SEMICOLON} {printf(" semicolon ");}
-{COMMA}     {printf(" comma ");}
-{ASSIGN}    {printf(" assign ");}
-{STAR}      {printf(" star ");}
-{DIV}       {printf(" div ");}
-{MINUS}     {printf(" minus ");}
-{PLUS}      {printf(" plus ");}
-{EQ}        {printf(" eq ");} 
-{GE}        {printf(" ge ");}
-{GT}        {printf(" gt ");}
-{LBRACE}    {printf(" lbrace ");}
-{LE}        {printf(" le ");}
-{LPAR}      {printf(" lpar ");}
-{LSQ}       {printf(" lsq ");}
-{LT}        {printf(" lt ");}
+{REALLIT}   {printf(" REALLIT ");}
+{SEMICOLON} {printf(" SEMICOLON ");}
+{COMMA}     {printf(" COMMA ");}
+{ASSIGN}    {printf(" ASSIGN ");}
+{STAR}      {printf(" STAR ");}
+{DIV}       {printf(" DIV ");}
+{MINUS}     {printf(" MINUS ");}
+{PLUS}      {printf(" PLUS ");}
+{EQ}        {printf(" EQ ");} 
+{GE}        {printf(" GE ");}
+{GT}        {printf(" GT ");}
+{LBRACE}    {printf(" LBRACE ");}
+{LE}        {printf(" LE ");}
+{LPAR}      {printf(" LPAR ");}
+{LSQ}       {printf(" LSQ ");}
+{LT}        {printf(" LT ");}
 {MOD}       {printf(" MOD ");}
-{NE}        {printf(" ne ");}
-{NOT}       {printf(" not ");}
-{AND}       {printf(" and ");}
-{OR}        {printf(" or ");}
-{RBRACE}    {printf(" rbrace ");}
-{RPAR}      {printf(" rpar ");}
-{RSQ}       {printf(" rsq ");}
-{PACKAGE}   {printf(" package ");}
-{RETURN}    {printf(" return ");}
-{ELSE}      {printf(" else ");}
-{FOR}       {printf(" for ");}
-{IF}        {printf(" if ");}
-{VAR}       {printf(" var ");}
-{INT}       {printf(" int ");}
-{FLOAT32}   {printf(" float32 ");}
-{BOOL}      {printf(" bool ");}
-{STRING}    {printf(" string ");}
-{PRINT}     {printf(" print ");}
-{PARSEINT}  {printf(" parseint ");}
-{FUNC}      {printf(" func ");}
-{CMDARGS}   {printf(" cmdargs ");}
-{RESERVED}  {printf(" reserved ");}
+{NE}        {printf(" NE ");}
+{NOT}       {printf(" NOT ");}
+{AND}       {printf(" AND ");}
+{OR}        {printf(" OR ");}
+{RBRACE}    {printf(" RBRACE ");}
+{RPAR}      {printf(" RPAR ");}
+{RSQ}       {printf(" RSQ ");}
+{PACKAGE}   {printf(" PACKAGE ");}
+{RETURN}    {printf(" RETURN ");}
+{ELSE}      {printf(" ELSE ");}
+{FOR}       {printf(" FOR ");}
+{IF}        {printf(" IF ");}
+{VAR}       {printf(" VAR ");}
+{INT}       {printf(" INT ");}
+{FLOAT32}   {printf(" FLOAT32 ");}
+{BOOL}      {printf(" BOOL ");}
+{STRING}    {printf(" STRING ");}
+{PRINT}     {printf(" PRINT ");}
+{PARSEINT}  {printf(" PARSEINT ");}
+{FUNC}      {printf(" FUNC ");}
+{CMDARGS}   {printf(" CMDARGS ");}
+{RESERVED}  {printf(" RESERVED ");}
 
 
 /* Aceitar (e ignorar) os separadores de tokens */
