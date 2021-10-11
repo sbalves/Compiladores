@@ -27,11 +27,10 @@
             printf(" intlit ");}
 */
 
-/* ./gocompiler -l < factorial.dgo */
+/*  ./gocompiler -l < factorial.dgo */
+/*  ./gocompiler -l < factorial.dgo | diff factorial.out - */
 
-/* ./gocompiler -l < factorial.dgo | diff factorial.out -*/
 
-/* Comments */
 num                     [0-9]
 hex_digit               {num}|[A-F]|[a-f] 
 octal_digit             [0-7]
@@ -45,13 +44,13 @@ escape                  \f|\n|\r|\t|\\|\"
 raw_strlit              "'"{.}"'"
 inter_strlit            '"'{.}'"'
 new_line                \r\n|\n|\r
+start	                "/*"
+end                     "*/"
 Line_comments           ("//"(.)*\n)
-General_comments        ("/*".*|\n*"*/")\n
-
-	
+General_comments        {start}.*{end}{new_line}
 
 
-/* Tokens */
+
 COMMA       ","
 SEMICOLON   ";"
 ASSIGN      "="
@@ -89,7 +88,7 @@ PRINT       "fmt.Println"
 PARSEINT    "strconv.Atoi"
 FUNC        "func"
 CMDARGS     "os.Args"
-STRLIT      \"[(^\"|\r|\n)]*\"                    
+STRLIT      \"[^\r^\n]*\"        
 INTLIT      {num}+|{octal_lit}|{hex_lit}
 REALLIT     ({num}+"."({num}+)?{exp}?)|{num}+{exp}|"."{num}+{exp}?
 RESERVED    "break"|"case"|"chan"|"const"|"continue"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|"++"|"--"
@@ -146,9 +145,8 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 " "                     {;}   
 \t                      {;}
-.                       {;}
 {new_line}              {;}
-
+.                       {;}
 
 %%
 int main()
