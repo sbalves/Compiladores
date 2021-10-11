@@ -6,18 +6,20 @@
 /* ./gocompiler -l < factorial.dgo */
 
 /* Comments */
-pos                     [0-9]
-alfa_m                  [a-z]
-alfa_M                  [A-Z]
+num                     [0-9]
+letter_m                  [a-z]
+letter_M                  [A-Z]
 sig                     [+|-]?
 exp                     [e|E]{sig}{num}*
 base                    [0b|0B|0|0o|0O|0x|0X] /*O undescore é para validar?*/
+raw_strlit              "'"{.}"'"
+inter_strlit            '"'{.}'"'
 Line_comments           ("//"."\n")
 General_comments        ("/*".("\n"*)"*/")
 
 
 /* Tokens */
-ID          ((alfa_m*)|(alfa_M*)|("_")*|({num}*))+ 
+ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)  
 STRLIT      [^"\r""\n"\"]+         /*Especificar erro lexical caso encontre seq escape diferentes das referidas*/ 
 INTLIT      (base*({num}*|[A-F]*|[a-f]*))+
 REALLIT     ({sig}({num}+)"."({num}*)(exp))|{sig}("."([0.9]+)exp)|({sig}{num}+exp)
@@ -58,7 +60,7 @@ PRINT       "fmt.Println"
 PARSEINT    "strconv.Atoi"
 FUNC        "func"
 CMDARGS     "os.Args"
-RESERVED    "" /*???*/
+RESERVED    "break"|"case"|"chan"|"const"|"continue"|"for"|"import"|"interface"|"map"|"package"|"range"|"return"|"select"|"struct"|"switch"|"type"|"var"|"++"|"--"
 
 
 %%
@@ -129,7 +131,7 @@ RESERVED    "" /*???*/
 {PARSEINT}  {printf(" PARSEINT ");}
 {FUNC}      {printf(" FUNC ");}
 {CMDARGS}   {printf(" CMDARGS ");}
-{RESERVED}  {printf(" RESERVED ");}
+{RESERVED}  {printf(" RESERVED(yytext) ");}
 
 
 /* Aceitar (e ignorar) os separadores de tokens */
