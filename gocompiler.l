@@ -29,6 +29,8 @@
 
 /* ./gocompiler -l < factorial.dgo */
 
+/* ./gocompiler -l < factorial.dgo | diff factorial.out -*/
+
 /* Comments */
 num                     [0-9]
 hex_digit               {num}|[A-F]|[a-f] 
@@ -43,8 +45,10 @@ escape                  \f|\n|\r|\t|\\|\"
 raw_strlit              "'"{.}"'"
 inter_strlit            '"'{.}'"'
 new_line                \r\n|\n|\r
-Line_comments           ("////"."\n")
-General_comments        ("///*".("\n"*)"*///")
+Line_comments           ("//"(.)*\n)
+General_comments        ("/*".*|\n*"*/")\n
+
+	
 
 
 /* Tokens */
@@ -93,6 +97,8 @@ BLANKID     _
 ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 %%
+{General_comments}      {;}
+{Line_comments}         {;}
 {INTLIT}    {printf("INTLIT(%s)\n", yytext);}
 {STRLIT}    {printf("STRLIT(%s)\n", yytext);}
 {REALLIT}   {printf("REALLIT(%s)\n", yytext);}
@@ -142,8 +148,6 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 \t                      {;}
 .                       {;}
 {new_line}              {;}
-{General_comments}      {;}
-{Line_comments}         {;}
 
 
 %%
