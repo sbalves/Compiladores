@@ -14,6 +14,7 @@ exp                     [e|E]{sig}{num}*
 base                    [0b|0B|0|0o|0O|0x|0X] /*O undescore é para validar?*/
 raw_strlit              "'"{.}"'"
 inter_strlit            '"'{.}'"'
+new_line                \r\n|\n|\r
 Line_comments           ("//"."\n")
 General_comments        ("/*".("\n"*)"*/")
 
@@ -64,9 +65,6 @@ RESERVED    "break"|"case"|"chan"|"const"|"continue"|"for"|"import"|"interface"|
 
 
 %%
-/* Comments */
-{Line_comments}         {printf("Line comments");}
-{General_comments}      {printf("General comments");}
 
 /* Tokens */
 {ID}        {printf(" ID(yytext) ");}
@@ -136,9 +134,12 @@ RESERVED    "break"|"case"|"chan"|"const"|"continue"|"for"|"import"|"interface"|
 
 /* Aceitar (e ignorar) os separadores de tokens */
 .                   {;} 
-\n                  {;}
+new_line                  {;}
 " "                 {;}   
 \t                  {;}
+/* Comments */
+{Line_comments}         {;}
+{General_comments}      {;}
 
 %%
 int main()
