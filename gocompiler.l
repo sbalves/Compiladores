@@ -48,11 +48,8 @@ General_comments        ("///*".("\n"*)"*///")
 
 
 /* Tokens */
-STRLIT      \"[(^\"|\r|\n)]*\"                    
-INTLIT      {num}+|{octal_lit}|{hex_lit}
-REALLIT     ({num}+"."({num}+)?{exp}?)|{num}+{exp}|"."{num}+{exp}?
-SEMICOLON   ";"
 COMMA       ","
+SEMICOLON   ";"
 ASSIGN      "="
 STAR        "*"
 DIV         "/"
@@ -88,6 +85,9 @@ PRINT       "fmt.Println"
 PARSEINT    "strconv.Atoi"
 FUNC        "func"
 CMDARGS     "os.Args"
+STRLIT      \"[(^\"|\r|\n)]*\"                    
+INTLIT      {num}+|{octal_lit}|{hex_lit}
+REALLIT     ({num}+"."({num}+)?{exp}?)|{num}+{exp}|"."{num}+{exp}?
 RESERVED    "break"|"case"|"chan"|"const"|"continue"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|"++"|"--"
 BLANKID     _
 ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
