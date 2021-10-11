@@ -43,8 +43,8 @@ escape                  \f|\n|\r|\t|\\|\"
 raw_strlit              "'"{.}"'"
 inter_strlit            '"'{.}'"'
 new_line                \r\n|\n|\r
-Line_comments           ("//"."\n")
-General_comments        ("/*".("\n"*)"*/")
+Line_comments           ("////"."\n")
+General_comments        ("///*".("\n"*)"*///")
 
 
 /* Tokens */
@@ -89,6 +89,7 @@ PARSEINT    "strconv.Atoi"
 FUNC        "func"
 CMDARGS     "os.Args"
 RESERVED    "break"|"case"|"chan"|"const"|"continue"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|"++"|"--"
+BLANKID     _
 ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 %%
@@ -133,6 +134,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {FUNC}      {printf("FUNC\n");}
 {CMDARGS}   {printf("CMDARGS\n");}
 {RESERVED}  {printf("RESERVED(%s)\n", yytext);}
+{BLANKID}   {printf("BLANKID\n");}
 {ID}        {printf("ID(%s)\n", yytext);}
 
 
@@ -140,8 +142,8 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 \t                      {;}
 .                       {;}
 {new_line}              {;}
-{Line_comments}         {;}
 {General_comments}      {;}
+{Line_comments}         {;}
 
 
 %%
