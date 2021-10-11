@@ -92,56 +92,57 @@ RESERVED    "break"|"case"|"chan"|"const"|"continue"|"import"|"interface"|"map"|
 ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 %%
-new_line                {;}
-{INTLIT}    {printf("INTLIT(%s)", yytext);}
-{STRLIT}    {printf("STRLIT(%s)", yytext);}
-{REALLIT}   {printf("REALLIT(%s)", yytext);}
-{SEMICOLON} {printf("SEMICOLON");}
-{COMMA}     {printf("COMMA");}
-{ASSIGN}    {printf("ASSIGN");}
-{STAR}      {printf("STAR");}
-{DIV}       {printf("DIV");}
-{MINUS}     {printf("MINUS");}
-{PLUS}      {printf("PLUS");}
-{EQ}        {printf("EQ");} 
-{GE}        {printf("GE");}
-{GT}        {printf("GT");}
-{LBRACE}    {printf("LBRACE");}
-{LE}        {printf("LE");}
-{LPAR}      {printf("LPAR");}
-{LSQ}       {printf("LSQ");}
-{LT}        {printf("LT");}
-{MOD}       {printf("MOD");}
-{NE}        {printf("NE");}
-{NOT}       {printf("NOT");}
-{AND}       {printf("AND");}
-{OR}        {printf("OR");}
-{RBRACE}    {printf("RBRACE");}
-{RPAR}      {printf("RPAR");}
-{RSQ}       {printf("RSQ");}
-{PACKAGE}   {printf("PACKAGE");}
-{RETURN}    {printf("RETURN");}
-{ELSE}      {printf("ELSE");}
-{FOR}       {printf("FOR");}
-{IF}        {printf("IF");}
-{VAR}       {printf("VAR");}
-{INT}       {printf("INT");}
-{FLOAT32}   {printf("FLOAT32");}
-{BOOL}      {printf("BOOL");}
-{STRING}    {printf("STRING");}
-{PRINT}     {printf("PRINT");}
-{PARSEINT}  {printf("PARSEINT");}
-{FUNC}      {printf("FUNC");}
-{CMDARGS}   {printf("CMDARGS");}
-{RESERVED}  {printf("RESERVED(%s)", yytext);}
-{ID}        {printf("ID(%s)", yytext);}
+{INTLIT}    {printf("INTLIT(%s)\n", yytext);}
+{STRLIT}    {printf("STRLIT(%s)\n", yytext);}
+{REALLIT}   {printf("REALLIT(%s)\n", yytext);}
+{SEMICOLON} {printf("SEMICOLON\n");}
+{COMMA}     {printf("COMMA\n");}
+{ASSIGN}    {printf("ASSIGN\n");}
+{STAR}      {printf("STAR\n");}
+{DIV}       {printf("DIV\n");}
+{MINUS}     {printf("MINUS\n");}
+{PLUS}      {printf("PLUS\n");}
+{EQ}        {printf("EQ\n");} 
+{GE}        {printf("GE\n");}
+{GT}        {printf("GT\n");}
+{LBRACE}    {printf("LBRACE\n");}
+{LE}        {printf("LE\n");}
+{LPAR}      {printf("LPAR\n");}
+{LSQ}       {printf("LSQ\n");}
+{LT}        {printf("LT\n");}
+{MOD}       {printf("MOD\n");}
+{NE}        {printf("NE\n");}
+{NOT}       {printf("NOT\n");}
+{AND}       {printf("AND\n");}
+{OR}        {printf("OR\n");}
+{RBRACE}    {printf("RBRACE\n");}
+{RPAR}      {printf("RPAR\n");}
+{RSQ}       {printf("RSQ\n");}
+{PACKAGE}   {printf("PACKAGE\n");}
+{RETURN}    {printf("RETURN\n");}
+{ELSE}      {printf("ELSE\n");}
+{FOR}       {printf("FOR\n");}
+{IF}        {printf("IF\n");}
+{VAR}       {printf("VAR\n");}
+{INT}       {printf("INT\n");}
+{FLOAT32}   {printf("FLOAT32\n");}
+{BOOL}      {printf("BOOL\n");}
+{STRING}    {printf("STRING\n");}
+{PRINT}     {printf("PRINT\n");}
+{PARSEINT}  {printf("PARSEINT\n");}
+{FUNC}      {printf("FUNC\n");}
+{CMDARGS}   {printf("CMDARGS\n");}
+{RESERVED}  {printf("RESERVED(%s)\n", yytext);}
+{ID}        {printf("ID(%s)\n", yytext);}
 
 
 " "                     {;}   
 \t                      {;}
+.                       {;}
+{new_line}              {;}
 {Line_comments}         {;}
 {General_comments}      {;}
-.                       {;} 
+
 
 %%
 int main()
