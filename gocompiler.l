@@ -1,6 +1,6 @@
 /*  
     João Miguel Ferreira Castelo Branco Catré - 2019218953
-    Sofia Botelho Vieira Alves - 2019227240
+    Sofia Botelho Vieira Alves - 201922724
 */
 
 /* INTLIT hexadecimal to decimal code from A (10) to F (15)
@@ -30,6 +30,8 @@
 /*  ./gocompiler -l < factorial.dgo */
 /*  ./gocompiler -l < factorial.dgo | diff factorial.out - */
 
+/* Define states for line comments and general comments */
+%X LINE_COM GENERAL_COM
 
 num                     [0-9]
 hex_digit               {num}|[A-F]|[a-f] 
@@ -44,10 +46,9 @@ escape                  \f|\n|\r|\t|\\|\"
 raw_strlit              "'"{.}"'"
 inter_strlit            '"'{.}'"'
 new_line                \r\n|\n|\r
-start	                "/*"
-end                     "*/"
-Line_comments           ("//"(.)*\n)
-General_comments        {start}.*{end}{new_line}
+line_comments           "//"
+general_start	             "/*"
+general_end                   "*/"
 
 
 
@@ -91,68 +92,73 @@ CMDARGS     "os.Args"
 STRLIT      \"[^\r^\n]*\"        
 INTLIT      {num}+|{octal_lit}|{hex_lit}
 REALLIT     ({num}+"."({num}+)?{exp}?)|{num}+{exp}|"."{num}+{exp}?
-RESERVED    "break"|"case"|"chan"|"const"|"continue"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|"++"|"--"
+RESERVED    "break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"else"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|"++"|"--"
 BLANKID     _
 ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 %%
-{General_comments}      {;}
-{Line_comments}         {;}
-{INTLIT}    {printf("INTLIT(%s)\n", yytext);}
-{STRLIT}    {printf("STRLIT(%s)\n", yytext);}
-{REALLIT}   {printf("REALLIT(%s)\n", yytext);}
-{SEMICOLON} {printf("SEMICOLON\n");}
-{COMMA}     {printf("COMMA\n");}
-{ASSIGN}    {printf("ASSIGN\n");}
-{STAR}      {printf("STAR\n");}
-{DIV}       {printf("DIV\n");}
-{MINUS}     {printf("MINUS\n");}
-{PLUS}      {printf("PLUS\n");}
-{EQ}        {printf("EQ\n");} 
-{GE}        {printf("GE\n");}
-{GT}        {printf("GT\n");}
-{LBRACE}    {printf("LBRACE\n");}
-{LE}        {printf("LE\n");}
-{LPAR}      {printf("LPAR\n");}
-{LSQ}       {printf("LSQ\n");}
-{LT}        {printf("LT\n");}
-{MOD}       {printf("MOD\n");}
-{NE}        {printf("NE\n");}
-{NOT}       {printf("NOT\n");}
-{AND}       {printf("AND\n");}
-{OR}        {printf("OR\n");}
-{RBRACE}    {printf("RBRACE\n");}
-{RPAR}      {printf("RPAR\n");}
-{RSQ}       {printf("RSQ\n");}
-{PACKAGE}   {printf("PACKAGE\n");}
-{RETURN}    {printf("RETURN\n");}
-{ELSE}      {printf("ELSE\n");}
-{FOR}       {printf("FOR\n");}
-{IF}        {printf("IF\n");}
-{VAR}       {printf("VAR\n");}
-{INT}       {printf("INT\n");}
-{FLOAT32}   {printf("FLOAT32\n");}
-{BOOL}      {printf("BOOL\n");}
-{STRING}    {printf("STRING\n");}
-{PRINT}     {printf("PRINT\n");}
-{PARSEINT}  {printf("PARSEINT\n");}
-{FUNC}      {printf("FUNC\n");}
-{CMDARGS}   {printf("CMDARGS\n");}
-{RESERVED}  {printf("RESERVED(%s)\n", yytext);}
-{BLANKID}   {printf("BLANKID\n");}
-{ID}        {printf("ID(%s)\n", yytext);}
+{line_comments}              {BEGIN LINE_COM;}
+<LINE_COM>{new_line}         {BEGIN 0;}
+<LINE_COM>.                  {;}
+{general_start}              {BEGIN GENERAL_COM;}
+<GENERAL_COM>{new_line}      {;}
+<GENERAL_COM>.               {;}
+<GENERAL_COM>{general_end}   {BEGIN 0;}
+{INTLIT}                     {printf("INTLIT(%s)\n", yytext);}
+{STRLIT}                     {printf("STRLIT(%s)\n", yytext);}
+{REALLIT}                    {printf("REALLIT(%s)\n", yytext);}
+{SEMICOLON}                  {printf("SEMICOLON\n");}
+{COMMA}                      {printf("COMMA\n");}
+{ASSIGN}                     {printf("ASSIGN\n");}
+{STAR}                       {printf("STAR\n");}
+{DIV}                        {printf("DIV\n");}
+{MINUS}                      {printf("MINUS\n");}
+{PLUS}                       {printf("PLUS\n");}
+{EQ}                         {printf("EQ\n");} 
+{GE}                         {printf("GE\n");}
+{GT}                         {printf("GT\n");}
+{LBRACE}                     {printf("LBRACE\n");}
+{LE}                         {printf("LE\n");}
+{LPAR}                       {printf("LPAR\n");}
+{LSQ}                        {printf("LSQ\n");}
+{LT}                         {printf("LT\n");}
+{MOD}                        {printf("MOD\n");}
+{NE}                         {printf("NE\n");}
+{NOT}                        {printf("NOT\n");}
+{AND}                        {printf("AND\n");}
+{OR}                         {printf("OR\n");}
+{RBRACE}                     {printf("RBRACE\n");}
+{RPAR}                       {printf("RPAR\n");}
+{RSQ}                        {printf("RSQ\n");}
+{PACKAGE}                    {printf("PACKAGE\n");}
+{RETURN}                     {printf("RETURN\n");}
+{ELSE}                       {printf("ELSE\n");}
+{FOR}                        {printf("FOR\n");}
+{IF}                         {printf("IF\n");}
+{VAR}                        {printf("VAR\n");}
+{INT}                        {printf("INT\n");}
+{FLOAT32}                    {printf("FLOAT32\n");}
+{BOOL}                       {printf("BOOL\n");}
+{STRING}                     {printf("STRING\n");}
+{PRINT}                      {printf("PRINT\n");}
+{PARSEINT}                   {printf("PARSEINT\n");}
+{FUNC}                       {printf("FUNC\n");}
+{CMDARGS}                    {printf("CMDARGS\n");}
+{RESERVED}                   {printf("RESERVED(%s)\n", yytext);}
+{BLANKID}                    {printf("BLANKID\n");}
+{ID}                         {printf("ID(%s)\n", yytext);}
+" "                          {;}   
+\t                           {;}
+{new_line}                   {;}
+.                            {;}
 
-
-" "                     {;}   
-\t                      {;}
-{new_line}              {;}
-.                       {;}
 
 %%
 int main()
 {
 yylex(); return 0;
 }
+
 int yywrap() {
 return 1;
 }
