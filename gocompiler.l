@@ -1,6 +1,6 @@
 /*  
     João Miguel Ferreira Castelo Branco Catré - 2019218953
-    Sofia Botelho Vieira Alves - 201922724
+    Sofia Botelho Vieira Alves - 2019227240
 */
 
 /* INTLIT hexadecimal to decimal code from A (10) to F (15)
@@ -31,13 +31,14 @@
 /*  ./gocompiler -l < factorial.dgo | diff factorial.out - */
 
 /* Define states for line comments and general comments */
-%X LINE_COM GENERAL_COM
+%X LINE_COM GENERAL_COM STRING
 
 num                     [0-9]
-hex_digit               {num}|[A-F]|[a-f] 
+hex_digit               {num}|[A-F]|[a-f]
 octal_digit             [0-7]
-octal_lit               0{octal_digit}
-hex_lit                 0(x|X){hex_digit}
+octal_lit               0{octal_digit}+
+decimal_lit             [1-9]{num}+
+hex_lit                 0(x|X){hex_digit}+
 letter_m                [a-z]
 letter_M                [A-Z]
 sig                     [+|-]?
@@ -89,14 +90,17 @@ PRINT       "fmt.Println"
 PARSEINT    "strconv.Atoi"
 FUNC        "func"
 CMDARGS     "os.Args"
-STRLIT      \"[^\r^\n]*\"        
-INTLIT      {num}+|{octal_lit}|{hex_lit}
+STRLIT      (\\{escape}|[^"])*         
+INTLIT      {decimal_lit}|{octal_lit}|{hex_lit}
 REALLIT     ({num}+"."({num}+)?{exp}?)|{num}+{exp}|"."{num}+{exp}?
 RESERVED    "break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"else"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|"++"|"--"
 BLANKID     _
 ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 %%
+\"                           {BEGIN STRING;printf("STRLIT(\"");}
+<STRING>{STRLIT}             {printf("%s", yytext);}
+<STRING>\"                   {printf("\")\n");BEGIN 0;}
 {line_comments}              {BEGIN LINE_COM;}
 <LINE_COM>{new_line}         {BEGIN 0;}
 <LINE_COM>.                  {;}
@@ -105,7 +109,6 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 <GENERAL_COM>.               {;}
 <GENERAL_COM>{general_end}   {BEGIN 0;}
 {INTLIT}                     {printf("INTLIT(%s)\n", yytext);}
-{STRLIT}                     {printf("STRLIT(%s)\n", yytext);}
 {REALLIT}                    {printf("REALLIT(%s)\n", yytext);}
 {SEMICOLON}                  {printf("SEMICOLON\n");}
 {COMMA}                      {printf("COMMA\n");}
