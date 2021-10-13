@@ -3,41 +3,26 @@
     Sofia Botelho Vieira Alves - 2019227240
 */
 
-/* INTLIT hexadecimal to decimal code from A (10) to F (15)
-    {INTLIT}    {for(int i=0; i<yyleng; i++){
-                if(yytext[i] == A||a){
-                    yytext[i] = 10;
-                }
-                else if(yytext[i] == B||b){
-                    yytext[i] == 11;
-                }
-                else if(yytext[i] == C||c){
-                    yytext[i] == 12;
-                }
-                else if(yytext[i] == D||d){
-                    yytext[i] == 13;
-                }
-                else if(yytext[i] == E||e){
-                    yytext[i] == 14;
-                }
-                else if(yytext[i] == F||f){
-                    yytext[i] == 15;
-                }
-            }
-            printf(" intlit ");}
-*/
-
 /*  ./gocompiler -l < factorial.dgo */
 /*  ./gocompiler -l < factorial.dgo | diff factorial.out - */
+/*   printf("%c\n",yytext[yyleng]);
+        if(strcmp(&yytext[yyleng], "\n")){
+            strcat(yytext,";");
+            printf("SEMICOLON\n");
+*/
+%{
+    #include <stdio.h>
+    #include <string.h>
+%}
 
 /* Define states for line comments and general comments */
-%X LINE_COM GENERAL_COM STRING
+%X LINE_COM GENERAL_COM STRING IDENTIFIERS KEYWORDS token
 
 num                     [0-9]
 hex_digit               {num}|[A-F]|[a-f]
 octal_digit             [0-7]
-octal_lit               0{octal_digit}+
-decimal_lit             [1-9]{num}+
+octal_lit               0{octal_digit}*
+decimal_lit             [1-9]{num}*
 hex_lit                 0(x|X){hex_digit}+
 letter_m                [a-z]
 letter_M                [A-Z]
@@ -48,9 +33,8 @@ raw_strlit              "'"{.}"'"
 inter_strlit            '"'{.}'"'
 new_line                \r\n|\n|\r
 line_comments           "//"
-general_start	             "/*"
-general_end                   "*/"
-
+general_start	        "/*"
+general_end             "*/"
 
 
 COMMA       ","
@@ -90,17 +74,22 @@ PRINT       "fmt.Println"
 PARSEINT    "strconv.Atoi"
 FUNC        "func"
 CMDARGS     "os.Args"
+
 STRLIT      (\\{escape}|[^"])*         
 INTLIT      {decimal_lit}|{octal_lit}|{hex_lit}
 REALLIT     ({num}+"."({num}+)?{exp}?)|{num}+{exp}|"."{num}+{exp}?
+
 RESERVED    "break"|"case"|"chan"|"const"|"continue"|"default"|"defer"|"else"|"fallthrough"|"func"|"go"|"goto"|"import"|"interface"|"map"|"range"|"select"|"struct"|"switch"|"type"|"++"|"--"
 BLANKID     _
 ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
+semicolon_insert    ({INTLIT}|{STRLIT}|{REALLIT}|{ID}|{RETURN}|{RPAR}|{RSQ}|{RBRACE})[" "|"\t"]*({new_line}|"EOF")
+
 %%
-\"                           {BEGIN STRING;printf("STRLIT(\"");}
-<STRING>{STRLIT}             {printf("%s", yytext);}
-<STRING>\"                   {printf("\")\n");BEGIN 0;}
+\"\"                         {printf("STRLIT(\"\")\n");}
+\"                           {BEGIN STRING;}
+<STRING>{STRLIT}             {printf("STRLIT(\"%s\")\n", yytext);}
+<STRING>\"                   {BEGIN 0;}
 {line_comments}              {BEGIN LINE_COM;}
 <LINE_COM>{new_line}         {BEGIN 0;}
 <LINE_COM>.                  {;}
@@ -110,7 +99,6 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 <GENERAL_COM>{general_end}   {BEGIN 0;}
 {INTLIT}                     {printf("INTLIT(%s)\n", yytext);}
 {REALLIT}                    {printf("REALLIT(%s)\n", yytext);}
-{SEMICOLON}                  {printf("SEMICOLON\n");}
 {COMMA}                      {printf("COMMA\n");}
 {ASSIGN}                     {printf("ASSIGN\n");}
 {STAR}                       {printf("STAR\n");}
@@ -150,6 +138,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {RESERVED}                   {printf("RESERVED(%s)\n", yytext);}
 {BLANKID}                    {printf("BLANKID\n");}
 {ID}                         {printf("ID(%s)\n", yytext);}
+{SEMICOLON}                  {printf("SEMICOLON\n");}
 " "                          {;}   
 \t                           {;}
 {new_line}                   {;}
@@ -159,7 +148,8 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 %%
 int main()
 {
-yylex(); return 0;
+yylex();
+return 0;
 }
 
 int yywrap() {
