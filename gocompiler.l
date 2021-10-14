@@ -34,7 +34,7 @@ new_line                \r\n|\n|\r
 line_comments           "//"
 general_start	        "/*"
 general_end             "*/"
-
+space                   " "
 
 COMMA       ","
 SEMICOLON   ";"
@@ -88,18 +88,14 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 \"                           {BEGIN STRING; semi_flag = 0;}
 <STRING>{STRLIT}             {printf("STRLIT(\"%s\")\n", yytext); semi_flag = 1;} //
 <STRING>\"                   {BEGIN 0; semi_flag = 0;}
-{line_comments}              {BEGIN LINE_COM; semi_flag = 0;}
-<LINE_COM>{new_line}         {BEGIN 0; semi_flag = 0;}
+{line_comments}              {BEGIN LINE_COM;}
+<LINE_COM>{new_line}         {BEGIN 0;}
 <LINE_COM>.                  {;}
-{general_start}              {BEGIN GENERAL_COM; semi_flag = 0;}
+{general_start}              {BEGIN GENERAL_COM;}
 <GENERAL_COM>{new_line}      {;}
 <GENERAL_COM>.               {;}
-<GENERAL_COM>{general_end}   {BEGIN 0; semi_flag = 0;}
-{INTLIT}                     {printf("INTLIT(%s)\n", yytext); semi_flag = 0;
-                                if(strcmp(&yytext[strlen(yytext)], "\n")){
-                                    printf("SEMICOLON\n");
-                                } 
-} //
+<GENERAL_COM>{general_end}   {BEGIN 0;}
+{INTLIT}                     {printf("INTLIT(%s)\n", yytext); semi_flag = 1;} //
 {REALLIT}                    {printf("REALLIT(%s)\n", yytext); semi_flag = 1;} //
 {SEMICOLON}                  {printf("SEMICOLON\n"); semi_flag = 0;}
 {COMMA}                      {printf("COMMA\n"); semi_flag = 0;}
@@ -124,7 +120,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {RBRACE}                     {printf("RBRACE\n"); semi_flag = 1;} //
 {RPAR}                       {printf("RPAR\n"); semi_flag = 1;} //
 {RSQ}                        {printf("RSQ\n"); semi_flag = 1;} //
-{PACKAGE}                    {printf("PACKAGE\n"); semi_flag = 1;}
+{PACKAGE}                    {printf("PACKAGE\n"); semi_flag = 0;}
 {RETURN}                     {printf("RETURN\n"); semi_flag = 1;} //
 {ELSE}                       {printf("ELSE\n"); semi_flag = 0;}
 {FOR}                        {printf("FOR\n"); semi_flag = 0;}
@@ -141,11 +137,11 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {RESERVED}                   {printf("RESERVED(%s)\n", yytext); semi_flag = 0;}
 {BLANKID}                    {printf("BLANKID\n"); semi_flag = 0;}
 {ID}                         {printf("ID(%s)\n", yytext); semi_flag = 1;} //
-" "                          {;}   
+{space}                      {;}   
 \t                           {;}
-{new_line}                   {;}
+{new_line}                   {if(semi_flag == 1) printf("SEMICOLON\n"); semi_flag = 0;}
 .                            {;}
-
+<<EOF>>                      {if(semi_flag == 1) printf("SEMICOLON\n"); yyterminate();}
 
 %%
 
