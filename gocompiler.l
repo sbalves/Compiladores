@@ -11,6 +11,13 @@
     #include <string.h>
 
     int semi_flag = 0;
+    int line_num = 1;
+    int column_num = 1;
+    int col_com = 1;
+    int ln_com = 1;
+    int octal_error = 0;
+    int illegal_line = 1;
+    int illegal_col = 1;
 %}
 
 /* Define states for line comments and general comments */
@@ -84,63 +91,75 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 
 %%
-\"\"                         {printf("STRLIT(\"\")\n"); semi_flag = 0;}
-\"                           {BEGIN STRING; semi_flag = 0;}
-<STRING>{STRLIT}             {printf("STRLIT(\"%s\")\n", yytext); semi_flag = 1;} //
-<STRING>\"                   {BEGIN 0; semi_flag = 0;}
-{line_comments}              {BEGIN LINE_COM;}
-<LINE_COM>{new_line}         {BEGIN 0;}
-<LINE_COM>.                  {;}
-{general_start}              {BEGIN GENERAL_COM;}
-<GENERAL_COM>{new_line}      {;}
-<GENERAL_COM>.               {;}
-<GENERAL_COM>{general_end}   {BEGIN 0;}
-{INTLIT}                     {printf("INTLIT(%s)\n", yytext); semi_flag = 1;} //
-{REALLIT}                    {printf("REALLIT(%s)\n", yytext); semi_flag = 1;} //
-{SEMICOLON}                  {printf("SEMICOLON\n"); semi_flag = 0;}
-{COMMA}                      {printf("COMMA\n"); semi_flag = 0;}
-{ASSIGN}                     {printf("ASSIGN\n"); semi_flag = 0;}
-{STAR}                       {printf("STAR\n"); semi_flag = 0;}
-{DIV}                        {printf("DIV\n"); semi_flag = 0;}
-{MINUS}                      {printf("MINUS\n"); semi_flag = 0;}
-{PLUS}                       {printf("PLUS\n"); semi_flag = 0;}
-{EQ}                         {printf("EQ\n"); semi_flag = 0;} 
-{GE}                         {printf("GE\n"); semi_flag = 0;}
-{GT}                         {printf("GT\n"); semi_flag = 0;}
-{LBRACE}                     {printf("LBRACE\n"); semi_flag = 0;}
-{LE}                         {printf("LE\n"); semi_flag = 0;}
-{LPAR}                       {printf("LPAR\n"); semi_flag = 0;}
-{LSQ}                        {printf("LSQ\n"); semi_flag = 0;}
-{LT}                         {printf("LT\n"); semi_flag = 0;}
-{MOD}                        {printf("MOD\n"); semi_flag = 0;}
-{NE}                         {printf("NE\n"); semi_flag = 0;}
-{NOT}                        {printf("NOT\n"); semi_flag = 0;}
-{AND}                        {printf("AND\n"); semi_flag = 0;}
-{OR}                         {printf("OR\n"); semi_flag = 0;}
-{RBRACE}                     {printf("RBRACE\n"); semi_flag = 1;} //
-{RPAR}                       {printf("RPAR\n"); semi_flag = 1;} //
-{RSQ}                        {printf("RSQ\n"); semi_flag = 1;} //
-{PACKAGE}                    {printf("PACKAGE\n"); semi_flag = 0;}
-{RETURN}                     {printf("RETURN\n"); semi_flag = 1;} //
-{ELSE}                       {printf("ELSE\n"); semi_flag = 0;}
-{FOR}                        {printf("FOR\n"); semi_flag = 0;}
-{IF}                         {printf("IF\n"); semi_flag = 0;}
-{VAR}                        {printf("VAR\n"); semi_flag = 0;}
-{INT}                        {printf("INT\n"); semi_flag = 0;}
-{FLOAT32}                    {printf("FLOAT32\n"); semi_flag = 0;}
-{BOOL}                       {printf("BOOL\n"); semi_flag = 0;}
-{STRING}                     {printf("STRING\n"); semi_flag = 0;}
-{PRINT}                      {printf("PRINT\n"); semi_flag = 0;}
-{PARSEINT}                   {printf("PARSEINT\n"); semi_flag = 0;}
-{FUNC}                       {printf("FUNC\n"); semi_flag = 0;}
-{CMDARGS}                    {printf("CMDARGS\n"); semi_flag = 0;}
-{RESERVED}                   {printf("RESERVED(%s)\n", yytext); semi_flag = 0;}
-{BLANKID}                    {printf("BLANKID\n"); semi_flag = 0;}
-{ID}                         {printf("ID(%s)\n", yytext); semi_flag = 1;} //
-{space}                      {;}   
-\t                           {;}
-{new_line}                   {if(semi_flag == 1) printf("SEMICOLON\n"); semi_flag = 0;}
-.                            {;}
+\"\"                         {printf("STRLIT(\"\")\n"); semi_flag = 0; column_num+=yyleng;}
+\"                           {BEGIN STRING; semi_flag = 0; column_num+=yyleng;}
+<STRING>{STRLIT}             {printf("STRLIT(\"%s\")\n", yytext); semi_flag = 1; column_num+=yyleng;} //
+<STRING>\"                   {BEGIN 0; semi_flag = 0; column_num+=yyleng;}
+{line_comments}              {BEGIN LINE_COM; column_num+=yyleng;}
+<LINE_COM>{new_line}         {column_num = 1; BEGIN 0; line_num++;}
+<LINE_COM>.                  {column_num+=yyleng;}
+{general_start}              {ln_com = line_num; col_com = column_num; BEGIN GENERAL_COM; column_num+=yyleng;}
+<GENERAL_COM>{new_line}      {column_num = 1; line_num++;} /* ver erro */
+<GENERAL_COM><<EOF>>         {printf("Line %d, column %d: unterminated comment\n", ln_com, col_com); column_num = 1; yyterminate();}
+<GENERAL_COM>.               {column_num+=yyleng;}
+<GENERAL_COM>{general_end}   {BEGIN 0; column_num+=yyleng;}
+{INTLIT}                     {column_num+=yyleng;
+                                for(int i=1; i<yyleng-1; i++){
+                                    if(yytext[0]==0 && yytext[i]>=8){
+                                        octal_error = 1;
+                                        printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext);
+                                    }
+                                    else{octal_error = 0;}
+                                }
+                                if(octal_error != 1){
+                                    printf("INTLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng;
+                                }
+                            }
+{REALLIT}                    {printf("REALLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng;} //
+{SEMICOLON}                  {printf("SEMICOLON\n"); semi_flag = 0; column_num+=yyleng;}
+{COMMA}                      {printf("COMMA\n"); semi_flag = 0; column_num+=yyleng;}
+{ASSIGN}                     {printf("ASSIGN\n"); semi_flag = 0; column_num+=yyleng;}
+{STAR}                       {printf("STAR\n"); semi_flag = 0; column_num+=yyleng;}
+{DIV}                        {printf("DIV\n"); semi_flag = 0; column_num+=yyleng;}
+{MINUS}                      {printf("MINUS\n"); semi_flag = 0; column_num+=yyleng;}
+{PLUS}                       {printf("PLUS\n"); semi_flag = 0; column_num+=yyleng;}
+{EQ}                         {printf("EQ\n"); semi_flag = 0; column_num+=yyleng;} 
+{GE}                         {printf("GE\n"); semi_flag = 0; column_num+=yyleng;}
+{GT}                         {printf("GT\n"); semi_flag = 0; column_num+=yyleng;}
+{LBRACE}                     {printf("LBRACE\n"); semi_flag = 0; column_num+=yyleng;}
+{LE}                         {printf("LE\n"); semi_flag = 0; column_num+=yyleng;}
+{LPAR}                       {printf("LPAR\n"); semi_flag = 0; column_num+=yyleng;}
+{LSQ}                        {printf("LSQ\n"); semi_flag = 0; column_num+=yyleng;}
+{LT}                         {printf("LT\n"); semi_flag = 0; column_num+=yyleng;}
+{MOD}                        {printf("MOD\n"); semi_flag = 0; column_num+=yyleng;}
+{NE}                         {printf("NE\n"); semi_flag = 0; column_num+=yyleng;}
+{NOT}                        {printf("NOT\n"); semi_flag = 0; column_num+=yyleng;}
+{AND}                        {printf("AND\n"); semi_flag = 0; column_num+=yyleng;}
+{OR}                         {printf("OR\n"); semi_flag = 0; column_num+=yyleng;}
+{RBRACE}                     {printf("RBRACE\n"); semi_flag = 1; column_num+=yyleng;} //
+{RPAR}                       {printf("RPAR\n"); semi_flag = 1; column_num+=yyleng;} //
+{RSQ}                        {printf("RSQ\n"); semi_flag = 1; column_num+=yyleng;} //
+{PACKAGE}                    {printf("PACKAGE\n"); semi_flag = 0; column_num+=yyleng;}
+{RETURN}                     {printf("RETURN\n"); semi_flag = 1; column_num+=yyleng;} //
+{ELSE}                       {printf("ELSE\n"); semi_flag = 0; column_num+=yyleng;}
+{FOR}                        {printf("FOR\n"); semi_flag = 0; column_num+=yyleng;}
+{IF}                         {printf("IF\n"); semi_flag = 0; column_num+=yyleng;}
+{VAR}                        {printf("VAR\n"); semi_flag = 0; column_num+=yyleng;}
+{INT}                        {printf("INT\n"); semi_flag = 0; column_num+=yyleng;}
+{FLOAT32}                    {printf("FLOAT32\n"); semi_flag = 0; column_num+=yyleng;}
+{BOOL}                       {printf("BOOL\n"); semi_flag = 0; column_num+=yyleng;}
+{STRING}                     {printf("STRING\n"); semi_flag = 0; column_num+=yyleng;}
+{PRINT}                      {printf("PRINT\n"); semi_flag = 0; column_num+=yyleng;}
+{PARSEINT}                   {printf("PARSEINT\n"); semi_flag = 0; column_num+=yyleng;}
+{FUNC}                       {printf("FUNC\n"); semi_flag = 0; column_num+=yyleng;}
+{CMDARGS}                    {printf("CMDARGS\n"); semi_flag = 0; column_num+=yyleng;}
+{RESERVED}                   {printf("RESERVED(%s)\n", yytext); semi_flag = 0; column_num+=yyleng;}
+{BLANKID}                    {printf("BLANKID\n"); semi_flag = 0; column_num+=yyleng;}
+{ID}                         {printf("ID(%s)\n", yytext); semi_flag = 1; column_num+=yyleng;} //
+{space}                      {column_num+=yyleng;}   
+\t                           {column_num+=yyleng;}
+{new_line}                   {if(semi_flag == 1) printf("SEMICOLON\n"); semi_flag = 0; line_num++; column_num = 1;}
+.                            {column_num+=yyleng; illegal_line = line_num; illegal_col = column_num; printf("Line %d, column %d: illegal character (%s)\n", illegal_line, illegal_col, yytext);}
 <<EOF>>                      {if(semi_flag == 1) printf("SEMICOLON\n"); yyterminate();}
 
 %%
