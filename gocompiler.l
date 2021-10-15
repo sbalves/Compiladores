@@ -34,7 +34,7 @@ letter_m                [a-z]
 letter_M                [A-Z]
 sig                     [+|-]?
 exp                     [e|E]{sig}{num}+
-escape                  \f|\n|\r|\t|\\|\"
+escape                  f|n|r|t|\\|\"  
 raw_strlit              "'"{.}"'"
 inter_strlit            '"'{.}'"'
 new_line                \r\n|\n|\r
@@ -81,7 +81,7 @@ PARSEINT    "strconv.Atoi"
 FUNC        "func"
 CMDARGS     "os.Args"
 
-STRLIT      (\\{escape}|[^"])*         
+STRLIT      (\\{escape}|[^"\r\n\\])*        
 INTLIT      {decimal_lit}|{octal_lit}|{hex_lit}
 REALLIT     ({num}+"."({num}+)?{exp}?)|{num}+{exp}|"."{num}+{exp}?
 
@@ -93,6 +93,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 %%
 \"\"                         {printf("STRLIT(\"\")\n"); semi_flag = 0; column_num+=yyleng;}
 \"                           {BEGIN STRING; semi_flag = 0; column_num+=yyleng;}
+<STRING>{new_line}           {column_num = 1; line_num++;} //
 <STRING>{STRLIT}             {printf("STRLIT(\"%s\")\n", yytext); semi_flag = 1; column_num+=yyleng;} //
 <STRING>\"                   {BEGIN 0; semi_flag = 0; column_num+=yyleng;}
 {line_comments}              {BEGIN LINE_COM; column_num+=yyleng;}
@@ -159,7 +160,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {space}                      {column_num+=yyleng;}   
 \t                           {column_num+=yyleng;}
 {new_line}                   {if(semi_flag == 1) printf("SEMICOLON\n"); semi_flag = 0; line_num++; column_num = 1;}
-.                            {column_num+=yyleng; illegal_line = line_num; illegal_col = column_num; printf("Line %d, column %d: illegal character (%s)\n", illegal_line, illegal_col, yytext);}
+.                            {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext);column_num+=yyleng;}
 <<EOF>>                      {if(semi_flag == 1) printf("SEMICOLON\n"); yyterminate();}
 
 %%
