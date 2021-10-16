@@ -20,6 +20,7 @@
     int octal_error = 0;
     int illegal_line = 1;
     int illegal_col = 1;
+    int invalid_escape = 0;
 %}
 
 /* Define states for line comments and general comments */
@@ -100,9 +101,24 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 %%
 \"\"                         {printf("STRLIT(\"\")\n"); semi_flag = 1; column_num+=yyleng;}
 \"                           {ln_com = line_num; col_com = column_num; BEGIN STRING; semi_flag = 0; column_num+=yyleng;}
-<STRING>{new_line}           {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com); column_num = 1; line_num++; BEGIN 0;} //
-<STRING>{STRLIT}\"           {printf("STRLIT(\"%s)\n", yytext); semi_flag = 1; column_num+=yyleng; BEGIN 0;} //
-<STRING>\[^{escape}]         {printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext);} //
+<STRING>{STRLIT}{new_line}   {if(invalid_escape != 1){
+                              printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com); 
+                              column_num = 1; 
+                              line_num++;
+                              invalid_escape = 0;
+                              BEGIN 0;}
+                            }
+
+<STRING>{STRLIT}\"           {if(invalid_escape != 1){ 
+                                printf("STRLIT(\"%s)\n", yytext); 
+                                semi_flag = 1; 
+                                column_num+=yyleng; 
+                                invalid_escape = 0;
+                                BEGIN 0;
+                              }
+                            }
+<STRING>\\[^{escape}]        {printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext); column_num += yyleng; invalid_escape = 1;} //
+<STRING>.                    {column_num+=yyleng;}
 
 {line_comments}              {BEGIN LINE_COM; column_num+=yyleng;}
 <LINE_COM>{new_line}         {column_num = 1; BEGIN 0; line_num++;}
