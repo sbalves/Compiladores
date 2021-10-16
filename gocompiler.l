@@ -6,20 +6,7 @@
 /*  ./gocompiler -l < factorial.dgo */
 /*  ./gocompiler -l < factorial.dgo | diff factorial.out - */
 
-/*
-{INTLIT}                     {column_num+=yyleng;
-                                for(int i=1; i<yyleng-1; i++){
-                                    if(yytext[0]==0 && yytext[i]>7){
-                                        octal_error = 1;
-                                        printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext);
-                                    }
-                                    else{octal_error = 0;}
-                                }
-                                if(octal_error != 1){
-                                    printf("INTLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng;
-                                }
-                            }
-*/
+/* <STRING><<EOF>>              {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com); yyterminate();} */
 
 %{
     #include <stdio.h>
@@ -113,10 +100,9 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 %%
 \"\"                         {printf("STRLIT(\"\")\n"); semi_flag = 1; column_num+=yyleng;}
 \"                           {ln_com = line_num; col_com = column_num; BEGIN STRING; semi_flag = 0; column_num+=yyleng;}
-<STRING>{new_line}           {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com); column_num = 1; line_num++;} //
-<STRING><<EOF>>              {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com); yyterminate();}
+<STRING>{new_line}           {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com); column_num = 1; line_num++; BEGIN 0;} //
 <STRING>{STRLIT}\"           {printf("STRLIT(\"%s)\n", yytext); semi_flag = 1; column_num+=yyleng; BEGIN 0;} //
-<STRING>\[^{escape}]                    {printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext);} //
+<STRING>\[^{escape}]         {printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext);} //
 
 {line_comments}              {BEGIN LINE_COM; column_num+=yyleng;}
 <LINE_COM>{new_line}         {column_num = 1; BEGIN 0; line_num++;}
