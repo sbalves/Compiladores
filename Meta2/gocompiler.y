@@ -1,10 +1,18 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
+    #include "structures_p.h"
+
     int yylex(void);
     void yyerror (const char *s);
 %} 
 
+%union{
+    token_t token;
+    ast_node_t node;
+    char* id;
+    char string[10];
+};
 
 // Yacc tokens 
 %token <token>  ID
@@ -25,16 +33,16 @@
 %type <node> Program
 %type <node> Declarations
 %type <node> VarDeclaration
-%type <node> VarSpec
-%type <node> Type
-%type <node> FuncDeclaration
-%type <node> Parameters
+%type <node> VarSpec VarSpecList
+%type <node> Type TypeOrNull
+%type <node> FuncDeclaration CommaExpressionList
+%type <node> Parameters ParametersList ParametersOrNull
 %type <node> FuncBody
-%type <node> VarsAndStatements
-%type <node> Statement
+%type <node> VarsAndStatements VarsAndStatementsList
+%type <node> Statement StatementList StatementList1
 %type <node> ParseArgs
-%type <node> FuncInvocation
-%type <node> Expr
+%type <node> FuncInvocation FuncInvocationList
+%type <node> Expr ExprOrNull
 
 
 
@@ -43,10 +51,11 @@
 
 %%
 
-Program: PACKAGE ID SEMICOLON Declarations {}
+Program: PACKAGE ID SEMICOLON Declarations 
 
 Declarations: Declarations VarDeclaration SEMICOLON
             | Declarations FuncDeclaration SEMICOLON
+            | /* EPSILON */ {$$ = NULL;}
             ;
 
 VarDeclaration: VAR VarSpec
@@ -56,7 +65,7 @@ VarDeclaration: VAR VarSpec
 VarSpec: ID VarSpecList Type
 
 VarSpecList: VarSpecList COMMA ID 
-           | /* epsilon */
+           | /* EPSILON */ {$$ = NULL;}
            ;
 
 Type: INT
@@ -65,22 +74,26 @@ Type: INT
     | STRING
     ;
 
-TypeOrNull: Type
-          | /* epsilon */
-          ;
+FuncDeclaration: FUNC ID LPAR ParametersOrNull RPAR TypeOrNull FuncBody
 
-FuncDeclaration: FUNC ID LPAR ParametersList RPAR TypeOrNull FuncBody
+TypeOrNull: Type
+          | /* EPSILON */ {$$ = NULL;}
+          ;
 
 Parameters: ID Type ParametersList
 
 ParametersList: ParametersList COMMA ID Type
-              | /* epsilon */
+              | /* EPSILON */ {$$ = NULL;}
               ;
+
+ParametersOrNull: Parameters
+                | /* EPSILON */ {$$ = NULL;}
+                ;
 
 FuncBody:   LBRACE VarsAndStatements RBRACE
 
 VarsAndStatements:  VarsAndStatements VarsAndStatementsList SEMICOLON 
-                |   /* epsilon */     {$$ = NULL;}
+                |   /* EPSILON */     {$$ = NULL;}
                 ; 
 
 VarsAndStatementsList:  VarDeclaration | Statement
@@ -88,22 +101,27 @@ VarsAndStatementsList:  VarDeclaration | Statement
                     ;
 
 Statement:  ID ASSIGN Expr
-        |   LBRACE StatementList1 RBRACE                                                   {$$ = statement($2);}
-        |   IF Expr LBRACE Statement SEMICOLON RBRACE StatementList
-        |   FOR ExpressionList LBRACE StatementList1 RBRACE
-        |   RETURN ExpressionList
-        |   FuncInvocation | ParseArgs                                                          {$$ = FuncInvocation($1) || ParseArgs();}    
-        |   PRINT LPAR (Expr | STRLIT) RPAR
+        |   LBRACE StatementList1 RBRACE
+        |   IF Expr LBRACE StatementList1 RBRACE StatementList 
+        |   FOR ExprOrNull LBRACE StatementList1 RBRACE 
+        |   RETURN ExprOrNull 
+        |   FuncInvocation | ParseArgs 
+        |   PRINT LPAR ExprOrStril RPAR
         ;
 
-StatementList1: StatementList1 Statement SEMICOLON
-              | /* epsilon */   {$$ = NULL;}
-              ;
+ExprOrStril: Expr 
+           | STRLIT
+           ;
 
-StatementList:  ELSE LBRACE Statement SEMICOLON RBRACE
+
+StatementList:  ELSE LBRACE StatementList1 RBRACE
             |   /* EPSILON */ {$$ = NULL;}
             ;
 
+
+StatementList1: StatementList1 Statement SEMICOLON
+              | /* EPSILON */   {$$ = NULL;}
+              ;
 
 ParseArgs:  ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR
 
@@ -117,14 +135,29 @@ CommaExpressionList: CommaExpressionList COMMA Expr
                 |    /* EPSILON */         {$$ = NULL;}
                 ;
 
-Expr:   Expr (OR | AND) Expr
-    |   Expr (LT | GT | EQ | NE | LE | GE) Expr 
-    |   Expr (PLUS | MINUS | STAR | DIV | MOD) Expr   
-    |   (NOT | MINUS | PLUS) Expr
+Expr:   Expr Operators Expr 
+    |   NotMinusPlus Expr
     |   INTLIT | REALLIT | ID | FuncInvocation | LPAR Expr RPAR
     ;
 
-ExpressionList: Expr
+NotMinusPlus: NOT | MINUS | PLUS;
+
+Operators: LT 
+         | GT 
+         | EQ 
+         | NE 
+         | LE 
+         | GE
+         | OR
+         | AND
+         | PLUS
+         | MINUS
+         | STAR 
+         | DIV 
+         | MOD
+         ;
+
+ExprOrNull: Expr
             | /* EPSILON */         {$$ = NULL;}
             ;
 
@@ -142,4 +175,3 @@ int main() {
     }
     return 0;
 }
-
