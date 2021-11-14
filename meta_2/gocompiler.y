@@ -53,7 +53,7 @@
 
 //Precedências
 
-%left COMMA
+//%left COMMA
 %right ASSIGN
 %left OR 
 %left AND
@@ -61,7 +61,7 @@
 %left PLUS MINUS
 %left STAR DIV MOD
 %right NOT
-%left LPAR RPAR LSQ RSQ
+//%left LPAR RPAR LSQ RSQ
 
 %nonassoc ELSE IF
 
@@ -161,28 +161,24 @@ CommaExpressionList: CommaExpressionList COMMA Expr
                 |    /* EPSILON */         {$$ = NULL;}
                 ;
 
-Expr:   Expr Operators Expr 
-    |   NotMinusPlus Expr
+Expr:   Expr MOD Expr 
+    |   Expr LT Expr 
+    |   Expr GT Expr 
+    |   Expr EQ Expr 
+    |   Expr NE Expr 
+    |   Expr LE Expr 
+    |   Expr GE Expr 
+    |   Expr OR Expr 
+    |   Expr AND Expr 
+    |   Expr PLUS Expr 
+    |   Expr MINUS Expr 
+    |   Expr STAR Expr 
+    |   Expr DIV Expr 
+    |   NOT Expr
+    |   MINUS Expr
+    |   PLUS Expr
     |   INTLIT | REALLIT | ID | FuncInvocation | LPAR Expr RPAR
     ;
-
-NotMinusPlus: NOT | MINUS | PLUS
-            ;
-
-Operators: LT 
-         | GT 
-         | EQ 
-         | NE 
-         | LE 
-         | GE
-         | OR
-         | AND
-         | PLUS
-         | MINUS
-         | STAR 
-         | DIV 
-         | MOD
-         ;
 
 ExprOrNull: Expr
             | /* EPSILON */         {$$ = NULL;}

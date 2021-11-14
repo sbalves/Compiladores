@@ -170,50 +170,50 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 <GENERAL_COM>.                  {column_num+=yyleng;}
 <GENERAL_COM>{general_end}      {BEGIN 0; column_num+=yyleng;}
 
-{INTLIT}                        {if(flag_lex == 1);printf("INTLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng;}
+{INTLIT}                        {if(flag_lex == 1) printf("INTLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng;}
 {invalid_octal_lit}             {printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext); semi_flag = 1; column_num+=yyleng; return INTLIT;}
 
-{REALLIT}                       {if(flag_lex == 1);printf("REALLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; return REALLIT;} 
-{SEMICOLON}                     {if(flag_lex == 1);printf("SEMICOLON\n"); semi_flag = 0; column_num+=yyleng; return SEMICOLON;}
-{COMMA}                         {if(flag_lex == 1);printf("COMMA\n"); semi_flag = 0; column_num+=yyleng; return COMMA;}
-{ASSIGN}                        {if(flag_lex == 1);printf("ASSIGN\n"); semi_flag = 0; column_num+=yyleng; return ASSIGN;}
-{STAR}                          {if(flag_lex == 1);printf("STAR\n"); semi_flag = 0; column_num+=yyleng; return STAR;}
-{DIV}                           {if(flag_lex == 1);printf("DIV\n"); semi_flag = 0; column_num+=yyleng; return DIV;}
-{MINUS}                         {if(flag_lex == 1);printf("MINUS\n"); semi_flag = 0; column_num+=yyleng; return MINUS;}
-{PLUS}                          {if(flag_lex == 1);printf("PLUS\n"); semi_flag = 0; column_num+=yyleng; return PLUS;}
-{EQ}                            {if(flag_lex == 1);printf("EQ\n"); semi_flag = 0; column_num+=yyleng; return EQ;} 
-{GE}                            {if(flag_lex == 1);printf("GE\n"); semi_flag = 0; column_num+=yyleng; return GE;}
-{GT}                            {if(flag_lex == 1);printf("GT\n"); semi_flag = 0; column_num+=yyleng; return GT;}
-{LBRACE}                        {if(flag_lex == 1);printf("LBRACE\n"); semi_flag = 0; column_num+=yyleng; return LBRACE;}
-{LE}                            {if(flag_lex == 1);printf("LE\n"); semi_flag = 0; column_num+=yyleng; return LE;}
-{LPAR}                          {if(flag_lex == 1);printf("LPAR\n"); semi_flag = 0; column_num+=yyleng; return LPAR;}
-{LSQ}                           {if(flag_lex == 1);printf("LSQ\n"); semi_flag = 0; column_num+=yyleng; return LSQ;}
-{LT}                            {if(flag_lex == 1);printf("LT\n"); semi_flag = 0; column_num+=yyleng; return LT;}
-{MOD}                           {if(flag_lex == 1);printf("MOD\n"); semi_flag = 0; column_num+=yyleng; return MOD;}
-{NE}                            {if(flag_lex == 1);printf("NE\n"); semi_flag = 0; column_num+=yyleng; return NE;}
-{NOT}                           {if(flag_lex == 1);printf("NOT\n"); semi_flag = 0; column_num+=yyleng; return NOT;}
-{AND}                           {if(flag_lex == 1);printf("AND\n"); semi_flag = 0; column_num+=yyleng; return AND;}
-{OR}                            {if(flag_lex == 1);printf("OR\n"); semi_flag = 0; column_num+=yyleng; return OR;}
-{RBRACE}                        {if(flag_lex == 1);printf("RBRACE\n"); semi_flag = 1; column_num+=yyleng; return RBRACE;}
-{RPAR}                          {if(flag_lex == 1);printf("RPAR\n"); semi_flag = 1; column_num+=yyleng; return RPAR;}
-{RSQ}                           {if(flag_lex == 1);printf("RSQ\n"); semi_flag = 1; column_num+=yyleng; return RSQ;}
-{PACKAGE}                       {if(flag_lex == 1);printf("PACKAGE\n"); semi_flag = 0; column_num+=yyleng; return PACKAGE;}
-{RETURN}                        {if(flag_lex == 1);printf("RETURN\n"); semi_flag = 1; column_num+=yyleng; return RETURN;}
-{ELSE}                          {if(flag_lex == 1);printf("ELSE\n"); semi_flag = 0; column_num+=yyleng; return ELSE;}
-{FOR}                           {if(flag_lex == 1);printf("FOR\n"); semi_flag = 0; column_num+=yyleng; return FOR;}
-{IF}                            {if(flag_lex == 1);printf("IF\n"); semi_flag = 0; column_num+=yyleng; return IF;}
-{VAR}                           {if(flag_lex == 1);printf("VAR\n"); semi_flag = 0; column_num+=yyleng; return VAR;}
-{INT}                           {if(flag_lex == 1);printf("INT\n"); semi_flag = 0; column_num+=yyleng; return INT;}
-{FLOAT32}                       {if(flag_lex == 1);printf("FLOAT32\n"); semi_flag = 0; column_num+=yyleng; return FLOAT32;}
-{BOOL}                          {if(flag_lex == 1);printf("BOOL\n"); semi_flag = 0; column_num+=yyleng; return BOOL;}
-{STRING}                        {if(flag_lex == 1);printf("STRING\n"); semi_flag = 0; column_num+=yyleng; return STRING;}
-{PRINT}                         {if(flag_lex == 1);printf("PRINT\n"); semi_flag = 0; column_num+=yyleng; return PRINT;}
-{PARSEINT}                      {if(flag_lex == 1);printf("PARSEINT\n"); semi_flag = 0; column_num+=yyleng; return PARSEINT;}
-{FUNC}                          {if(flag_lex == 1);printf("FUNC\n"); semi_flag = 0; column_num+=yyleng; return FUNC;}
-{CMDARGS}                       {if(flag_lex == 1);printf("CMDARGS\n"); semi_flag = 0; column_num+=yyleng; return CMDARGS;}
-{RESERVED}                      {if(flag_lex == 1);printf("RESERVED(%s)\n", yytext); semi_flag = 0; column_num+=yyleng; return RESERVED;}
-{BLANKID}                       {if(flag_lex == 1);printf("BLANKID\n"); semi_flag = 0; column_num+=yyleng; return BLANKID;}
-{ID}                            {if(flag_lex == 1);printf("ID(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; return ID;}
+{REALLIT}                       {if(flag_lex == 1) printf("REALLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; return REALLIT;} 
+{SEMICOLON}                     {if(flag_lex == 1) printf("SEMICOLON\n"); semi_flag = 0; column_num+=yyleng; return SEMICOLON;}
+{COMMA}                         {if(flag_lex == 1) printf("COMMA\n"); semi_flag = 0; column_num+=yyleng; return COMMA;}
+{ASSIGN}                        {if(flag_lex == 1) printf("ASSIGN\n"); semi_flag = 0; column_num+=yyleng; return ASSIGN;}
+{STAR}                          {if(flag_lex == 1) printf("STAR\n"); semi_flag = 0; column_num+=yyleng; return STAR;}
+{DIV}                           {if(flag_lex == 1) printf("DIV\n"); semi_flag = 0; column_num+=yyleng; return DIV;}
+{MINUS}                         {if(flag_lex == 1) printf("MINUS\n"); semi_flag = 0; column_num+=yyleng; return MINUS;}
+{PLUS}                          {if(flag_lex == 1) printf("PLUS\n"); semi_flag = 0; column_num+=yyleng; return PLUS;}
+{EQ}                            {if(flag_lex == 1) printf("EQ\n"); semi_flag = 0; column_num+=yyleng; return EQ;} 
+{GE}                            {if(flag_lex == 1) printf("GE\n"); semi_flag = 0; column_num+=yyleng; return GE;}
+{GT}                            {if(flag_lex == 1) printf("GT\n"); semi_flag = 0; column_num+=yyleng; return GT;}
+{LBRACE}                        {if(flag_lex == 1) printf("LBRACE\n"); semi_flag = 0; column_num+=yyleng; return LBRACE;}
+{LE}                            {if(flag_lex == 1) printf("LE\n"); semi_flag = 0; column_num+=yyleng; return LE;}
+{LPAR}                          {if(flag_lex == 1) printf("LPAR\n"); semi_flag = 0; column_num+=yyleng; return LPAR;}
+{LSQ}                           {if(flag_lex == 1) printf("LSQ\n"); semi_flag = 0; column_num+=yyleng; return LSQ;}
+{LT}                            {if(flag_lex == 1) printf("LT\n"); semi_flag = 0; column_num+=yyleng; return LT;}
+{MOD}                           {if(flag_lex == 1) printf("MOD\n"); semi_flag = 0; column_num+=yyleng; return MOD;}
+{NE}                            {if(flag_lex == 1) printf("NE\n"); semi_flag = 0; column_num+=yyleng; return NE;}
+{NOT}                           {if(flag_lex == 1) printf("NOT\n"); semi_flag = 0; column_num+=yyleng; return NOT;}
+{AND}                           {if(flag_lex == 1) printf("AND\n"); semi_flag = 0; column_num+=yyleng; return AND;}
+{OR}                            {if(flag_lex == 1) printf("OR\n"); semi_flag = 0; column_num+=yyleng; return OR;}
+{RBRACE}                        {if(flag_lex == 1) printf("RBRACE\n"); semi_flag = 1; column_num+=yyleng; return RBRACE;}
+{RPAR}                          {if(flag_lex == 1) printf("RPAR\n"); semi_flag = 1; column_num+=yyleng; return RPAR;}
+{RSQ}                           {if(flag_lex == 1) printf("RSQ\n"); semi_flag = 1; column_num+=yyleng; return RSQ;}
+{PACKAGE}                       {if(flag_lex == 1) printf("PACKAGE\n"); semi_flag = 0; column_num+=yyleng; return PACKAGE;}
+{RETURN}                        {if(flag_lex == 1) printf("RETURN\n"); semi_flag = 1; column_num+=yyleng; return RETURN;}
+{ELSE}                          {if(flag_lex == 1) printf("ELSE\n"); semi_flag = 0; column_num+=yyleng; return ELSE;}
+{FOR}                           {if(flag_lex == 1) printf("FOR\n"); semi_flag = 0; column_num+=yyleng; return FOR;}
+{IF}                            {if(flag_lex == 1) printf("IF\n"); semi_flag = 0; column_num+=yyleng; return IF;}
+{VAR}                           {if(flag_lex == 1) printf("VAR\n"); semi_flag = 0; column_num+=yyleng; return VAR;}
+{INT}                           {if(flag_lex == 1) printf("INT\n"); semi_flag = 0; column_num+=yyleng; return INT;}
+{FLOAT32}                       {if(flag_lex == 1) printf("FLOAT32\n"); semi_flag = 0; column_num+=yyleng; return FLOAT32;}
+{BOOL}                          {if(flag_lex == 1) printf("BOOL\n"); semi_flag = 0; column_num+=yyleng; return BOOL;}
+{STRING}                        {if(flag_lex == 1) printf("STRING\n"); semi_flag = 0; column_num+=yyleng; return STRING;}
+{PRINT}                         {if(flag_lex == 1) printf("PRINT\n"); semi_flag = 0; column_num+=yyleng; return PRINT;}
+{PARSEINT}                      {if(flag_lex == 1) printf("PARSEINT\n"); semi_flag = 0; column_num+=yyleng; return PARSEINT;}
+{FUNC}                          {if(flag_lex == 1) printf("FUNC\n"); semi_flag = 0; column_num+=yyleng; return FUNC;}
+{CMDARGS}                       {if(flag_lex == 1) printf("CMDARGS\n"); semi_flag = 0; column_num+=yyleng; return CMDARGS;}
+{RESERVED}                      {if(flag_lex == 1) printf("RESERVED(%s)\n", yytext); semi_flag = 0; column_num+=yyleng; return RESERVED;}
+{BLANKID}                       {if(flag_lex == 1) printf("BLANKID\n"); semi_flag = 0; column_num+=yyleng; return BLANKID;}
+{ID}                            {if(flag_lex == 1) printf("ID(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; return ID;}
 
 {space}                         {column_num+=yyleng;}   
 \t                              {column_num+=yyleng;}
