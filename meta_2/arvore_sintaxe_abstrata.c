@@ -13,17 +13,18 @@
 #include "structures_p.h"
 #include "y.tab.h"
 
-int alloc_types[] = {
+int alloc[] = {
     ID,
     INTLIT,
     REALLIT,
-    STRLIT};
+    STRLIT,
+};
 
-token_t token(char *value, int type)
+token_t token(char *value, int type) //
 {
-    for (int i = 0; i < (sizeof(alloc_types) / sizeof(alloc_types[0])); ++i)
+    for (int i = 0; i < (sizeof(alloc) / sizeof(alloc[0])); ++i)
     {
-        if (type == alloc_types[i])
+        if (type == alloc[i])
         {
             return (char *)strdup(value);
         }
@@ -46,50 +47,10 @@ ast_node_t *ast_node(char *id, token_t value)
 
 void add_children(ast_node_t *parent, int argc, ...)
 {
-    va_list args;
-    ast_node_t *child = NULL;
-    va_start(args, argc);
-
-    assert(parent != NULL);
-    child = va_arg(args, ast_node_t *);
-
-    parent->first_child = child;
-    ast_node_t *current = parent->first_child;
-
-    for (int i = 0; i < argc - 1; ++i)
-    {
-        child = va_arg(args, ast_node_t *);
-        for (ast_node_t *c = child; c; c = c->next_sibling)
-        {
-            current->next_sibling = c;
-            current = current->next_sibling;
-        }
-    }
-    va_end(args);
 }
 
 void add_siblings(ast_node_t *node, int argc, ...)
 {
-    va_list args;
-    va_start(args, argc);
-    ast_node_t *sibling;
-
-    assert(node != NULL);
-    ast_node_t *current = node;
-    while (current->next_sibling != NULL)
-    {
-        current = current->next_sibling;
-    }
-
-    for (int i = 0; i < argc; ++i)
-    {
-        sibling = va_arg(args, ast_node_t *);
-        if (!sibling)
-            continue;
-        current->next_sibling = sibling;
-        current = current->next_sibling;
-    }
-    va_end(args);
 }
 
 void free_ast(ast_node_t *node)
@@ -124,12 +85,12 @@ void ast_idententation(ast_node_t *node, int indent_level)
         ast_idententation(node->next_sibling, indent_level);
 }
 
-/* //Alterar
+/*
+//Alterar
 void print_ast(ast_node_t *program) {
     if (!syntax_error)
         ast_idententation(program, 0);
-}*/
-
+}
 void add_typespec(ast_node_t *type, ast_node_t *give_me_type)
 {
     ast_node_t *new_type_node = NULL;
@@ -156,3 +117,4 @@ ast_node_t *null_check(ast_node_t *node)
 {
     return node ? node : ast_node("Null", NULL);
 }
+*/

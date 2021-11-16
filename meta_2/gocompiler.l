@@ -198,15 +198,14 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 {space}                         {column_num+=yyleng;}   
 \t                              {column_num+=yyleng;}
-{new_line}                      {if(semi_flag == 1) printf("SEMICOLON\n"); semi_flag = 0; line_num++; column_num = 1;}
+{new_line}                      {if(flag_lex == 1){ if(semi_flag == 1) printf("SEMICOLON\n");} semi_flag = 0; line_num++; column_num = 1;}
 .                               {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext); column_num+=yyleng;}
-<<EOF>>                         {if(semi_flag == 1) printf("SEMICOLON\n"); yyterminate();}
+<<EOF>>                         {if(flag_lex == 1){ if(semi_flag == 1) printf("SEMICOLON\n");} yyterminate();}
 
 %%
 
 void yyerror (char *s) {
-    printf ("syntax error\n");
-    //printf ("Line %d, column %d: %s: %s\n", <num linha>, <num coluna>, s, yytext);
+    printf ("Line %d, column %d: %s: %s\n", line_num, column_num, s, yytext);
 }
 
 int main(int argc, char* argv[])
