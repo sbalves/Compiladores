@@ -1,9 +1,0 @@
-package main;
-
-var i2 int;
-
-func main(i int, j string) int {var x bool;}; 
-
-func main() {
-	var j int;
-};
