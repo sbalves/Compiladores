@@ -15,8 +15,8 @@
 %} 
 
 %union{
-    token_t token;
-    ast_node_t node;
+    token_t* token;
+    ast_node_t* node;
     char* id;
     char string[10];
 };
@@ -52,7 +52,6 @@
 %type <node> Expr ExprOrNull
 
 //Precedências
-
 //%left COMMA
 %right ASSIGN
 %left OR 
@@ -71,157 +70,128 @@
 
 %%
 
-Program: PACKAGE ID SEMICOLON Declarations 
+Program: PACKAGE ID SEMICOLON Declarations                    {$$ = NULL;}
         ;
 
-Declarations: Declarations VarDeclaration SEMICOLON
-            | Declarations FuncDeclaration SEMICOLON
+Declarations: Declarations VarDeclaration SEMICOLON       {$$ = NULL;}
+            | Declarations FuncDeclaration SEMICOLON       {$$ = NULL;}
             | /* EPSILON */ {$$ = NULL;}
             ;
 
-VarDeclaration: VAR VarSpec
-              | VAR LPAR VarSpec SEMICOLON RPAR
+VarDeclaration: VAR VarSpec       {$$ = NULL;}
+              | VAR LPAR VarSpec SEMICOLON RPAR       {$$ = NULL;}
               ;
 
-VarSpec: ID VarSpecList Type
+VarSpec: ID VarSpecList Type       {$$ = NULL;}
+        ;
 
-VarSpecList: VarSpecList COMMA ID 
+VarSpecList: VarSpecList COMMA ID        {$$ = NULL;}
            | /* EPSILON */ {$$ = NULL;}
            ;
 
-Type: INT
-    | FLOAT32
-    | BOOL
-    | STRING_L
+Type: INT      {$$ = NULL;}
+    | FLOAT32  {$$ = NULL;}    
+    | BOOL     {$$ = NULL;}   
+    | STRING_L {$$ = NULL;}      
     ;
 
-FuncDeclaration: FUNC ID LPAR ParametersOrNull RPAR TypeOrNull FuncBody
+FuncDeclaration: FUNC ID LPAR ParametersOrNull RPAR TypeOrNull FuncBody       {$$ = NULL;}
             ;
 
-TypeOrNull: Type
+TypeOrNull: Type       {$$ = NULL;}
           | /* EPSILON */ {$$ = NULL;}
           ;
 
-Parameters: ID Type ParametersList
+Parameters: ID Type ParametersList       {$$ = NULL;}
         ;
 
-ParametersList: ParametersList COMMA ID Type
+ParametersList: ParametersList COMMA ID Type       {$$ = NULL;}
               | /* EPSILON */ {$$ = NULL;}
               ;
 
-ParametersOrNull: Parameters
+ParametersOrNull: Parameters       {$$ = NULL;}
                 | /* EPSILON */ {$$ = NULL;}
                 ;
 
-FuncBody:   LBRACE VarsAndStatements RBRACE
+FuncBody:   LBRACE VarsAndStatements RBRACE       {$$ = NULL;}
         ;
 
-VarsAndStatements:  VarsAndStatements VarsAndStatementsList SEMICOLON 
+VarsAndStatements:  VarsAndStatements VarsAndStatementsList SEMICOLON        {$$ = NULL;}
                 |   /* EPSILON */     {$$ = NULL;}
                 ; 
 
-VarsAndStatementsList:  VarDeclaration | Statement
+VarsAndStatementsList:  VarDeclaration | Statement       {$$ = NULL;}
                     |   /* EPSILON */ {$$ = NULL;}
                     ;
 
-Statement:  ID ASSIGN Expr
-        |   LBRACE StatementList1 RBRACE
-        |   IF Expr LBRACE StatementList1 RBRACE StatementList 
-        |   FOR ExprOrNull LBRACE StatementList1 RBRACE 
-        |   RETURN ExprOrNull 
-        |   FuncInvocation | ParseArgs 
-        |   PRINT LPAR ExprOrStril RPAR
+Statement:  ID ASSIGN Expr       {$$ = NULL;}
+        |   LBRACE StatementList1 RBRACE       {$$ = NULL;}
+        |   IF Expr LBRACE StatementList1 RBRACE StatementList        {$$ = NULL;}
+        |   FOR ExprOrNull LBRACE StatementList1 RBRACE        {$$ = NULL;}
+        |   RETURN ExprOrNull        {$$ = NULL;}
+        |   FuncInvocation {$$ = NULL;}
+        |   ParseArgs        {$$ = NULL;}
+        |   PRINT LPAR Expr RPAR       {$$ = NULL;}
+        |   PRINT LPAR STRLIT RPAR       {$$ = NULL;}
+        |   error SEMICOLON              {$$ = NULL;}
         ;
 
-ExprOrStril: Expr 
-           | STRLIT
-           ;
 
-
-StatementList:  ELSE LBRACE StatementList1 RBRACE
+StatementList:  ELSE LBRACE StatementList1 RBRACE       {$$ = NULL;}
             |   /* EPSILON */ {$$ = NULL;}
             ;
 
 
-StatementList1: StatementList1 Statement SEMICOLON
+StatementList1: StatementList1 Statement SEMICOLON       {$$ = NULL;}
               | /* EPSILON */   {$$ = NULL;}
               ;
 
-ParseArgs:  ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR
+ParseArgs:  ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR       {$$ = NULL;}
+        |   ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR  {$$ = NULL;}
         ;
 
-FuncInvocation: ID LPAR FuncInvocationList RPAR
+FuncInvocation: ID LPAR FuncInvocationList RPAR       {$$ = NULL;}
+              | ID LPAR error RPAR {$$ = NULL;}
             ;
 
-FuncInvocationList: Expr CommaExpressionList
+FuncInvocationList: Expr CommaExpressionList       {$$ = NULL;}
                 |   /* EPSILON */ {$$ = NULL;}
                 ;
 
-CommaExpressionList: CommaExpressionList COMMA Expr
+CommaExpressionList: CommaExpressionList COMMA Expr       {$$ = NULL;}
                 |    /* EPSILON */         {$$ = NULL;}
                 ;
 
-Expr:   Expr MOD Expr 
-    |   Expr LT Expr 
-    |   Expr GT Expr 
-    |   Expr EQ Expr 
-    |   Expr NE Expr 
-    |   Expr LE Expr 
-    |   Expr GE Expr 
-    |   Expr OR Expr 
-    |   Expr AND Expr 
-    |   Expr PLUS Expr 
-    |   Expr MINUS Expr 
-    |   Expr STAR Expr 
-    |   Expr DIV Expr 
-    |   NOT Expr
-    |   MINUS Expr
-    |   PLUS Expr
-    |   INTLIT | REALLIT | ID | FuncInvocation | LPAR Expr RPAR
+Expr:   Expr MOD Expr        {$$ = NULL;}
+    |   Expr LT Expr        {$$ = NULL;}
+    |   Expr GT Expr        {$$ = NULL;}
+    |   Expr EQ Expr        {$$ = NULL;}
+    |   Expr NE Expr        {$$ = NULL;}
+    |   Expr LE Expr        {$$ = NULL;}
+    |   Expr GE Expr        {$$ = NULL;}
+    |   Expr OR Expr        {$$ = NULL;}
+    |   Expr AND Expr        {$$ = NULL;}
+    |   Expr PLUS Expr        {$$ = NULL;}
+    |   Expr MINUS Expr        {$$ = NULL;}
+    |   Expr STAR Expr        {$$ = NULL;}
+    |   Expr DIV Expr        {$$ = NULL;}
+    |   NOT Expr       {$$ = NULL;}
+    |   MINUS Expr       {$$ = NULL;}
+    |   PLUS Expr       {$$ = NULL;}
+    |   INTLIT {$$ = NULL;}
+    |   REALLIT {$$ = NULL;}
+    |   ID {$$ = NULL;}
+    |   FuncInvocation {$$ = NULL;}
+    |   LPAR Expr RPAR       {$$ = NULL;}
+    |   LPAR error RPAR      {$$ = NULL;}
     ;
 
-ExprOrNull: Expr
+ExprOrNull: Expr       {$$ = NULL;}
             | /* EPSILON */         {$$ = NULL;}
             ;
 
 %%
 
-/* FLAG WARNING */
-/* yacc -Wcounterexamples mycalc_2.y */
+/* FLAG WARNING - Criar flags!!!*/
 
-void argparse(int argc, char *argv[]) {
-    for (int i = 1; i < argc; ++i) {
-        if (!strcmp(argv[i], "-l")) {
-             e1_flag = t_flag = e2_flag = false;
-             l_flag = true;  
-        } else if (!strcmp(argv[i], "-e1")){
-            t_flag = l_flag = e2_flag = false;
-            e1_flag = true;
-        } else if (!strcmp(argv[i], "-e2")) {
-            e1_flag = t_flag = l_flag = false;
-            e2_flag = true;
-        } else if (!strcmp(argv[i], "-t")) {
-            l_flag = e2_flag = e1_flag = false;
-            t_flag = true; 
-        }
-    }
-}
 
-int main(int argc, char *argv[]) {
-    argparse(argc, argv);
-    
-    if (l_flag || e1_flag) {
-        return yylex();
-    } 
-    
-    if (e2_flag) {
-        yyparse(); 
-    } else if (t_flag) {
-        yyparse();
-        print_ast(program);  
-    }
-
-    free_ast(program);
-    yylex_destroy();
-    return 0;
-} 
