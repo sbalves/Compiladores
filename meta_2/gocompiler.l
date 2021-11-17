@@ -11,6 +11,7 @@
     //YACC+
     #include "structures_p.h"
     #include "y.tab.h"
+    
 
     int semi_flag = 0;
     int line_num = 1;
@@ -22,16 +23,7 @@
     int illegal_col = 1;
     int invalid_escape = 0;
     int flag_lex = 0;
-    /*
-    // Define to send token info to yacc
-    #define send_token(...)\
-            if (e2_flag || t_flag) { \
-                yylval.token = token(yytext, __VA_ARGS__);\
-                return __VA_ARGS__;\
-            }
-    
-    // Flags
-    extern bool e2_flag, t_flag; */
+    int flag_ret = 0;
 %}
 
 /* Define states for line comments and general comments */
@@ -108,39 +100,59 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 
 %%
-\"\"                            {printf("STRLIT(\"\")\n"); semi_flag = 1; column_num+=yyleng;}
+\"\"                            {printf("STRLIT(\"\")\n"); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return STRLIT;}
 \"                              {ln_com = line_num; col_com = column_num; BEGIN STRING_COND; semi_flag = 0; column_num+=yyleng;}
+<STRING_COND>{STRLIT}\"         {printf("STRLIT(\"%s)\n", yytext); 
+                                semi_flag = 1; 
+                                column_num+=yyleng;
+                                if(flag_ret == 1) return STRLIT;
+                                BEGIN 0;
+                                }
+<STRING_COND>\\                 {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
+                                printf("Line %d, column %d: unterminated string literal", ln_com, col_com);
+                                column_num += yyleng;
+                                }
 <STRING_COND>{STRLIT}           {column_num+=yyleng;}
-<STRING_COND>{STRLIT}{new_line} {
-                                printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
+<STRING_COND>\\{new_line}       {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
                                 semi_flag = 0;
                                 column_num = 1; 
                                 line_num++;
                                 BEGIN 0;
                                 } 
+<STRING_COND>{STRLIT}{new_line} {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
+                                semi_flag = 0;
+                                column_num = 1; 
+                                line_num++;
+                                BEGIN 0;
+                                }
+
 <STRING_COND>\\[^fnrt\\\"]      {BEGIN INV_ESCAPE;
                                 printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext);
                                 column_num += yyleng;
-                                }                                
+                                }           
+<INV_ESCAPE>\"                  {column_num+=yyleng; BEGIN 0;}
+<INV_ESCAPE>\\                  {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
+                                printf("Line %d, column %d: unterminated string literal", ln_com, col_com);
+                                column_num += yyleng;
+                                }                      
 <INV_ESCAPE>{STRLIT}            {column_num+=yyleng;} 
 <INV_ESCAPE>\\[^fnrt\\\"]       {printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext);
                                 column_num += yyleng;
                                 }
-<INV_ESCAPE>{new_line}          {
+<INV_ESCAPE>{new_line}          {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
+                                semi_flag = 0;
+                                column_num = 1; 
+                                line_num++;
+                                BEGIN 0;
+                                }
+<INV_ESCAPE>\\{new_line}        {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
                                 printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
                                 semi_flag = 0;
                                 column_num = 1; 
                                 line_num++;
                                 BEGIN 0;
                                 }
-<INV_ESCAPE>\\{new_line}        {
-                                printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
-                                printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
-                                semi_flag = 0;
-                                column_num = 1; 
-                                line_num++;
-                                BEGIN 0;
-                                }
+
 {line_comments}                 {BEGIN LINE_COM; column_num+=yyleng;}
 <LINE_COM>{new_line}            {column_num = 1; BEGIN 0; line_num++;}
 <LINE_COM>.                     {column_num+=yyleng;}
@@ -151,50 +163,50 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 <GENERAL_COM>.                  {column_num+=yyleng;}
 <GENERAL_COM>{general_end}      {BEGIN 0; column_num+=yyleng;}
 
-{INTLIT}                        {if(flag_lex == 1) printf("INTLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng;}
-{invalid_octal_lit}             {printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext); semi_flag = 1; column_num+=yyleng; return INTLIT;}
+{INTLIT}                        {if(flag_lex == 1) printf("INTLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return INTLIT;}
+{invalid_octal_lit}             {printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext); semi_flag = 1; column_num+=yyleng;}
 
-{REALLIT}                       {if(flag_lex == 1) printf("REALLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; return REALLIT;} 
-{SEMICOLON}                     {if(flag_lex == 1) printf("SEMICOLON\n"); semi_flag = 0; column_num+=yyleng; return SEMICOLON;}
-{COMMA}                         {if(flag_lex == 1) printf("COMMA\n"); semi_flag = 0; column_num+=yyleng; return COMMA;}
-{ASSIGN}                        {if(flag_lex == 1) printf("ASSIGN\n"); semi_flag = 0; column_num+=yyleng; return ASSIGN;}
-{STAR}                          {if(flag_lex == 1) printf("STAR\n"); semi_flag = 0; column_num+=yyleng; return STAR;}
-{DIV}                           {if(flag_lex == 1) printf("DIV\n"); semi_flag = 0; column_num+=yyleng; return DIV;}
-{MINUS}                         {if(flag_lex == 1) printf("MINUS\n"); semi_flag = 0; column_num+=yyleng; return MINUS;}
-{PLUS}                          {if(flag_lex == 1) printf("PLUS\n"); semi_flag = 0; column_num+=yyleng; return PLUS;}
-{EQ}                            {if(flag_lex == 1) printf("EQ\n"); semi_flag = 0; column_num+=yyleng; return EQ;} 
-{GE}                            {if(flag_lex == 1) printf("GE\n"); semi_flag = 0; column_num+=yyleng; return GE;}
-{GT}                            {if(flag_lex == 1) printf("GT\n"); semi_flag = 0; column_num+=yyleng; return GT;}
-{LBRACE}                        {if(flag_lex == 1) printf("LBRACE\n"); semi_flag = 0; column_num+=yyleng; return LBRACE;}
-{LE}                            {if(flag_lex == 1) printf("LE\n"); semi_flag = 0; column_num+=yyleng; return LE;}
-{LPAR}                          {if(flag_lex == 1) printf("LPAR\n"); semi_flag = 0; column_num+=yyleng; return LPAR;}
-{LSQ}                           {if(flag_lex == 1) printf("LSQ\n"); semi_flag = 0; column_num+=yyleng; return LSQ;}
-{LT}                            {if(flag_lex == 1) printf("LT\n"); semi_flag = 0; column_num+=yyleng; return LT;}
-{MOD}                           {if(flag_lex == 1) printf("MOD\n"); semi_flag = 0; column_num+=yyleng; return MOD;}
-{NE}                            {if(flag_lex == 1) printf("NE\n"); semi_flag = 0; column_num+=yyleng; return NE;}
-{NOT}                           {if(flag_lex == 1) printf("NOT\n"); semi_flag = 0; column_num+=yyleng; return NOT;}
-{AND}                           {if(flag_lex == 1) printf("AND\n"); semi_flag = 0; column_num+=yyleng; return AND;}
-{OR}                            {if(flag_lex == 1) printf("OR\n"); semi_flag = 0; column_num+=yyleng; return OR;}
-{RBRACE}                        {if(flag_lex == 1) printf("RBRACE\n"); semi_flag = 1; column_num+=yyleng; return RBRACE;}
-{RPAR}                          {if(flag_lex == 1) printf("RPAR\n"); semi_flag = 1; column_num+=yyleng; return RPAR;}
-{RSQ}                           {if(flag_lex == 1) printf("RSQ\n"); semi_flag = 1; column_num+=yyleng; return RSQ;}
-{PACKAGE}                       {if(flag_lex == 1) printf("PACKAGE\n"); semi_flag = 0; column_num+=yyleng; return PACKAGE;}
-{RETURN}                        {if(flag_lex == 1) printf("RETURN\n"); semi_flag = 1; column_num+=yyleng; return RETURN;}
-{ELSE}                          {if(flag_lex == 1) printf("ELSE\n"); semi_flag = 0; column_num+=yyleng; return ELSE;}
-{FOR}                           {if(flag_lex == 1) printf("FOR\n"); semi_flag = 0; column_num+=yyleng; return FOR;}
-{IF}                            {if(flag_lex == 1) printf("IF\n"); semi_flag = 0; column_num+=yyleng; return IF;}
-{VAR}                           {if(flag_lex == 1) printf("VAR\n"); semi_flag = 0; column_num+=yyleng; return VAR;}
-{INT}                           {if(flag_lex == 1) printf("INT\n"); semi_flag = 0; column_num+=yyleng; return INT;}
-{FLOAT32}                       {if(flag_lex == 1) printf("FLOAT32\n"); semi_flag = 0; column_num+=yyleng; return FLOAT32;}
-{BOOL}                          {if(flag_lex == 1) printf("BOOL\n"); semi_flag = 0; column_num+=yyleng; return BOOL;}
-{STRING}                        {if(flag_lex == 1) printf("STRING\n"); semi_flag = 0; column_num+=yyleng; return STRING_L;}
-{PRINT}                         {if(flag_lex == 1) printf("PRINT\n"); semi_flag = 0; column_num+=yyleng; return PRINT;}
-{PARSEINT}                      {if(flag_lex == 1) printf("PARSEINT\n"); semi_flag = 0; column_num+=yyleng; return PARSEINT;}
-{FUNC}                          {if(flag_lex == 1) printf("FUNC\n"); semi_flag = 0; column_num+=yyleng; return FUNC;}
-{CMDARGS}                       {if(flag_lex == 1) printf("CMDARGS\n"); semi_flag = 0; column_num+=yyleng; return CMDARGS;}
-{RESERVED}                      {if(flag_lex == 1) printf("RESERVED(%s)\n", yytext); semi_flag = 0; column_num+=yyleng; return RESERVED;}
-{BLANKID}                       {if(flag_lex == 1) printf("BLANKID\n"); semi_flag = 0; column_num+=yyleng; return BLANKID;}
-{ID}                            {if(flag_lex == 1) printf("ID(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; return ID;}
+{REALLIT}                       {if(flag_lex == 1) printf("REALLIT(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return REALLIT;} 
+{SEMICOLON}                     {if(flag_lex == 1) printf("SEMICOLON\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return SEMICOLON;}
+{COMMA}                         {if(flag_lex == 1) printf("COMMA\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return COMMA;}
+{ASSIGN}                        {if(flag_lex == 1) printf("ASSIGN\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return ASSIGN;}
+{STAR}                          {if(flag_lex == 1) printf("STAR\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return STAR;}
+{DIV}                           {if(flag_lex == 1) printf("DIV\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return DIV;}
+{MINUS}                         {if(flag_lex == 1) printf("MINUS\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return MINUS;}
+{PLUS}                          {if(flag_lex == 1) printf("PLUS\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return PLUS;}
+{EQ}                            {if(flag_lex == 1) printf("EQ\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return EQ;} 
+{GE}                            {if(flag_lex == 1) printf("GE\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return GE;}
+{GT}                            {if(flag_lex == 1) printf("GT\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return GT;}
+{LBRACE}                        {if(flag_lex == 1) printf("LBRACE\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return LBRACE;}
+{LE}                            {if(flag_lex == 1) printf("LE\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return LE;}
+{LPAR}                          {if(flag_lex == 1) printf("LPAR\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return LPAR;}
+{LSQ}                           {if(flag_lex == 1) printf("LSQ\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return LSQ;}
+{LT}                            {if(flag_lex == 1) printf("LT\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return LT;}
+{MOD}                           {if(flag_lex == 1) printf("MOD\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return MOD;}
+{NE}                            {if(flag_lex == 1) printf("NE\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return NE;}
+{NOT}                           {if(flag_lex == 1) printf("NOT\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return NOT;}
+{AND}                           {if(flag_lex == 1) printf("AND\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return AND;}
+{OR}                            {if(flag_lex == 1) printf("OR\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return OR;}
+{RBRACE}                        {if(flag_lex == 1) printf("RBRACE\n"); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return RBRACE;}
+{RPAR}                          {if(flag_lex == 1) printf("RPAR\n"); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return RPAR;}
+{RSQ}                           {if(flag_lex == 1) printf("RSQ\n"); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return RSQ;}
+{PACKAGE}                       {if(flag_lex == 1) printf("PACKAGE\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return PACKAGE;}
+{RETURN}                        {if(flag_lex == 1) printf("RETURN\n"); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return RETURN;}
+{ELSE}                          {if(flag_lex == 1) printf("ELSE\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return ELSE;}
+{FOR}                           {if(flag_lex == 1) printf("FOR\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return FOR;}
+{IF}                            {if(flag_lex == 1) printf("IF\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return IF;}
+{VAR}                           {if(flag_lex == 1) printf("VAR\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return VAR;}
+{INT}                           {if(flag_lex == 1) printf("INT\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return INT;}
+{FLOAT32}                       {if(flag_lex == 1) printf("FLOAT32\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return FLOAT32;}
+{BOOL}                          {if(flag_lex == 1) printf("BOOL\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return BOOL;}
+{STRING}                        {if(flag_lex == 1) printf("STRING\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return STRING_L;}
+{PRINT}                         {if(flag_lex == 1) printf("PRINT\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return PRINT;}
+{PARSEINT}                      {if(flag_lex == 1) printf("PARSEINT\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return PARSEINT;}
+{FUNC}                          {if(flag_lex == 1) printf("FUNC\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return FUNC;}
+{CMDARGS}                       {if(flag_lex == 1) printf("CMDARGS\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return CMDARGS;}
+{RESERVED}                      {if(flag_lex == 1) printf("RESERVED(%s)\n", yytext); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return RESERVED;}
+{BLANKID}                       {if(flag_lex == 1) printf("BLANKID\n"); semi_flag = 0; column_num+=yyleng; if(flag_ret == 1) return BLANKID;}
+{ID}                            {if(flag_lex == 1) printf("ID(%s)\n", yytext); semi_flag = 1; column_num+=yyleng; if(flag_ret == 1) return ID;}
 
 {space}                         {column_num+=yyleng;}   
 \t                              {column_num+=yyleng;}
@@ -212,8 +224,13 @@ int main(int argc, char* argv[])
 {
     if (argc > 1 && strcmp(argv[1], "-l") == 0){
         flag_lex = 1;
+        yylex();
         }
-yylex();
+
+    else if(argc == 1){
+        flag_ret = 1;
+        yyparse();
+    }
 return 0;
 }
 
