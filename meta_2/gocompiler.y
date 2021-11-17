@@ -17,9 +17,7 @@
 %union{
     token_t* token;
     ast_node_t* node;
-    char* id;
-    char string[10];
-};
+}; 
 
 // Yacc tokens 
 %token <token>  ID
@@ -64,9 +62,6 @@
 
 %nonassoc ELSE IF
 
-
-//Sofia - Program; Declarations; VarDeclaration; VarSpec; Type; FuncDeclaration; Parameters; FuncBody; VarsAndStatements
-//João - Statement; Expr; ParseArgs; FuncInvocation
 
 %%
 
