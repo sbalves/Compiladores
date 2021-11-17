@@ -5,7 +5,7 @@
     #include <stdbool.h>
     #include <assert.h>
 
-    #include "structures_p.h"
+    #include "structures.h"
 
     int yylex(void);
     void yyerror (const char *s);
@@ -129,7 +129,7 @@ Statement:  ID ASSIGN Expr                                              {;}
         |   ParseArgs                                                   {;}
         |   PRINT LPAR Expr RPAR                                        {;}
         |   PRINT LPAR STRLIT RPAR                                      {;}
-        |   error SEMICOLON                                             {;}
+        |   error                                                       {;}
         ;
 
 

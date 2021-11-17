@@ -9,7 +9,7 @@
     #include <string.h>
 
     //YACC+
-    #include "structures_p.h"
+    #include "structures.h"
     #include "y.tab.h"
     
 
@@ -25,7 +25,6 @@
     int flag_lex = 0;
     int flag_ret = 0;
 %}
-/*    ./gocompiler < errors.dgo > errors1.out   */
 /* Define states for line comments and general comments */
 %X LINE_COM GENERAL_COM STRING_COND INV_ESCAPE
 
@@ -211,11 +210,19 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {space}                         {column_num+=yyleng;}   
 \t                              {column_num+=yyleng;}
 
-{new_line}                      {if(flag_lex == 1 && semi_flag == 1 && flag_ret == 1){printf("SEMICOLON\n"); return SEMICOLON;} semi_flag = 0; line_num++; column_num = 1;}
-
+{new_line}                      {if(flag_lex == 1 && semi_flag == 1 && flag_ret == 1){printf("SEMICOLON\n"); semi_flag = 0; line_num++; column_num = 1; return SEMICOLON;}  line_num++; column_num = 1;}
+<<EOF>>                         {
+                                    if(semi_flag == 1){
+                                        semi_flag = 0;
+                                        if(flag_lex == 1)
+                                            printf("SEMICOLON\n");
+                                        if(flag_ret == 1)
+                                            return SEMICOLON;
+                                    }
+                                    yyterminate(); return EOF;
+                                }
 .                               {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext); column_num+=yyleng;}
 
-<<EOF>>                         {if(flag_lex == 1 && semi_flag == 1 && flag_ret == 1){semi_flag = 0; printf("SEMICOLON\n"); return SEMICOLON;} yyterminate(); return EOF;}
 %%
 
 void yyerror (char *s) {
@@ -231,9 +238,9 @@ int main(int argc, char* argv[])
     if (argc > 1 && strcmp(argv[1], "-l") == 0){
         flag_lex = 1;
         yylex();
-        }
+    }
 
-    else if(argc == 1){
+    if(argc == 1){
         flag_ret = 1;
         yyparse();
     }
