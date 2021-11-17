@@ -1,16 +1,9 @@
 %{
     #include <stdio.h>
-    #include <stdlib.h>
-    #include <string.h>
-    #include <stdbool.h>
-    #include <assert.h>
-
     #include "structures.h"
 
     int yylex(void);
     void yyerror (const char *s);
-    int yyparse();
-
     ast_node_t *Program; //root node of astree
 %} 
 
@@ -31,7 +24,7 @@
 %token <token>  PACKAGE
 %token <token>  RETURN PRINT PARSEINT FUNC CMDARGS VAR
 %token <token>  IF ELSE FOR
-%token <token>  INT FLOAT32 BOOL STRING_L
+%token <token>  INT FLOAT32 BOOL STRING
 %token <token>  RESERVED
 
 // Yacc nonterminal types - *alterar consoante a árvore*
@@ -87,7 +80,7 @@ VarSpecList: VarSpecList COMMA ID        {$$ = $1;}
 Type: INT      {;}
     | FLOAT32  {;}    
     | BOOL     {;}   
-    | STRING_L {;}      
+    | STRING   {;}      
     ;
 
 FuncDeclaration: FUNC ID LPAR ParametersOrNull RPAR TypeOrNull FuncBody       {;}
