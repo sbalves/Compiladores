@@ -24,7 +24,7 @@
 %}
 
 /* Define states for line comments and general comments */
-%X LINE_COM GENERAL_COM STRING INV_ESCAPE
+%X LINE_COM GENERAL_COM STRING_COND INV_ESCAPE
 
 
 num                     [0-9]
@@ -98,34 +98,44 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 %%
 \"\"                            {printf("STRLIT(\"\")\n"); semi_flag = 1; column_num+=yyleng;}
-\"                              {ln_com = line_num; col_com = column_num; BEGIN STRING; semi_flag = 0; column_num+=yyleng;}
-<STRING>{STRLIT}                {column_num+=yyleng;}
-<STRING>{STRLIT}\"              {printf("STRLIT(\"%s)\n", yytext); 
+\"                              {ln_com = line_num; col_com = column_num; BEGIN STRING_COND; semi_flag = 0; column_num+=yyleng;}
+<STRING_COND>{STRLIT}\"              {printf("STRLIT(\"%s)\n", yytext); 
                                 semi_flag = 1; 
                                 column_num+=yyleng;
                                 BEGIN 0;
                                 }
-<STRING>{STRLIT}{new_line}      {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
+<STRING_COND>\\                      {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
+                                printf("Line %d, column %d: unterminated string literal", ln_com, col_com);
+                                column_num += yyleng;
+                                }
+<STRING_COND>{STRLIT}                {column_num+=yyleng;}
+<STRING_COND>\\{new_line}            {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
                                 semi_flag = 0;
                                 column_num = 1; 
                                 line_num++;
                                 BEGIN 0;
                                 } 
-<STRING>\\{new_line}            {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
+<STRING_COND>{STRLIT}{new_line}      {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
                                 semi_flag = 0;
                                 column_num = 1; 
                                 line_num++;
                                 BEGIN 0;
                                 }
-<STRING>\\[^fnrt\\\"]           {BEGIN INV_ESCAPE;
+
+<STRING_COND>\\[^fnrt\\\"]           {BEGIN INV_ESCAPE;
                                 printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext);
                                 column_num += yyleng;
-                                }                                
+                                }           
+<INV_ESCAPE>\"                  {column_num+=yyleng; BEGIN 0;}
+<INV_ESCAPE>\\                  {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
+                                printf("Line %d, column %d: unterminated string literal", ln_com, col_com);
+                                column_num += yyleng;
+                                }                      
 <INV_ESCAPE>{STRLIT}            {column_num+=yyleng;} 
 <INV_ESCAPE>\\[^fnrt\\\"]       {printf("Line %d, column %d: invalid escape sequence (%s)\n", line_num, column_num, yytext);
                                 column_num += yyleng;
                                 }
-<INV_ESCAPE>\"                  {column_num+=yyleng; BEGIN 0;}
+
 <INV_ESCAPE>{new_line}          {printf("Line %d, column %d: unterminated string literal\n", ln_com, col_com);
                                 semi_flag = 0;
                                 column_num = 1; 
@@ -139,15 +149,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
                                 line_num++;
                                 BEGIN 0;
                                 }
-<INV_ESCAPE>\\                  {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
-                                printf("Line %d, column %d: unterminated string literal", ln_com, col_com);
-                                column_num += yyleng;
-                                }   
-<STRING>\\                      {printf("Line %d, column %d: invalid escape sequence (\\)\n", line_num, column_num);
-                                printf("Line %d, column %d: unterminated string literal", ln_com, col_com);
-                                column_num += yyleng;
-                                }
-                                
+   
 {line_comments}                 {BEGIN LINE_COM; column_num+=yyleng;}
 <LINE_COM>{new_line}            {column_num = 1; BEGIN 0; line_num++;}
 <LINE_COM>.                     {column_num+=yyleng;}
