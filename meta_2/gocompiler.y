@@ -4,12 +4,13 @@
 
     int yylex(void);
     void yyerror (const char *s);
-    ast_node_t *Program; //root node of astree
+    ast *program; //root node of astree
+    int flag_syntax_error=0;
 %} 
 
 %union{
     token_t* token;
-    ast_node_t* node;
+    ast* node;
 }; 
 
 // Yacc tokens 

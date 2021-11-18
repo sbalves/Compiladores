@@ -22,6 +22,7 @@
     int last_line_pos = 1;
     int flag_lex = 0;
     int flag_return = 0;
+    extern int flag_syntax_error;
 
     
 %}
@@ -167,27 +168,31 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 {new_line}                      {pos(yyleng, 1);
                                 if(semicolon_flag == 1){
+                                    semicolon_flag = 0;
                                     if(flag_lex == 1){
                                         printf("SEMICOLON\n");
+                                        return SEMICOLON;
                                     }
                                     else if(flag_return == 1){
                                         semicolon_flag = 0;
                                         return SEMICOLON;
+                                        }
                                     }
-                                }
                                 semicolon_flag = 0;
                                 }
 
-<<EOF>>                         {if(semicolon_flag == 1){
+<<EOF>>                         { pos(yyleng, 0); 
+                                if(semicolon_flag == 1){
                                     semicolon_flag = 0;
-                                    if(flag_lex == 1)
+                                    if(flag_lex == 1){
                                         printf("SEMICOLON\n");
+                                        return SEMICOLON;
+                                        }
                                     if(flag_return == 1){
-                                        yyterminate();
                                         return SEMICOLON;
                                         }
                                     }
-                                    pos(yyleng, 0); yyterminate(); return EOF;
+                                   yyterminate(); return 0;
                                 }
 .                               {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext); pos(yyleng, 0); }
 
@@ -218,7 +223,9 @@ int main(int argc, char* argv[])
     if (argc > 1 && strcmp(argv[1], "-t") == 0){
         flag_return = 1;
         yyparse();
-        yylex_destroy();
+        /*if(flag_syntax_error == 0){
+            printAST(program);
+        }*/
     }
 
     else if(argc == 1){

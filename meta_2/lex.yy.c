@@ -1355,7 +1355,7 @@ case YY_STATE_EOF(LINE_COM):
                                         return SEMICOLON;
                                         }
                                     }
-                                    yyterminate(); return EOF;
+                                    pos(yyleng, 0); yyterminate(); return EOF;
                                 }
 	YY_BREAK
 case 60:
