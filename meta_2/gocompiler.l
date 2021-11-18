@@ -9,7 +9,7 @@
     #include <stdio.h>
 
     //YACC+
-    #include "structures.h"
+    #include "ast.h"
     #include "y.tab.h"
     
     int yylex_destroy(void);
