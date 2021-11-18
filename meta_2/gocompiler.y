@@ -4,7 +4,7 @@
 
     int yylex(void);
     void yyerror (const char *s);
-    ast_node_t *Program; //root node of astree
+    ast_node_t * program; //root node of astree
 %} 
 
 %union{
@@ -58,11 +58,11 @@
 
 %%
 
-Program: PACKAGE ID SEMICOLON Declarations                    {;}
+Program: PACKAGE ID SEMICOLON Declarations                    {program = add_node("Program"); add_children($4);}
         ;
 
-Declarations: Declarations VarDeclaration SEMICOLON       {$$ = $1;}
-            | Declarations FuncDeclaration SEMICOLON       {$$ = $1;}
+Declarations: Declarations VarDeclaration SEMICOLON       {$$ = $1; add_children($2)}
+            | Declarations FuncDeclaration SEMICOLON       {$$ = $1; add_children($2);}
             | /* EPSILON */ {$$ = NULL;}
             ;
 
