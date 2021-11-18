@@ -187,7 +187,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
                                         return SEMICOLON;
                                         }
                                     }
-                                    yyterminate(); return EOF;
+                                    pos(yyleng, 0); yyterminate(); return EOF;
                                 }
 .                               {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext); pos(yyleng, 0); }
 
