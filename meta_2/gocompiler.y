@@ -1,6 +1,6 @@
 %{
     #include <stdio.h>
-    #include "ast.h"
+    #include "structures.h"
 
     int yylex(void);
     void yyerror (const char *s);
