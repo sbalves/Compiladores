@@ -3,11 +3,6 @@
     * Projeto de Compiladores 2021/2022
     * 2019218953 João Miguel Ferreira Castelo Branco Catré
     * 2019227240 Sofia Botelho Vieira Alves
-
-    Todo:
-    - Parte do relatório (explicar gramática)
-    - AST (add_children; ...)
-    - Função para não apresentar nós supérfluos
 */  
 
     //C

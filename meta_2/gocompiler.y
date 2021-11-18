@@ -4,12 +4,12 @@
 
     int yylex(void);
     void yyerror (const char *s);
-    ast * program; //root node of astree
+    ast_node_t *Program; //root node of astree
 %} 
 
 %union{
     token_t* token;
-    ast* node;
+    ast_node_t* node;
 }; 
 
 // Yacc tokens 
@@ -58,11 +58,11 @@
 
 %%
 
-Program: PACKAGE ID SEMICOLON Declarations                    {program = add_node("Program"); add_children($4);}
+Program: PACKAGE ID SEMICOLON Declarations                    {;}
         ;
 
-Declarations: Declarations VarDeclaration SEMICOLON       {$$ = $1; add_siblings($2);}
-            | Declarations FuncDeclaration SEMICOLON       {$$ = $1; add_siblings($2);}
+Declarations: Declarations VarDeclaration SEMICOLON       {$$ = $1;}
+            | Declarations FuncDeclaration SEMICOLON       {$$ = $1;}
             | /* EPSILON */ {$$ = NULL;}
             ;
 
@@ -83,10 +83,8 @@ Type: INT      {;}
     | STRING   {;}      
     ;
 
-FuncDeclaration: FUNC FuncHeader FuncBody       {add_node("FuncDecl"); add_children($7);}
+FuncDeclaration: FUNC ID LPAR ParametersOrNull RPAR TypeOrNull FuncBody       {;}
             ;
-FuncHeader: ID LPAR ParametersOrNull RPAR TypeOrNull
-          ;
 
 TypeOrNull: Type       {;}
           | /* EPSILON */ {$$ = NULL;}
