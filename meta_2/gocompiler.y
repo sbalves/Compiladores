@@ -141,26 +141,52 @@ VarsAndStatements:  VarsAndStatements VarDeclaration SEMICOLON  {$$=$1; add_sibl
                  |  /*Epsilon = NULL*/                          {$$=newNode("NULL", NULL);}
                  ;
 
-Statement:  ID ASSIGN Expr                                              {;}
-        |   LBRACE StatementList1 RBRACE                                {;}
-        |   IF Expr LBRACE StatementList1 RBRACE StatementList          {;}
-        |   FOR Expr LBRACE StatementList1 RBRACE                       {;}
-        |   FOR LBRACE StatementList1 RBRACE                            {;}
-        |   RETURN                                                      {;}
-        |   RETURN Expr                                                 {;}
-        |   FuncInvocation                                              {;}
-        |   ParseArgs                                                   {;}
-        |   PRINT LPAR Expr RPAR                                        {;}
-        |   PRINT LPAR STRLIT RPAR                                      {;}
-        |   error                                                       {;}
+Statement:  ID ASSIGN Expr                                              {$$ = newNode("Assign",NULL); 
+                                                                        aux = newNode("Id", $1); 
+                                                                        add_child($$, aux); 
+                                                                        add_sibling(aux,$3);}
+
+        |   LBRACE StatementList1 RBRACE                                {$$ = $2;}
+
+        |   IF Expr LBRACE StatementList1 RBRACE StatementList          {$$ = newNode("If",NULL); 
+                                                                        add_child($$, $2);
+                                                                        aux = newNode("Block", NULL);
+                                                                        add_sibling($2,aux);
+                                                                        add_child(aux,$6);}
+
+        |   FOR Expr LBRACE StatementList1 RBRACE                       {$$ = newNode("For",NULL); 
+                                                                        add_child($$, $2);
+                                                                        aux = newNode("Block", NULL);
+                                                                        add_sibling($2,aux);
+                                                                        add_child(aux,$4);}
+
+        |   FOR LBRACE StatementList1 RBRACE                            {$$ = newNode("For",NULL); 
+                                                                        aux = newNode("Block", NULL); 
+                                                                        add_child($$, aux);
+                                                                        add_child(aux,$3);}
+
+        |   RETURN                                                      {$$ = newNode("Return", NULL);}
+        |   RETURN Expr                                                 {$$ = newNode("Return", NULL); 
+                                                                        add_child($$,$2);}
+
+        |   FuncInvocation                                              {$$ = $1;}
+        |   ParseArgs                                                   {$$ = newNode("ParseArgs", NULL);}
+        |   PRINT LPAR Expr RPAR                                        {$$ = newNode("Print", NULL); 
+                                                                        add_child($$, $3);}
+                                                                                
+        |   PRINT LPAR STRLIT RPAR                                      {$$ = newNode("Print", NULL); 
+                                                                        aux = newNode("StrLit", $3); 
+                                                                        add_child($$,aux);}
+                                                                        
+        |   error                                                       {$$ = NULL;}
         ;
 
-StatementList:  ELSE LBRACE StatementList1 RBRACE       {;}
+StatementList:  ELSE LBRACE StatementList1 RBRACE       {$$ = $3}
             |   /* EPSILON */                           {$$ = NULL;}
             ;
 
 
-StatementList1: StatementList1 Statement SEMICOLON       {$$ = $1;}
+StatementList1: StatementList1 Statement SEMICOLON       {$$ = $1; add_sibling($$, $2);}
               | /* EPSILON */   {$$ = NULL;}
               ;
 
