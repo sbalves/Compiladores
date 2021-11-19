@@ -1,53 +1,53 @@
 %{
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <string.h>
-    #include <stdbool.h>
-    #include <assert.h>
+        #include "structures.h"
+        int yylex();
+        int yyparse();
+        void yyerror (const char *str);
+        
+        int flag_syntax_error=0;
 
-    #include "structures.h"
-
-    int yylex(void);
-    void yyerror (const char *s);
-    int yyparse();
-
-    ast_node_t *Program; //root node of astree
+        node* varspec_aux = NULL;
+        node* varspec_aux_1 = NULL;
+        node* aux = NULL;
+        node* aux2 = NULL;
+        node* program_root=NULL; //root node of astree
 %} 
 
 %union{
-    token_t* token;
-    ast_node_t* node;
-}; 
+        char* value;
+        node* node;   
+};
 
 // Yacc tokens 
-%token <token>  ID
-%token <token>  STRLIT INTLIT REALLIT
-%token <token>  SEMICOLON COMMA 
-%token <token>  BLANKID
-%token <token>  ASSIGN STAR DIV MINUS PLUS MOD
-%token <token>  EQ GE GT LE LT NE
-%token <token>  LBRACE RBRACE LPAR RPAR LSQ RSQ 
-%token <token>  NOT AND OR
-%token <token>  PACKAGE
-%token <token>  RETURN PRINT PARSEINT FUNC CMDARGS VAR
-%token <token>  IF ELSE FOR
-%token <token>  INT FLOAT32 BOOL STRING_L
-%token <token>  RESERVED
+%token SEMICOLON COMMA 
+%token BLANKID
+%token ASSIGN STAR DIV MINUS PLUS MOD
+%token EQ GE GT LE LT NE
+%token LBRACE RBRACE LPAR RPAR LSQ RSQ 
+%token NOT AND OR
+%token PACKAGE
+%token RETURN PRINT PARSEINT FUNC CMDARGS VAR
+%token IF ELSE FOR
+%token INT FLOAT32 BOOL STRING
+
+%token <value> ID
+%token <value> STRLIT INTLIT REALLIT
+%token <value> RESERVED
 
 // Yacc nonterminal types - *alterar consoante a árvore*
 %type <node> Program
-%type <node> Declarations
+%type <node> Declarations Declarations2
 %type <node> VarDeclaration
 %type <node> VarSpec VarSpecList
-%type <node> Type TypeOrNull
+%type <node> Type
 %type <node> FuncDeclaration CommaExpressionList
-%type <node> Parameters ParametersList ParametersOrNull
+%type <node> Parameters ParametersList
 %type <node> FuncBody
-%type <node> VarsAndStatements VarsAndStatementsList
-%type <node> Statement StatementList StatementList1
+%type <node> VarsAndStatements
+%type <node> Statement StatementList
 %type <node> ParseArgs
-%type <node> FuncInvocation FuncInvocationList
-%type <node> Expr ExprOrNull
+%type <node> FuncInvocation FuncID
+%type <node> Expr
 
 //Precedências
 %left COMMA
@@ -65,125 +65,270 @@
 
 %%
 
-Program: PACKAGE ID SEMICOLON Declarations                    {;}
+Program: PACKAGE ID SEMICOLON Declarations      {program_root = newNode("Program", NULL);
+                                                add_child(program_root, $4);}
         ;
 
-Declarations: Declarations VarDeclaration SEMICOLON       {$$ = $1;}
-            | Declarations FuncDeclaration SEMICOLON       {$$ = $1;}
+Declarations: Declarations2 {$$ = $1;}
             | /* EPSILON */ {$$ = NULL;}
             ;
 
-VarDeclaration: VAR VarSpec       {;}
-              | VAR LPAR VarSpec SEMICOLON RPAR       {;}
-              ;
-
-VarSpec: ID VarSpecList Type       {;}
+Declarations2:  Declarations2 VarDeclaration SEMICOLON          {$$ = $1; add_sibling($1, $2);}
+        |       VarDeclaration SEMICOLON                        {$$ = $1;}
+        |       Declarations2 FuncDeclaration SEMICOLON         {$$ = $1; add_sibling($1, $2);}
+        |       FuncDeclaration SEMICOLON                       {$$ = $1;}
         ;
 
-VarSpecList: VarSpecList COMMA ID        {$$ = $1;}
-           | /* EPSILON */ {$$ = NULL;}
-           ;
+VarDeclaration: VAR VarSpec                           {$$ = $2;}
+              | VAR LPAR VarSpec SEMICOLON RPAR       {$$ = $3;}
+              ;
 
-Type: INT      {;}
-    | FLOAT32  {;}    
-    | BOOL     {;}   
-    | STRING_L {;}      
+VarSpec: ID Type                {$$ = newNode("VarDecl", NULL); add_child($$, $2);
+                                add_sibling($2, newNode("Id", $1));
+                                } 
+
+        | ID VarSpecList Type   {$$ = newNode("VarDecl", NULL); aux = newNode("Id", $1); 
+                                add_child($$, $3); add_sibling($3, aux); add_sibling($$, $2);
+                                varspec_aux = $$->sibling;
+                                while(varspec_aux != NULL && strcmp(varspec_aux->first_child->type, "notype") == 0){
+                                        strcpy(varspec_aux->first_child->type, $3->type);
+                                        varspec_aux = varspec_aux->sibling;
+                                }
+                                }
+        ;
+
+VarSpecList:    COMMA ID VarSpecList    {$$ = newNode("VarDecl", NULL); varspec_aux_1 = newNode("notype", NULL);
+                                        add_sibling($$, $3); add_child($$, varspec_aux_1); 
+                                        add_sibling(varspec_aux_1, newNode("Id", $2));
+                                        }
+                | COMMA ID              {$$ = newNode("VarDecl", NULL);
+                                        aux = newNode("notype", NULL);
+                                        add_child($$, aux);
+                                        add_sibling(aux, newNode("Id", $2));
+                                        }
+        ;
+
+Type: INT      {$$ = newNode("Int", NULL);} 
+    | FLOAT32  {$$ = newNode("Float32", NULL);}    
+    | BOOL     {$$ = newNode("Bool", NULL);}
+    | STRING   {$$ = newNode("String", NULL);}      
     ;
 
-FuncDeclaration: FUNC ID LPAR ParametersOrNull RPAR TypeOrNull FuncBody       {;}
-            ;
+FuncDeclaration: FUNC ID LPAR Parameters RPAR Type FuncBody     {$$ = newNode("FuncDecl", NULL); 
+                                                                aux = newNode("FuncHeader", NULL);
+                                                                aux2 = newNode("Id", $2);
+                                                                add_child($$, aux);                                                                                
+                                                                add_sibling(aux, $7);
+                                                                add_child(aux, aux2);
+                                                                add_sibling($6, $4);
+                                                                add_sibling(aux2, $6);
+                                                                }
+                | FUNC ID LPAR Parameters RPAR FuncBody         {$$ = newNode("FuncDecl", NULL);
+                                                                aux = newNode("FuncHeader", NULL);
+                                                                aux2 = newNode("Id", $2);
+                                                                add_child($$, aux);
+                                                                add_sibling(aux, $6);
+                                                                add_child(aux, aux2);
+                                                                add_sibling(aux2, $4);
+                                                                }
+                | FUNC ID LPAR RPAR Type FuncBody               {$$ = newNode("FuncDecl", NULL);
+                                                                aux = newNode("FuncHeader", NULL);
+                                                                add_child($$, aux);
+                                                                aux2 = newNode("Id", $2);
+                                                                add_sibling(aux, $6);
+                                                                add_child(aux, aux2);
+                                                                add_sibling(aux2, $5);
+                                                                add_sibling($5, newNode("FuncParams", NULL));
+                                                                }
+                | FUNC ID LPAR RPAR FuncBody                    {$$ = newNode("FuncDecl", NULL);
+                                                                aux = newNode("FuncHeader", NULL);
+                                                                aux2 = newNode("Id", $2);
+                                                                add_child($$, aux);
+                                                                add_child(aux, aux2);
+                                                                add_sibling(aux2, newNode("FuncParams", NULL));
+                                                                add_sibling(aux, $5);
+                                                                }
+                ;
 
-TypeOrNull: Type       {;}
-          | /* EPSILON */ {$$ = NULL;}
-          ;
-
-Parameters: ID Type ParametersList       {;}
+Parameters: ID Type ParametersList              {$$ = newNode("FuncParams", NULL);
+                                                aux = newNode("ParamDecl", NULL);
+                                                add_child($$, aux);        
+                                                add_sibling(aux, $3);
+                                                add_child(aux, $2);
+                                                add_sibling($2, newNode("Id", $1));
+                                                }
+        | ID Type                               {$$ = newNode("FuncParams", NULL);
+                                                aux = newNode("ParamDecl", NULL);
+                                                add_child($$, aux);        
+                                                add_child(aux, $2);
+                                                add_sibling($2, newNode("Id", $1));
+                                                }
         ;
 
-ParametersList: ParametersList COMMA ID Type       {$$ = $1;}
-              | /* EPSILON */ {$$ = NULL;}
+ParametersList: COMMA ID Type ParametersList            {$$ = newNode("ParamDecl", NULL);
+                                                        add_child($$, $3);
+                                                        add_sibling($3, newNode("Id", $2));
+                                                        add_sibling($$, $4);
+                                                        }
+        | COMMA ID Type                                 {$$ = newNode("ParamDecl", NULL);
+                                                        add_child($$, $3);
+                                                        add_sibling($3, newNode("Id", $2));
+                                                        }
               ;
 
-ParametersOrNull: Parameters       {;}
-                | /* EPSILON */ {$$ = NULL;}
-                ;
-
-FuncBody:   LBRACE VarsAndStatements RBRACE       {;}
+FuncBody:   LBRACE VarsAndStatements RBRACE       {$$ = newNode("FuncBody", NULL); add_child($$, $2);}
         ;
 
-VarsAndStatements:  VarsAndStatements VarsAndStatementsList SEMICOLON        {$$ = $1;}
-                |   /* EPSILON */     {$$ = NULL;}
-                ; 
+VarsAndStatements:  VarsAndStatements VarDeclaration SEMICOLON  {$$ = $1; add_sibling($1, $2);}
+                 |  VarsAndStatements Statement SEMICOLON       {$$ = $1; add_sibling($1, $2);}
+                 |  VarsAndStatements SEMICOLON                 {$1 = $1;}
+                 |  /*Epsilon = NULL*/                          {$$ = newNode("NULL", NULL);}
+                 ;
 
-VarsAndStatementsList:  VarDeclaration  {;}
-                |       Statement       {;}
-                |       /* EPSILON */   {$$ = NULL;}
-                ;
-
-Statement:  ID ASSIGN Expr                                              {;}
-        |   LBRACE StatementList1 RBRACE                                {;}
-        |   IF Expr LBRACE StatementList1 RBRACE StatementList          {;}
-        |   FOR ExprOrNull LBRACE StatementList1 RBRACE                 {;}
-        |   RETURN ExprOrNull                                           {;}
-        |   FuncInvocation                                              {;}
-        |   ParseArgs                                                   {;}
-        |   PRINT LPAR Expr RPAR                                        {;}
-        |   PRINT LPAR STRLIT RPAR                                      {;}
-        |   error                                                       {;}
+Statement:  ID ASSIGN Expr                                              {$$ = newNode("Assign", NULL);
+                                                                        aux = newNode("Id", $1);
+                                                                        add_child($$, aux);
+                                                                        add_sibling(aux, $3);
+                                                                        }
+        |   LBRACE RBRACE                                               {$$ = newNode("NULL", NULL);}
+        |   LBRACE StatementList RBRACE                                 {aux = $2;
+                                                                        int n = 0;
+                                                                        while(aux != NULL){
+                                                                                if(strcmp(aux->type, "NULL") != 0) n++;
+                                                                                aux = aux->sibling;
+                                                                        }
+                                                                        if(n>=2){
+                                                                                $$ = newNode("Block", NULL);
+                                                                                add_child($$, $2);
+                                                                        }
+                                                                        else $$ = $2;
+                                                                        }
+        | IF Expr LBRACE RBRACE                                         {$$ = newNode("If", NULL);
+                                                                        add_child($$, $2);
+                                                                        aux=newNode("Block", NULL);
+                                                                        add_sibling($2, aux);
+                                                                        add_sibling(aux, newNode("Block", NULL));
+                                                                        }
+        | IF Expr LBRACE StatementList RBRACE                           {$$ = newNode("If", NULL);
+                                                                        add_child($$, $2);
+                                                                        aux=newNode("Block", NULL);
+                                                                        add_sibling($2, aux);
+                                                                        add_child(aux, $4);
+                                                                        add_sibling(aux, newNode("Block", NULL));
+                                                                        }
+        | IF Expr LBRACE RBRACE ELSE LBRACE RBRACE                      {$$ = newNode("If", NULL);
+                                                                        add_child($$, $2);
+                                                                        aux=newNode("Block", NULL);
+                                                                        add_sibling($2, aux);
+                                                                        add_sibling(aux, newNode("Block", NULL));
+                                                                        }
+        | IF Expr LBRACE StatementList RBRACE ELSE LBRACE RBRACE        {$$ = newNode("If", NULL);
+                                                                        add_child($$, $2);
+                                                                        aux=newNode("Block", NULL);
+                                                                        add_sibling($2, aux);
+                                                                        add_child(aux, $4);
+                                                                        add_sibling(aux, newNode("Block", NULL));
+                                                                        }
+        | IF Expr LBRACE RBRACE ELSE LBRACE StatementList RBRACE        {$$ = newNode("If", NULL);
+                                                                        add_child($$, $2);
+                                                                        aux=newNode("Block", NULL);
+                                                                        aux2=newNode("Block", NULL);
+                                                                        add_sibling($2, aux);
+                                                                        add_sibling(aux, aux2);
+                                                                        add_child(aux2, $7);
+                                                                        }
+        | IF Expr LBRACE StatementList RBRACE ELSE LBRACE StatementList RBRACE {$$ = newNode("If", NULL);
+                                                                                add_child($$, $2);
+                                                                                aux=newNode("Block", NULL);
+                                                                                aux2=newNode("Block", NULL);
+                                                                                add_sibling($2, aux);
+                                                                                add_child(aux, $4);
+                                                                                add_sibling(aux, aux2);
+                                                                                add_child(aux2, $8);
+                                                                                }
+        | FOR LBRACE RBRACE                                             {$$ = newNode("For", NULL);
+                                                                        add_child($$, newNode("Block", NULL));
+                                                                        }
+        | FOR LBRACE StatementList RBRACE                               {$$ = newNode("For", NULL);
+                                                                        aux=newNode("Block", NULL);
+                                                                        add_child($$, aux);
+                                                                        add_child(aux, $3);
+                                                                        }
+        | FOR Expr LBRACE RBRACE                                        {$$ = newNode("For", NULL);
+                                                                        add_child($$, $2);
+                                                                        add_sibling($2, newNode("Block", NULL));
+                                                                        }
+        | FOR Expr LBRACE StatementList RBRACE                          {$$ = newNode("For", NULL);
+                                                                        add_child($$, $2);
+                                                                        aux=newNode("Block", NULL);
+                                                                        add_sibling($2, aux);
+                                                                        add_child(aux, $4);
+                                                                        }
+        |   RETURN                                                      {$$ = newNode("Return", NULL);}
+        |   RETURN Expr                                                 {$$ = newNode("Return", NULL);
+                                                                        add_child($$, $2);}
+        |   FuncInvocation                                              {$$ = newNode("Call", NULL);
+                                                                        add_child($$, $1);}
+        |   ParseArgs                                                   {$$ = $1;}
+        |   PRINT LPAR Expr RPAR                                        {$$ = newNode("Print", NULL);
+                                                                        add_child($$, $3);}
+        |   PRINT LPAR STRLIT RPAR                                      {$$ = newNode("Print", NULL);
+                                                                        aux = newNode("StrLit", $3);
+                                                                        add_child($$, aux);}
+        |   error                                                       {$$ = newNode("Error", NULL);}
         ;
 
-
-StatementList:  ELSE LBRACE StatementList1 RBRACE       {;}
-            |   /* EPSILON */                           {$$ = NULL;}
-            ;
-
-
-StatementList1: StatementList1 Statement SEMICOLON       {$$ = $1;}
-              | /* EPSILON */   {$$ = NULL;}
+StatementList: StatementList Statement SEMICOLON        {$$ = $1; add_sibling($1, $2);}
+              | Statement SEMICOLON                     {$$ = $1;}
               ;
 
-ParseArgs:  ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR       {;}
-        |   ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR  {;}
+ParseArgs:  ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR     {$$ = newNode("ParseArgs", NULL);
+                                                                                aux = newNode("Id", $1);
+                                                                                add_child($$, aux);
+                                                                                add_sibling(aux, $9);
+                                                                                }
+        |   ID COMMA BLANKID ASSIGN PARSEINT LPAR error RPAR                    {$$ = newNode("ParseArgs", NULL);
+                                                                                aux = newNode("Id", $1);
+                                                                                add_child($$, aux);
+                                                                                add_sibling(aux, newNode("Error", NULL));
+                                                                                }
         ;
 
-FuncInvocation: ID LPAR FuncInvocationList RPAR       {;}
-              | ID LPAR error RPAR {;}
-            ;
+FuncID: ID                                                   {$$ = newNode("Id", $1);}
+        ;
 
-FuncInvocationList: Expr CommaExpressionList       {;}
-                |   /* EPSILON */ {$$ = NULL;}
-                ;
+FuncInvocation: FuncID LPAR RPAR                                {$$ = $1;}
+              | FuncID LPAR Expr RPAR                           {$$ = $1; add_sibling($1, $3);}
+              | FuncID LPAR Expr CommaExpressionList RPAR       {$$ = $1; add_sibling($1, $3); add_sibling($3, $4);}
+              | FuncID LPAR error RPAR                          {$$ = $1; add_sibling($1, newNode("Error", NULL));}
+              ;
 
-CommaExpressionList: CommaExpressionList COMMA Expr       {$$ = $1;}
-                |    /* EPSILON */         {$$ = NULL;}
-                ;
+CommaExpressionList: CommaExpressionList COMMA Expr          {$$ = $1; add_sibling($1, $3);}
+        | COMMA Expr                                         {$$ = $2;}
+        ;
 
-Expr:   Expr MOD Expr           {$$ = $1;}
-    |   Expr LT Expr            {$$ = $1;}
-    |   Expr GT Expr            {$$ = $1;}
-    |   Expr EQ Expr            {$$ = $1;}
-    |   Expr NE Expr            {$$ = $1;}
-    |   Expr LE Expr            {$$ = $1;}
-    |   Expr GE Expr            {$$ = $1;}
-    |   Expr OR Expr            {$$ = $1;}
-    |   Expr AND Expr           {$$ = $1;}
-    |   Expr PLUS Expr          {$$ = $1;}
-    |   Expr MINUS Expr         {$$ = $1;}
-    |   Expr STAR Expr          {$$ = $1;}
-    |   Expr DIV Expr           {$$ = $1;}
-    |   NOT Expr                {;}
-    |   MINUS Expr              {;}
-    |   PLUS Expr               {;}
-    |   INTLIT                  {;}
-    |   REALLIT                 {;}
-    |   ID                      {;}
-    |   FuncInvocation          {;}
-    |   LPAR Expr RPAR          {;}
-    |   LPAR error RPAR         {;}
+
+Expr:   Expr OR Expr            {$$ = newNode("Or", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr AND Expr           {$$ = newNode("And", NULL); add_child($$, $1); add_sibling($1, $3);} 
+    |   Expr LT Expr            {$$ = newNode("Lt",NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr GT Expr            {$$ = newNode("Gt",NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr EQ Expr            {$$ = newNode("Eq", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr NE Expr            {$$ = newNode("Ne", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr LE Expr            {$$ = newNode("Le", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr GE Expr            {$$ = newNode("Ge", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr PLUS Expr          {$$ = newNode("Add", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr MINUS Expr         {$$ = newNode("Sub", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr STAR Expr          {$$ = newNode("Mul", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr DIV Expr           {$$ = newNode("Div", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   Expr MOD Expr           {$$ = newNode("Mod", NULL); add_child($$, $1); add_sibling($1, $3);}
+    |   NOT Expr                {$$ = newNode("Not", NULL); add_child($$, $2);}
+    |   MINUS Expr  %prec DIV   {$$ = newNode("Minus", NULL); add_child($$, $2);}
+    |   PLUS Expr   %prec DIV   {$$ = newNode("Plus", NULL); add_child($$, $2);}
+    |   INTLIT                  {$$ = newNode("IntLit", $1);}
+    |   REALLIT                 {$$ = newNode("RealLit", $1);}
+    |   ID                      {$$ = newNode("Id", $1);}
+    |   FuncInvocation          {$$ = newNode("Call", NULL); add_child($$, $1);}
+    |   LPAR Expr RPAR          {$$ = $2;}
+    |   LPAR error RPAR         {$$ = newNode("Error", NULL);}
     ;
-
-ExprOrNull: Expr                {;}
-        | /* EPSILON */         {;}
-            ;
-
 %%
