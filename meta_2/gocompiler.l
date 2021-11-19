@@ -193,7 +193,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
                                         return SEMICOLON;
                                         }
                                     }
-                                    yylval.value = (char*) strdup("EOF");
+                                    yylval.value = (char*) strdup(yytext);
                                     yyterminate(); return EOF;
                                 }
 .                               {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext); pos(yyleng, 0); }
@@ -211,9 +211,9 @@ void pos(int length, int opt) {
     }
 }
 
-void yyerror (char *s) {
+void yyerror (char *str) {
     flag_syntax_error=1;
-    printf ("Line %d, column %d: %s: %s\n", last_line_pos, last_col_pos, s, yytext);
+    printf ("Line %d, column %d: %s: %s\n", last_line_pos, last_col_pos, str, yytext);
 }
 
 int main(int argc, char* argv[])
@@ -221,12 +221,11 @@ int main(int argc, char* argv[])
     if (argc > 1 && strcmp(argv[1], "-l") == 0){
         flag_lex = 1;
         yylex();
-        yylex_destroy();
     }
     if (argc > 1 && strcmp(argv[1], "-t") == 0){
         flag_return = 1;
         yyparse();
-        if(flag_syntax_error == 0){
+        if(!flag_syntax_error){
             print_ast(program_root, 0);
         }
     }
