@@ -1,28 +1,27 @@
 %{
-/*  
-    * Projeto de Compiladores 2021/2022
-    * 2019218953 João Miguel Ferreira Castelo Branco Catré
-    * 2019227240 Sofia Botelho Vieira Alves
-*/  
+    /*  
+        * Projeto de Compiladores 2021/2022
+        * Meta 2
+        * 2019218953 João Miguel Ferreira Castelo Branco Catré
+        * 2019227240 Sofia Botelho Vieira Alves
+    */  
     #include "structures.h"
     #include "y.tab.h"
     
     int yylex_destroy(void);
     void pos(int length, int opt);
 
-    int semicolon_flag = 0;
+    int semicolon_flag = 0; //flag used to check if it is necessary to add a semicolon at the end
     int line_num = 1;
     int column_num = 1;
     int last_col_pos = 1;
     int last_line_pos = 1;
-    int flag_lex = 0;
-    int flag_return = 0;
+    int flag_lex = 0; //flag used to make lexical analysis if -l is used
+    int flag_return = 0; //flag used to build tree
 
-    extern int flag_syntax_error;
+    extern int flag_syntax_error; //flag used to check if there are any syntax errors in order to build (or not) the tree
 
-    extern node* program_root;
-
-    
+    extern node* program_root;  
 %}
 /* Define states for line comments and general comments */
 %X LINE_COM GENERAL_COM STRING_COND
@@ -39,8 +38,8 @@ hex_lit                 0(x|X){hex_digit}+
 letter_m                [a-z]
 letter_M                [A-Z]
 
-sig                     [+|-]?
-exp                     [e|E]{sig}{num}+
+sig                     [+-]?
+exp                     [eE]{sig}{num}+
 
 escape                  (\\n|\\f|\\r|\\t|\t|\\\\|\\\")  
 raw_strlit              "'"{.}"'"
@@ -101,7 +100,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {STRLIT}                            {semicolon_flag = 1; if(flag_lex == 1) printf("STRLIT(%s)\n",yytext); pos(yyleng, 0);yylval.value = (char*) strdup(yytext); if(flag_return) return STRLIT;}
 \"                                  {BEGIN STRING_COND; last_line_pos = line_num; last_col_pos = column_num; column_num+=yyleng; semicolon_flag = 0;}
 <STRING_COND>\"                     {semicolon_flag = 1; if(flag_lex == 1) printf("STRLIT(%s)\n",yytext); yylval.value = (char*) strdup(yytext); column_num+=yyleng; BEGIN 0;}
-<STRING_COND>{new_line}             {BEGIN 0; printf("Line %d, column %d: unterminated string literal\n", last_line_pos, column_num); column_num = 1; line_num++;}
+<STRING_COND>{new_line}             {BEGIN 0; printf("Line %d, column %d: unterminated string literal\n", last_line_pos, last_col_pos); column_num = 1; line_num++;}
 <STRING_COND>{escape}|[^\\\r\n\"]   {column_num+=yyleng;} 
 <STRING_COND>\\[^\n\r\"]|\\|\f|\t   {printf("Line %d, column %d: invalid escape sequence (%s)\n", last_line_pos, column_num, yytext); column_num+=yyleng; semicolon_flag = 0;}
 <STRING_COND><<EOF>>                {BEGIN 0; printf("Line %d, column %d: unterminated string literal\n", last_line_pos, last_col_pos);} 
@@ -139,7 +138,8 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {NE}                            {if(flag_lex == 1) printf("NE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return NE;}
 {NOT}                           {if(flag_lex == 1) printf("NOT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return NOT;}
 {AND}                           {if(flag_lex == 1) printf("AND\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return AND;}
-{OR}                            {if(flag_lex == 1) printf("OR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return OR;}
+
+"||"                            {if(flag_lex == 1) printf("OR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return OR;}
 {RBRACE}                        {if(flag_lex == 1) printf("RBRACE\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RBRACE;}
 {RPAR}                          {if(flag_lex == 1) printf("RPAR\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RPAR;}
 {RSQ}                           {if(flag_lex == 1) printf("RSQ\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RSQ;}
@@ -168,13 +168,11 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
                                 if(semicolon_flag == 1){
                                     semicolon_flag = 0;
                                     if(flag_lex == 1){
-                                        printf("SEMICOLON\n");
-                                        return SEMICOLON;
+                                        printf("SEMICOLON\n");                                      
                                     }
                                     yylval.value = (char*) strdup(yytext);
                                     if(flag_return == 1){
-                                        semicolon_flag = 0;
-                                        
+                                        semicolon_flag = 0;                                
                                         return SEMICOLON;
                                         }
                                     }
@@ -184,12 +182,11 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
                                 if(semicolon_flag == 1){
                                     semicolon_flag = 0;
                                     if(flag_lex == 1){
-                                        printf("SEMICOLON\n");
-                                        return SEMICOLON;
+                                        printf("SEMICOLON\n");                                       
                                         }
                                    
                                     if(flag_return == 1){
-                                        
+                                        semicolon_flag = 0;
                                         return SEMICOLON;
                                         }
                                     }
@@ -225,7 +222,7 @@ int main(int argc, char* argv[])
     if (argc > 1 && strcmp(argv[1], "-t") == 0){
         flag_return = 1;
         yyparse();
-        if(!flag_syntax_error){
+        if(flag_syntax_error == 0){
             print_ast(program_root, 0);
         }
     }

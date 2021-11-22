@@ -1,3 +1,9 @@
+/*  
+    * Projeto de Compiladores 2021/2022
+    * Meta 2
+    * 2019218953 João Miguel Ferreira Castelo Branco Catré
+    * 2019227240 Sofia Botelho Vieira Alves
+*/ 
 #include "structures.h"
 
 node *newNode(char *type, char *value)
@@ -35,7 +41,7 @@ void add_sibling(node *child, node *new_sibling)
     }
 }
 
-// Nós superfluos -> Linha 123 yacc - Fazer um while a correr os nos irmaos, tem que ter no minimo 2 nos irmaos. caso contrário. não printa
+
 void print_ast(node *current_node, int n)
 {
     if (current_node == NULL)

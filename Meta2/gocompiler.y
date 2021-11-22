@@ -1,4 +1,10 @@
 %{
+      /*  
+        * Projeto de Compiladores 2021/2022
+        * Meta 2
+        * 2019218953 João Miguel Ferreira Castelo Branco Catré
+        * 2019227240 Sofia Botelho Vieira Alves
+      */ 
         #include "structures.h"
         int yylex();
         int yyparse();
@@ -8,9 +14,11 @@
 
         node* varspec_aux = NULL;
         node* varspec_aux_1 = NULL;
-        node* aux = NULL;
+        node* aux = NULL; 
         node* aux2 = NULL;
         node* program_root=NULL; //root node of astree
+
+        // Nós superfluos -> Linha 208 yacc - while a correr os nos irmaos, tem que ter no minimo 2 nos irmaos. caso contrário, não printa
 %} 
 
 %union{
@@ -21,14 +29,14 @@
 // Yacc tokens 
 %token SEMICOLON COMMA 
 %token BLANKID
-%token ASSIGN STAR DIV MINUS PLUS MOD
-%token EQ GE GT LE LT NE
-%token LBRACE RBRACE LPAR RPAR LSQ RSQ 
+%token ASSIGN STAR DIV MINUS PLUS 
+%token EQ GE GT LE LT MOD NE
 %token NOT AND OR
+%token LBRACE RBRACE LPAR RPAR LSQ RSQ 
 %token PACKAGE
 %token RETURN PRINT PARSEINT FUNC CMDARGS VAR
 %token IF ELSE FOR
-%token INT FLOAT32 BOOL STRING
+%token INT FLOAT32 BOOL STRING UNARY
 
 %token <value> ID
 %token <value> STRLIT INTLIT REALLIT
@@ -40,14 +48,14 @@
 %type <node> VarDeclaration
 %type <node> VarSpec VarSpecList
 %type <node> Type
-%type <node> FuncDeclaration CommaExpressionList
+%type <node> FuncDeclaration 
 %type <node> Parameters ParametersList
 %type <node> FuncBody
 %type <node> VarsAndStatements
 %type <node> Statement StatementList
 %type <node> ParseArgs
 %type <node> FuncInvocation FuncID
-%type <node> Expr
+%type <node> CommaExpressionList Expr
 
 //Precedências
 %left COMMA
@@ -60,7 +68,7 @@
 %right NOT
 %left LPAR RPAR LSQ RSQ
 
-%nonassoc ELSE IF
+%nonassoc ELSE IF UNARY
 
 
 %%
@@ -69,8 +77,8 @@ Program: PACKAGE ID SEMICOLON Declarations      {program_root = newNode("Program
                                                 add_child(program_root, $4);}
         ;
 
-Declarations: Declarations2 {$$ = $1;}
-            | /* EPSILON */ {$$ = NULL;}
+Declarations: Declarations2             {$$ = $1;}
+            | /* EPSILON */             {$$ = NULL;}
             ;
 
 Declarations2:  Declarations2 VarDeclaration SEMICOLON          {$$ = $1; add_sibling($1, $2);}
@@ -104,7 +112,7 @@ VarSpecList:    COMMA ID VarSpecList    {$$ = newNode("VarDecl", NULL); varspec_
                 | COMMA ID              {$$ = newNode("VarDecl", NULL);
                                         aux = newNode("notype", NULL);
                                         add_child($$, aux);
-                                        add_sibling(aux, newNode("Id", $2));
+                                        add_sibling(aux, newNode("Id", $2)); 
                                         }
         ;
 
