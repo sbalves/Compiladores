@@ -91,3 +91,20 @@ void print_ast(node *current_node, int n)
         }
     }
 }
+
+
+void free_ast(node *current_node)
+{
+    if (current_node)
+    {
+        if (current_node->first_child)
+        {
+            free_ast(current_node->first_child);
+        }
+        if (current_node->sibling)
+        {
+            free_ast(current_node->sibling);
+        }
+        free(current_node);
+    }
+}
