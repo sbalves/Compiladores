@@ -25,7 +25,7 @@ typedef struct node
     struct node *sibling;
 } node;
 
-node *newNode(char *type, char *value);
+node *newNode(char *type, char *value, int line, int column);
 void add_child(node *parent, node *child);
 void add_sibling(node *child, node *new_sibling);
 void print_ast(node *current_node, int n); // n é o número de pontos

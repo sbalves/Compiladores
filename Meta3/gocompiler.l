@@ -1,7 +1,7 @@
 %{
     /*  
         * Projeto de Compiladores 2021/2022
-        * Meta 2
+        * Meta 3
         * 2019218953 João Miguel Ferreira Castelo Branco Catré
         * 2019227240 Sofia Botelho Vieira Alves
     */  
@@ -9,7 +9,7 @@
     #include "y.tab.h"
     
     int yylex_destroy(void);
-    void pos(int length, int opt);
+    void pos(int length, int option);
 
     int semicolon_flag = 0; //flag used to check if it is necessary to add a semicolon at the end
     int line_num = 1;
@@ -117,7 +117,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 <GENERAL_COM>{general_end}      {BEGIN 0; column_num+=yyleng;}
 
 {INTLIT}                        {if(flag_lex == 1) printf("INTLIT(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return INTLIT;}
-{invalid_octal_lit}             {printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext); semicolon_flag = 0; column_num+=yyleng;}
+{invalid_octal_lit}             {printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext); semicolon_flag = 1; column_num+=yyleng;} 
 
 {REALLIT}                       {if(flag_lex == 1) printf("REALLIT(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return REALLIT;} 
 {SEMICOLON}                     {if(flag_lex == 1) printf("SEMICOLON\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return SEMICOLON;}
@@ -139,8 +139,7 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 {NE}                            {if(flag_lex == 1) printf("NE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return NE;}
 {NOT}                           {if(flag_lex == 1) printf("NOT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return NOT;}
 {AND}                           {if(flag_lex == 1) printf("AND\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return AND;}
-
-"||"                            {if(flag_lex == 1) printf("OR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return OR;}
+{OR}                            {if(flag_lex == 1) printf("OR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return OR;}
 {RBRACE}                        {if(flag_lex == 1) printf("RBRACE\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RBRACE;}
 {RPAR}                          {if(flag_lex == 1) printf("RPAR\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RPAR;}
 {RSQ}                           {if(flag_lex == 1) printf("RSQ\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RSQ;}
@@ -198,12 +197,12 @@ ID          ({letter_m}|{letter_M}|"_")+(({letter_m}|{letter_M}|"_"|{num})*)
 
 %%
 
-void pos(int length, int opt) {  
+void pos(int length, int option) {  
     last_line_pos = line_num;
     last_col_pos = column_num;
     
-    if (opt == 0) column_num += length;
-    else if (opt == 1) {
+    if (option == 0) column_num += length;
+    else if (option == 1) {
         line_num++; 
         column_num = 1;
     }
@@ -236,7 +235,8 @@ int main(int argc, char* argv[])
         flag_return = 1;
         yyparse();
     }
-return 0;
+    free_ast(program_root);
+    return 0;
 }
 
 int yywrap() {

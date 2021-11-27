@@ -6,13 +6,14 @@
 */ 
 #include "structures.h"
 
-node *newNode(char *type, char *value)
+node *newNode(char *type, char *value, int line, int column)
 {
     node *new_node = (node *)malloc(sizeof(node));
     new_node->type = (char *)strdup(type); // type -> "FuncDecl", "Id", ...
     new_node->first_child = NULL;
     new_node->sibling = NULL;
-
+    new_node->col = column;
+    new_node->line = line;
     if (value == NULL) // value -> "fatorial", "12", ...
     {
         new_node->value = NULL;
@@ -90,4 +91,24 @@ void print_ast(node *current_node, int n)
             }
         }
     }
+}
+
+
+void free_ast(node *current_node)
+{
+    if (current_node == NULL) return;
+
+    if (!current_node->type)
+    {
+        free(current_node->type);
+    }
+ 
+     if (!current_node->value)
+    {
+        free(current_node->value);
+    }
+
+    free_ast(current_node->first_child);
+    free_ast(current_node->sibling);
+    free(current_node);
 }
