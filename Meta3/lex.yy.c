@@ -720,7 +720,7 @@ char *yytext;
     #include "y.tab.h"
     
     int yylex_destroy(void);
-    void pos(int length, int opt);
+    void pos(int length, int option);
 
     int semicolon_flag = 0; //flag used to check if it is necessary to add a semicolon at the end
     int line_num = 1;
@@ -1204,123 +1204,123 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 143 "gocompiler.l"
+#line 142 "gocompiler.l"
 {if(flag_lex == 1) printf("OR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return OR;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 144 "gocompiler.l"
+#line 143 "gocompiler.l"
 {if(flag_lex == 1) printf("RBRACE\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RBRACE;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 145 "gocompiler.l"
+#line 144 "gocompiler.l"
 {if(flag_lex == 1) printf("RPAR\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RPAR;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 146 "gocompiler.l"
+#line 145 "gocompiler.l"
 {if(flag_lex == 1) printf("RSQ\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RSQ;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 147 "gocompiler.l"
+#line 146 "gocompiler.l"
 {if(flag_lex == 1) printf("PACKAGE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return PACKAGE;}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 148 "gocompiler.l"
+#line 147 "gocompiler.l"
 {if(flag_lex == 1) printf("RETURN\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RETURN;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 149 "gocompiler.l"
+#line 148 "gocompiler.l"
 {if(flag_lex == 1) printf("ELSE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return ELSE;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 150 "gocompiler.l"
+#line 149 "gocompiler.l"
 {if(flag_lex == 1) printf("FOR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return FOR;}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 151 "gocompiler.l"
+#line 150 "gocompiler.l"
 {if(flag_lex == 1) printf("IF\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return IF;}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 152 "gocompiler.l"
+#line 151 "gocompiler.l"
 {if(flag_lex == 1) printf("VAR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return VAR;}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 153 "gocompiler.l"
+#line 152 "gocompiler.l"
 {if(flag_lex == 1) printf("INT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return INT;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 154 "gocompiler.l"
+#line 153 "gocompiler.l"
 {if(flag_lex == 1) printf("FLOAT32\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return FLOAT32;}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 155 "gocompiler.l"
+#line 154 "gocompiler.l"
 {if(flag_lex == 1) printf("BOOL\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return BOOL;}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 156 "gocompiler.l"
+#line 155 "gocompiler.l"
 {if(flag_lex == 1) printf("STRING\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return STRING;}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 157 "gocompiler.l"
+#line 156 "gocompiler.l"
 {if(flag_lex == 1) printf("PRINT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return PRINT;}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 158 "gocompiler.l"
+#line 157 "gocompiler.l"
 {if(flag_lex == 1) printf("PARSEINT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return PARSEINT;}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 159 "gocompiler.l"
+#line 158 "gocompiler.l"
 {if(flag_lex == 1) printf("FUNC\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return FUNC;}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 160 "gocompiler.l"
+#line 159 "gocompiler.l"
 {if(flag_lex == 1) printf("CMDARGS\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return CMDARGS;}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 161 "gocompiler.l"
+#line 160 "gocompiler.l"
 {if(flag_lex == 1) printf("RESERVED(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RESERVED;}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 162 "gocompiler.l"
+#line 161 "gocompiler.l"
 {if(flag_lex == 1) printf("BLANKID\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return BLANKID;}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 163 "gocompiler.l"
+#line 162 "gocompiler.l"
 {if(flag_lex == 1) printf("ID(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1) return ID;}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 165 "gocompiler.l"
+#line 164 "gocompiler.l"
 {column_num+=yyleng;}   
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 166 "gocompiler.l"
+#line 165 "gocompiler.l"
 {column_num+=yyleng;}
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
-#line 168 "gocompiler.l"
+#line 167 "gocompiler.l"
 {pos(yyleng, 1);
                                 if(semicolon_flag == 1){
                                     semicolon_flag = 0;
@@ -1337,7 +1337,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(LINE_COM):
-#line 182 "gocompiler.l"
+#line 181 "gocompiler.l"
 {pos(yyleng, 0); 
                                 if(semicolon_flag == 1){
                                     semicolon_flag = 0;
@@ -1356,12 +1356,12 @@ case YY_STATE_EOF(LINE_COM):
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 197 "gocompiler.l"
+#line 196 "gocompiler.l"
 {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext); pos(yyleng, 0); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 199 "gocompiler.l"
+#line 198 "gocompiler.l"
 ECHO;
 	YY_BREAK
 #line 1368 "lex.yy.c"
@@ -2367,15 +2367,15 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 199 "gocompiler.l"
+#line 198 "gocompiler.l"
 
 
-void pos(int length, int opt) {  
+void pos(int length, int option) {  
     last_line_pos = line_num;
     last_col_pos = column_num;
     
-    if (opt == 0) column_num += length;
-    else if (opt == 1) {
+    if (option == 0) column_num += length;
+    else if (option == 1) {
         line_num++; 
         column_num = 1;
     }
@@ -2408,7 +2408,8 @@ int main(int argc, char* argv[])
         flag_return = 1;
         yyparse();
     }
-return 0;
+    free_ast(program_root);
+    return 0;
 }
 
 int yywrap() {
