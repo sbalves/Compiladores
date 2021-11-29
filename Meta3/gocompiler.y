@@ -18,7 +18,7 @@
         node* aux2 = NULL;
         node* program_root=NULL; //root node of astree
 
-        // Nós superfluos -> Linha 208 yacc - while a correr os nos irmaos, tem que ter no minimo 2 nos irmaos. caso contrário, não printa
+        // Nós superfluos -> while a correr os nos irmaos, tem que ter no minimo 2 nos irmaos. caso contrário, não printa
 %} 
 
 %union{
