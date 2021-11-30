@@ -2,7 +2,7 @@
 #define __AST_H
 /*  
     * Projeto de Compiladores 2021/2022
-    * Meta 2
+    * Meta 3
     * 2019218953 João Miguel Ferreira Castelo Branco Catré
     * 2019227240 Sofia Botelho Vieira Alves
     * 
