@@ -16,20 +16,10 @@
 
 
 
-typedef struct parameters
-{
-    char * name;
-    char * param_type;
-    struct parameters *next;
-} parameters;
-
-typedef struct variables
-{
-    int is_parameter
-    char * name;
-    char * type;
-    struct variables * next;
-} variables;
-
+parameter_t * create_param(char * type);
+parameters_t * find_params(ast_node * node);
+table_t * create_table(char * id);
+void funcdecl_analysis(ast_node * node);
+void semantic_analysis(ast_node * node);
 
 #endif //SEM_A
