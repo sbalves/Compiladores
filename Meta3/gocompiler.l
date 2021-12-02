@@ -6,8 +6,10 @@
         * 2019227240 Sofia Botelho Vieira Alves
     */  
     #include "structures.h"
+    #include "semantic_analysis.h"
     #include "y.tab.h"
     
+    int yyparse();
     int yylex_destroy(void);
     void pos(int length, int option);
 
@@ -22,7 +24,7 @@
 
     extern int flag_syntax_error; //flag used to check if there are any syntax errors in order to build (or not) the tree
 
-    extern node* program_root;  
+    extern ast_node* program_root;  
 %}
 /* Define states for line comments and general comments */
 %X LINE_COM GENERAL_COM STRING_COND
@@ -228,7 +230,8 @@ int main(int argc, char* argv[])
     }
     if (argc > 1 && strcmp(argv[1], "-s") == 0){
         flag_sem = 1;
-        yylex();
+        yyparse();
+        semantic_analysis(program_root);
     }
 
     else if(argc == 1){

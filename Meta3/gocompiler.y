@@ -6,24 +6,29 @@
         * 2019227240 Sofia Botelho Vieira Alves
       */ 
         #include "structures.h"
+        #include "semantic_analysis.h"
+
         int yylex();
         int yyparse();
         void yyerror (const char *str);
         
         int flag_syntax_error=0;
 
-        node* varspec_aux = NULL;
-        node* varspec_aux_1 = NULL;
-        node* aux = NULL; 
-        node* aux2 = NULL;
-        node* program_root=NULL; //root node of astree
+        ast_node* varspec_aux = NULL;
+        ast_node* varspec_aux_1 = NULL;
+        ast_node* aux = NULL; 
+        ast_node* aux2 = NULL;
+        ast_node* program_root=NULL; //root node of astree
 
         // Nós superfluos -> while a correr os nos irmaos, tem que ter no minimo 2 nos irmaos. caso contrário, não printa
+
+        table_t * tables_root = NULL;
+
 %} 
 
 %union{
         char* value;
-        node* node;   
+        ast_node* node;   
 };
 
 // Yacc tokens 
@@ -98,8 +103,8 @@ VarSpec: ID Type                {$$ = newNode("VarDecl", NULL); add_child($$, $2
         | ID VarSpecList Type   {$$ = newNode("VarDecl", NULL); aux = newNode("Id", $1); 
                                 add_child($$, $3); add_sibling($3, aux); add_sibling($$, $2);
                                 varspec_aux = $$->sibling;
-                                while(varspec_aux != NULL && strcmp(varspec_aux->first_child->type, "notype") == 0){
-                                        strcpy(varspec_aux->first_child->type, $3->type);
+                                while(varspec_aux != NULL && strcmp(varspec_aux->first_child->id, "notype") == 0){
+                                        strcpy(varspec_aux->first_child->id, $3->id);
                                         varspec_aux = varspec_aux->sibling;
                                 }
                                 }
@@ -202,7 +207,7 @@ Statement:  ID ASSIGN Expr                                              {$$ = ne
         |   LBRACE StatementList RBRACE                                 {aux = $2;
                                                                         int n = 0;
                                                                         while(aux != NULL){
-                                                                                if(strcmp(aux->type, "NULL") != 0) n++;
+                                                                                if(strcmp(aux->id, "NULL") != 0) n++;
                                                                                 aux = aux->sibling;
                                                                         }
                                                                         if(n>=2){

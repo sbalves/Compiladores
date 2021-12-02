@@ -15,45 +15,49 @@
 #include <string.h>
 #include <stdarg.h>
 
-extern table_t * tables_root;
 
-typedef struct node
+typedef struct node ast_node;
+struct node
 {
     int line;
     int col;
     char *value;
     char *id;
     ast_node *first_child;
-    ast_node node *sibling;
-} ast_node;
+    ast_node *sibling;
+};
 
-typedef struct parameters
+typedef struct parameters parameter_t;
+struct parameters
 {
     char * param_type;
     parameter_t * next_param;
-} parameter_t;
+};
 
-typedef struct element
+typedef struct element element_t;
+struct element
 {
-    int is_parameter
+    int is_parameter;
     char * id;
     char * type;
     element_t * next_elem;
-    parameters * list_params;
-} element_t;
+    parameter_t * list_params;
+};
 
-typedef struct table
+typedef struct table table_t;
+struct table
 {
     char * id;
     element_t * list_elems;
     table_t * next_table;
-} table_t;
+};
 
+//ast_node *newNode(char *type, char *value, int line, int column);
 
-node *newNode(char *type, char *value, int line, int column);
-void add_child(node *parent, node *child);
-void add_sibling(node *child, node *new_sibling);
-void print_ast(node *current_node, int n); // n é o número de pontos
-void free_ast(node *head);
+ast_node *newNode(char *type, char *value);
+void add_child(ast_node *parent, ast_node *child);
+void add_sibling(ast_node *child, ast_node *new_sibling);
+void print_ast(ast_node *current_node, int n); // n é o número de pontos
+void free_ast(ast_node *head);
 
 #endif // __AST_H

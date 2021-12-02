@@ -6,14 +6,16 @@
 */ 
 #include "structures.h"
 
-node *newNode(char *type, char *value, int line, int column)
+ast_node *newNode(char *id, char *value)
 {
-    node *new_node = (node *)malloc(sizeof(node));
-    new_node->type = (char *)strdup(type); // type -> "FuncDecl", "Id", ...
+    ast_node *new_node = (ast_node *)malloc(sizeof(ast_node));
+    new_node->id = (char *)strdup(id); // id -> "FuncDecl", "Id", ...
     new_node->first_child = NULL;
     new_node->sibling = NULL;
+    /*
     new_node->col = column;
     new_node->line = line;
+    */
     if (value == NULL) // value -> "fatorial", "12", ...
     {
         new_node->value = NULL;
@@ -23,17 +25,17 @@ node *newNode(char *type, char *value, int line, int column)
     return new_node;
 }
 
-void add_child(node *parent, node *child)
+void add_child(ast_node *parent, ast_node *child)
 {
     if (parent != NULL && child != NULL)
         parent->first_child = child;
 }
 
-void add_sibling(node *child, node *new_sibling)
+void add_sibling(ast_node *child, ast_node *new_sibling)
 {
     if (child != NULL && new_sibling != NULL)
     {
-        node *current = child;
+        ast_node *current = child;
         while (current->sibling != NULL)
         {
             current = current->sibling;
@@ -43,7 +45,7 @@ void add_sibling(node *child, node *new_sibling)
 }
 
 
-void print_ast(node *current_node, int n)
+void print_ast(ast_node *current_node, int n)
 {
     if (current_node == NULL)
     {
@@ -52,9 +54,9 @@ void print_ast(node *current_node, int n)
 
     if (current_node != NULL)
     {
-        if (current_node->type != NULL)
+        if (current_node->id != NULL)
         {
-            if (strcmp(current_node->type, "NULL") != 0)
+            if (strcmp(current_node->id, "NULL") != 0)
             {
                 for (int i = 0; i < n; i++)
                 {
@@ -63,11 +65,11 @@ void print_ast(node *current_node, int n)
 
                 if (current_node->value != NULL)
                 {
-                    printf("%s(%s)\n", current_node->type, current_node->value);
+                    printf("%s(%s)\n", current_node->id, current_node->value);
                 }
                 else
                 {
-                    printf("%s\n", current_node->type);
+                    printf("%s\n", current_node->id);
                 }
                 if (current_node->first_child != NULL)
                 {
@@ -94,13 +96,13 @@ void print_ast(node *current_node, int n)
 }
 
 
-void free_ast(node *current_node)
+void free_ast(ast_node *current_node)
 {
     if (current_node == NULL) return;
 
-    if (!current_node->type)
+    if (!current_node->id)
     {
-        free(current_node->type);
+        free(current_node->id);
     }
  
      if (!current_node->value)
