@@ -5,7 +5,6 @@
         * 2019218953 João Miguel Ferreira Castelo Branco Catré
         * 2019227240 Sofia Botelho Vieira Alves
       */ 
-        #include "structures.h"
         #include "semantic_analysis.h"
 
         int yylex();
