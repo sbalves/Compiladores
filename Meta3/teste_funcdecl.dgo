@@ -1,0 +1,24 @@
+package main;
+
+func oneFunc(){}
+
+func twoFunc(one int){}
+
+func treeFunc(one int, two float32){
+    var thisDoesNothingHere float32;
+
+    for one <= 123 {
+        thisDoesNothingHere = thisDoesNothingHere + two + .010e3;
+        one = one + one + one + one + 1;
+    };
+}
+
+func fourFunc(one int, two float32, three string){}
+
+func fiveFunc(one int, two float32, three string, four bool){}
+
+func sixFunc(one int) int {
+    var oneInSixFunc int;
+    oneInSixFunc = one;
+    return oneInSixFunc;
+}

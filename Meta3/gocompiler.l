@@ -229,7 +229,9 @@ int main(int argc, char* argv[])
     }
     if (argc > 1 && strcmp(argv[1], "-s") == 0){
         flag_sem = 1;
+        flag_return = 1;
         yyparse();
+        printf("vou entrar na semanctic\n");
         semantic_analysis(program_root);
     }
 
@@ -237,7 +239,7 @@ int main(int argc, char* argv[])
         flag_return = 1;
         yyparse();
     }
-    free_ast(program_root);
+    //free_ast(program_root);
     return 0;
 }
 

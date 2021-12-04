@@ -6,10 +6,11 @@
 */ 
 #include "structures.h"
 
-ast_node *newNode(char *id, char *value)
+
+ast_node *newNode(char *type, char *value)
 {
     ast_node *new_node = (ast_node *)malloc(sizeof(ast_node));
-    new_node->id = (char *)strdup(id); // id -> "FuncDecl", "Id", ...
+    new_node->id = (char *)strdup(type); // type -> "FuncDecl", "Id", ...
     new_node->first_child = NULL;
     new_node->sibling = NULL;
     /*
