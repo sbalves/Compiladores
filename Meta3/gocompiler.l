@@ -24,6 +24,9 @@
     extern int flag_syntax_error; //flag used to check if there are any syntax errors in order to build (or not) the tree
 
     extern ast_node* program_root;  
+
+    extern table_t * tables_root;
+
 %}
 /* Define states for line comments and general comments */
 %X LINE_COM GENERAL_COM STRING_COND
@@ -231,8 +234,9 @@ int main(int argc, char* argv[])
         flag_sem = 1;
         flag_return = 1;
         yyparse();
-        printf("vou entrar na semanctic\n");
+        //printf("vou entrar na semanctic\n");
         semantic_analysis(program_root);
+        print_table_list(tables_root);
     }
 
     else if(argc == 1){

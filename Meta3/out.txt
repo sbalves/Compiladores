@@ -1,90 +1,38 @@
-vou entrar na semanctic
-Criei a tabela Global
-Criei a tabela oneFunc
-table oneFunc added ^^
-element return (none) added to oneFunc table^^
-element oneFunc (none) added to Global table^^
-Estou no body
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-Criei a tabela twoFunc
-table twoFunc added ^^
-element return (none) added to twoFunc table^^
-element one (Int) added to twoFunc table^^
-element twoFunc (none) added to Global table^^
-Estou no body
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-Criei a tabela treeFunc
-table treeFunc added ^^
-element return (none) added to treeFunc table^^
-element one (Int) added to treeFunc table^^
-element two (Float32) added to treeFunc table^^
-element treeFunc (none) added to Global table^^
-Estou no body
-entrei na vardecl_analysis
-element thisDoesNothingHere (Float32) added to treeFunc table^^
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-Criei a tabela fourFunc
-table fourFunc added ^^
-element return (none) added to fourFunc table^^
-element one (Int) added to fourFunc table^^
-element two (Float32) added to fourFunc table^^
-element three (String) added to fourFunc table^^
-element fourFunc (none) added to Global table^^
-Estou no body
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-Criei a tabela fiveFunc
-table fiveFunc added ^^
-element return (none) added to fiveFunc table^^
-element one (Int) added to fiveFunc table^^
-element two (Float32) added to fiveFunc table^^
-element three (String) added to fiveFunc table^^
-element four (Bool) added to fiveFunc table^^
-element fiveFunc (none) added to Global table^^
-Estou no body
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-Criei a tabela sixFunc
-table sixFunc added ^^
-element return (Int) added to sixFunc table^^
-element one (Int) added to sixFunc table^^
-element sixFunc (Int) added to Global table^^
-Estou no body
-entrei na vardecl_analysis
-element oneInSixFunc (Int) added to sixFunc table^^
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
-O nó é null
+===== Global Symbol Table =====
+oneFunc	()	none
+twoFunc	()	none
+treeFunc	(float32)	none
+fourFunc	(float32,string)	none
+fiveFunc	(float32,string,bool)	none
+sixFunc	()	int
+
+===== Function oneFunc () Symbol Table =====
+return	none	
+
+===== Function twoFunc () Symbol Table =====
+return	none	
+one	int	param
+
+===== Function treeFunc () Symbol Table =====
+return	none	
+one	int	param
+two	float32	param
+thisDoesNothingHere	float32	
+
+===== Function fourFunc () Symbol Table =====
+return	none	
+one	int	param
+two	float32	param
+three	string	param
+
+===== Function fiveFunc () Symbol Table =====
+return	none	
+one	int	param
+two	float32	param
+three	string	param
+four	bool	param
+
+===== Function sixFunc (int) Symbol Table =====
+return	int	
+one	int	param
+oneInSixFunc	int	

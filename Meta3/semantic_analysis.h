@@ -21,6 +21,13 @@ parameter_t * find_params(parameter_t * param, ast_node * node,  table_t * table
 table_t * create_table(char * id);
 void funcdecl_analysis(ast_node * node);
 void vardecl_analysis(ast_node * node);
+char * find_table_type(table_t * table, char * function_name);
+char * lowercase(char * word);
+void print_table_params(parameter_t * list);
+void print_table_params(parameter_t * list);
+void print_elements_function_table(element_t * elem);
+void print_table_list(table_t * table);
 void semantic_analysis(ast_node * node);
+
 
 #endif //SEM_A
