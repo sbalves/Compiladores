@@ -37,6 +37,7 @@ struct parameters
 typedef struct element element_t;
 struct element
 {
+    int is_func;
     int is_parameter;
     char * id;
     char * type;

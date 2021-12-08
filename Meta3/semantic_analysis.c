@@ -26,6 +26,7 @@ element_t * create_element(char * id, char * type, parameter_t * params_list){
     new_element->id = strdup(id);
     new_element->type = strdup(type);
     new_element->list_params = params_list;
+    new_element->is_func = 0;
     new_element->is_parameter = 0;
     new_element->next_elem = NULL;
     
@@ -165,7 +166,8 @@ void funcdecl_analysis(ast_node * node){
     
     // criar elemento correspondente à função
     element_t * new_element = create_element(((node->first_child)->first_child)->value, return_type_table, params_list);
-
+    //especificar que é uma função
+    new_element->is_func = 1;
     // adicionar à tabela global
     add_element(tables_root, new_element);    
     //ataulizar o ponteiro da tabela atual, uma vez que agora estamos dentro da função
@@ -239,52 +241,59 @@ void print_table_params(parameter_t * list){
         if(current->next_param)
             printf(",");
     }
-    printf(")\t");
+    printf(")");
+}
+
+void print_params(element_t * elem){
+    //parameter_t * list = elem->list_params;
+    if(elem->list_params){
+        printf("(");
+        //printf("fist p %s", lowercase((elem->list_params)->param_type));
+        for (parameter_t * current = elem->list_params; current; current = current->next_param) {
+            printf("%s", lowercase(current->param_type));
+            if(current->next_param) printf(",");
+        }
+        printf(")\t");
+    }   
+    else{
+        if(elem->is_func) printf("()\t");}
+    
+}
+
+void print_second(element_t * elem){
+    print_params(elem);
+    printf("%s", lowercase(elem->type));
 }
 
 
-void print_elements_global(element_t * elem){
+void print_elements(element_t * elem){
     for(element_t * current = elem; current; current = current->next_elem){
         printf("%s\t", current->id);
-        print_table_params(current->list_params);
-        printf("%s\n", lowercase(current->type));
+        print_second(current);
+        if(current->is_parameter) printf("\t param");
+        if(current->next_elem) printf("\n");
     }
 }
 
-
-
-void print_elements_function_table(element_t * elem){
-    for(element_t * current = elem; current; current = current->next_elem){
-        printf("%s\t", current->id);
-        printf("%s\t", lowercase(current->type));
-        if(current->is_parameter) printf("param\n");
-        else if(current->next_elem) printf("\n");
-        else printf("\n");
-    }
-}
 
 void print_table_list(table_t * table){
         printf("===== %s Symbol Table =====\n", table->id);
-        print_elements_global(table->list_elems);
-
+        print_elements(table->list_elems);
+        printf("\n");
         
         for(table_t * current = table->next_table; current; current = current->next_table){
             printf("\n===== Function %s (%s) Symbol Table =====\n", current->id, find_table_type(tables_root,current->id));
-            print_elements_function_table(current->list_elems);
+            print_elements(current->list_elems);
+            printf("\n");
         }
+        
 }
 
 
 void semantic_analysis(ast_node * node){
 
     if(node != NULL){
-        /*
-        if(node->first_child != NULL && node->sibling != NULL){
-            printf("Entrei no if 168\n");
-            return;   
-        }
-        */
-
+        
         if(!strcmp(node->id, "Program")){
             //printf("Entrei no if 176\n");
             current_table = tables_root = create_table("Global");

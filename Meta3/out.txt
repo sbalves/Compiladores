@@ -1,38 +1,320 @@
 ===== Global Symbol Table =====
-oneFunc	()	none
-twoFunc	()	none
-treeFunc	(float32)	none
-fourFunc	(float32,string)	none
-fiveFunc	(float32,string,bool)	none
-sixFunc	()	int
+i	float32
+f	int
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
+f	int
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
 
-===== Function oneFunc () Symbol Table =====
-return	none	
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
 
-===== Function twoFunc () Symbol Table =====
-return	none	
-one	int	param
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
 
-===== Function treeFunc () Symbol Table =====
-return	none	
-one	int	param
-two	float32	param
-thisDoesNothingHere	float32	
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
 
-===== Function fourFunc () Symbol Table =====
-return	none	
-one	int	param
-two	float32	param
-three	string	param
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
 
-===== Function fiveFunc () Symbol Table =====
-return	none	
-one	int	param
-two	float32	param
-three	string	param
-four	bool	param
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
 
-===== Function sixFunc (int) Symbol Table =====
-return	int	
-one	int	param
-oneInSixFunc	int	
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
