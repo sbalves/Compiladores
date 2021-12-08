@@ -234,7 +234,6 @@ int main(int argc, char* argv[])
         flag_sem = 1;
         flag_return = 1;
         yyparse();
-        //printf("vou entrar na semanctic\n");
         semantic_analysis(program_root);
         print_table_list(tables_root);
     }
@@ -243,7 +242,7 @@ int main(int argc, char* argv[])
         flag_return = 1;
         yyparse();
     }
-    //free_ast(program_root);
+    free_ast(program_root);
     return 0;
 }
 

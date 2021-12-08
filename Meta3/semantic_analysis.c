@@ -32,6 +32,14 @@ element_t * create_element(char * id, char * type, parameter_t * params_list){
     return new_element;
 }
 
+void free_create_element(element_t * element){
+    free(element->id);
+    free(element->type);
+    free(element->list_params);
+    //free(element->is_parameter);
+    free(element->next_elem);
+    free(element);
+}
 
 parameter_t * create_param(ast_node * node){
     parameter_t * parameter = (parameter_t *)malloc(sizeof(parameter_t));

@@ -89,8 +89,8 @@
         ast_node* program_root=NULL; //root node of astree
 
         // Nós superfluos -> while a correr os nos irmaos, tem que ter no minimo 2 nos irmaos. caso contrário, não printa
+        table_t *tables_root = NULL;
 
-        table_t * tables_root = NULL;
 
 
 #line 97 "y.tab.c"
