@@ -25,7 +25,7 @@ char * find_table_type(table_t * table, char * function_name);
 char * lowercase(char * word);
 void print_table_params(parameter_t * list);
 void print_table_params(parameter_t * list);
-void print_elements_function_table(element_t * elem);
+void print_elements(element_t * elem);
 void print_table_list(table_t * table);
 void semantic_analysis(ast_node * node);
 
