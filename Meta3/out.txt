@@ -1,0 +1,320 @@
+===== Global Symbol Table =====
+i	float32
+f	int
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
+f	int
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
+s	bool
+b	string
+main	()	none
+main	()	none
+b	string
+main	()	none
+main	()	none
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+
+===== Function main () Symbol Table =====
+return	none
+i	int
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool
+f	float32
+s	string
+b	bool
+b	bool
+s	string
+b	bool
+b	bool

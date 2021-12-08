@@ -5,7 +5,7 @@
     * 2019227240 Sofia Botelho Vieira Alves
     * valgrind --leak-check=full --show-leak-kinds=all --log-file="valgrind.txt" ./gocompiler < meta3_testes/errors.dgo
 */ 
-*/ 
+
 #include "structures.h"
 
 
