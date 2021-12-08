@@ -33,14 +33,6 @@ element_t * create_element(char * id, char * type, parameter_t * params_list){
     return new_element;
 }
 
-void free_create_element(element_t * element){
-    free(element->id);
-    free(element->type);
-    free(element->list_params);
-    //free(element->is_parameter);
-    free(element->next_elem);
-    free(element);
-}
 
 parameter_t * create_param(ast_node * node){
     parameter_t * parameter = (parameter_t *)malloc(sizeof(parameter_t));
@@ -55,7 +47,7 @@ parameter_t * create_param(ast_node * node){
 
 /* ainda n sei fazer :s ver depois */ 
 
-parameter_t * find_params(parameter_t * param, ast_node * node, table_t * table){
+void find_params(parameter_t * param, ast_node * node, table_t * table){
 
     parameter_t * new_param = NULL;
     element_t * new_elem = NULL;
@@ -77,7 +69,7 @@ parameter_t * find_params(parameter_t * param, ast_node * node, table_t * table)
 
         find_params(new_param, node->sibling, table);
     }
-    return new_param; // faz sentido? a ideia é retornar a root.... acho?
+    //return new_param; // faz sentido? a ideia é retornar a root.... acho?
 }
 
 
@@ -169,7 +161,7 @@ void funcdecl_analysis(ast_node * node){
         first_param_elem->is_parameter = 1;
 
         add_element(new_table,first_param_elem);
-        params_list = find_params(params_list, params->first_child, new_table);
+        find_params(params_list, params->first_child, new_table);
     }
     
     // criar elemento correspondente à função
@@ -208,20 +200,25 @@ void vardecl_analysis(ast_node * node){
     semantic_analysis(node->sibling);
 }
 
-char * find_table_type(table_t * table, char * function_name){
-    char * type;
-    //printf("entrei na find_table_type com o id %s\n", function_name);
+element_t * find_table(table_t * table, char * function_name){
+    element_t * element_func = NULL;
+
+    //printf("entrei na find_table_type com o id %s e estou na tabela %s\n", function_name, table->id);
     for(element_t * current = table->list_elems; current; current = current->next_elem){
+        //printf("%s-%s\n", current->id, function_name);
         if(!strcmp(current->id, function_name)){
-            type = strdup(current->type);
-            if(!strcmp(type, "none")) return "";
-            return lowercase(type);
+            element_func = current;
         }
         //printf("%s\n", current->id);
-    }
-    
+    } 
     //printf("hello3\n");
-    return "erro"; //ver depois :S
+    //return "erro"; //ver depois :S
+    /*
+
+    VERIFICAR ERRO: quando o elemento procurado n se encotra na tabela global !!!!
+
+    */
+    return element_func;
 }
 
 // rever nome do parametro
@@ -251,34 +248,45 @@ void print_table_params(parameter_t * list){
     }
     printf(")");
 }
-
 void print_params(element_t * elem){
     //parameter_t * list = elem->list_params;
-    if(elem->list_params){
-        printf("(");
-        //printf("fist p %s", lowercase((elem->list_params)->param_type));
-        for (parameter_t * current = elem->list_params; current; current = current->next_param) {
-            printf("%s", lowercase(current->param_type));
-            if(current->next_param) printf(",");
-        }
-        printf(")\t");
-    }   
-    else{
-        if(elem->is_func) printf("()\t");}
-    
+    if(elem){
+        if(elem->list_params){
+            printf("(");
+            //printf("fist p %s", lowercase((elem->list_params)->param_type));
+            for (parameter_t * current = elem->list_params; current; current = current->next_param) {
+                printf("%s", lowercase(current->param_type));
+                if(current->next_param) printf(",");
+            }
+            printf(")");
+        }   
+        else{
+            if(elem->is_func) printf("()");}
+    }
 }
+
 
 void print_second(element_t * elem){
     print_params(elem);
+    printf("\t");
     printf("%s", lowercase(elem->type));
 }
 
-
+/*
+void print_second(element_t * elem){
+    print_params(elem);
+    if(elem->is_func){
+        printf("%s", lowercase(elem->type));
+    }else{
+        printf("\t%s", lowercase(elem->type));
+    }
+}
+*/
 void print_elements(element_t * elem){
     for(element_t * current = elem; current; current = current->next_elem){
         printf("%s\t", current->id);
         print_second(current);
-        if(current->is_parameter) printf("\t param");
+        if(current->is_parameter) printf("\tparam");
         if(current->next_elem) printf("\n");
     }
 }
@@ -290,7 +298,9 @@ void print_table_list(table_t * table){
         printf("\n");
         
         for(table_t * current = table->next_table; current; current = current->next_table){
-            printf("\n===== Function %s (%s) Symbol Table =====\n", current->id, find_table_type(tables_root,current->id));
+            printf("\n===== Function %s", current->id);
+            print_params(find_table(tables_root, current->id));
+            printf(" Symbol Table =====\n");
             print_elements(current->list_elems);
             printf("\n");
         }
