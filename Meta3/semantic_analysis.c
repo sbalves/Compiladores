@@ -2,7 +2,6 @@
 
 table_t * current_table = NULL;
 
-
 void add_element(table_t * table, element_t * new_elem){
 
     if(table->list_elems == NULL){
@@ -186,7 +185,7 @@ void funcdecl_analysis(ast_node * node){
 }
 
 
-
+//O erro está aqui.
 void vardecl_analysis(ast_node * node){
     //printf("entrei na vardecl_analysis\n");
     element_t * new_elem = create_element(((node->first_child)->sibling)->value, ((node->first_child)->id), NULL);
@@ -197,7 +196,7 @@ void vardecl_analysis(ast_node * node){
 
     add_element(current_table, new_elem);
 
-    semantic_analysis(node->sibling);
+    //semantic_analysis(node->sibling); //Era aqui!
 }
 
 element_t * find_table(table_t * table, char * function_name){
@@ -238,7 +237,6 @@ char * lowercase(char * word){
     return word;
 }
 
-
 void print_table_params(parameter_t * list){
     printf("(");
     for(parameter_t * current = list; current; current = current->next_param){
@@ -248,6 +246,7 @@ void print_table_params(parameter_t * list){
     }
     printf(")");
 }
+
 void print_params(element_t * elem){
     //parameter_t * list = elem->list_params;
     if(elem){
@@ -265,23 +264,12 @@ void print_params(element_t * elem){
     }
 }
 
-
 void print_second(element_t * elem){
     print_params(elem);
     printf("\t");
     printf("%s", lowercase(elem->type));
 }
 
-/*
-void print_second(element_t * elem){
-    print_params(elem);
-    if(elem->is_func){
-        printf("%s", lowercase(elem->type));
-    }else{
-        printf("\t%s", lowercase(elem->type));
-    }
-}
-*/
 void print_elements(element_t * elem){
     for(element_t * current = elem; current; current = current->next_elem){
         printf("%s\t", current->id);
@@ -290,7 +278,6 @@ void print_elements(element_t * elem){
         if(current->next_elem) printf("\n");
     }
 }
-
 
 void print_table_list(table_t * table){
         printf("===== %s Symbol Table =====\n", table->id);
@@ -307,11 +294,10 @@ void print_table_list(table_t * table){
         
 }
 
-
 void semantic_analysis(ast_node * node){
 
     if(node != NULL){
-        
+        //printf("node %s\n", node->id);
         if(!strcmp(node->id, "Program")){
             //printf("Entrei no if 176\n");
             current_table = tables_root = create_table("Global");
@@ -319,20 +305,19 @@ void semantic_analysis(ast_node * node){
         }
 
         if(!strcmp(node->id, "FuncDecl")){
-            //printf("Entrei no if 182\n");
+            //printf("Estou no FuncDecl\n");
             funcdecl_analysis(node);
         }
-        
-        if(!strcmp(node->id, "FuncBody")){
-            //printf("Estou no body\n");
-            semantic_analysis(node->first_child);
+        else if(!strcmp(node->id, "FuncBody")){
+        //printf("Estou no body\n");
+        semantic_analysis(node->first_child);
         }
 
-        if(!strcmp(node->id, "VarDecl")){
+        else if(!strcmp(node->id, "VarDecl")){
+            //printf("Estou no VarDecl\n");
             vardecl_analysis(node);
         }
-
-
+        
         //semantic_analysis(node->first_child);
         semantic_analysis(node->sibling);
 

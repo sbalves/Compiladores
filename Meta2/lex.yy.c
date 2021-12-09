@@ -434,32 +434,32 @@ static const YY_CHAR yy_meta[65] =
 
 static const flex_int16_t yy_base[237] =
     {   0,
-        0,    0,   62,   63,   66,   67,   73,   80,  228,  850,
-      850,  850,  223,  850,  198,   84,  850,  213,  850,  850,
-      850,  169,  850,  163,   74,   85,  103,  118,  850,  148,
-      144,  141,   90,  850,  850,  108,  130,  135,   62,  123,
-      140,  124,  148,  150,  156,  158,  167,  175,  169,  177,
-      850,  102,  850,  850,  850,  161,  850,  850,  156,  129,
-      850,  850,  850,  850,  143,  850,  198,  850,  850,   97,
-      169,  850,  208,  850,  850,  216,  850,  850,  246,  261,
-      275,  292,    0,  299,  850,  850,  850,    0,  180,  218,
-      248,  285,  287,  297,  307,  306,  308,  318,  326,  327,
+        0,    0,   62,   63,   66,   67,   73,   80,  215,  825,
+      825,  825,  210,  825,  177,   84,  825,  191,  825,  825,
+      825,  175,  825,  161,   74,   85,  103,  118,  825,  145,
+      144,  140,   90,  825,  825,  108,  130,  135,   62,  123,
+      129,  124,  145,  147,  153,  155,  164,  172,  166,  174,
+      825,  102,  825,  825,  825,  161,  825,  825,  156,  129,
+      825,  825,  825,  825,  143,  825,  186,  825,  825,   97,
+      228,  825,  214,  825,  825,  224,  825,  825,  239,  254,
+      268,  281,    0,  292,  825,  825,  825,    0,  187,  196,
+      241,  278,  254,  280,  283,  291,  299,  300,  302,  311,
 
-      335,  338,  339,  347,  350,  351,  376,  367,  371,  373,
-      375,  363,  388,  392,  394,  850,  850,  850,  850,  850,
-      850,  850,  850,  433,  438,  450,  252,  455,    0,  441,
-      398,  443,  446,  454,  462,  470,  478,  473,  486,  481,
-      494,  483,  491,  499,  502,  116,  504,  515,  512,  520,
-      528,  525,  537,  538,  572,  577,  582,  587,  573,  574,
-      575,  578,  576,  591,  594,  596,  597,  111,  599,  602,
-      612,   88,  617,  623,  622,  632,  633,  635,  643,  651,
-      654,  652,  655,  672,   80,  664,  670,   77,  674,  676,
-      685,  687,  691,  695,  704,  707,  710,  715,   97,   71,
+      315,  312,  317,  332,  334,  335,  344,  353,  356,  354,
+      364,  366,  376,  374,  379,  825,  825,  825,  825,  825,
+      825,  825,  825,  416,  421,  433,  438,  445,    0,  424,
+      432,  433,  436,  434,  453,  454,  455,  456,  465,  464,
+      473,  474,  476,  482,  477,  116,  485,  494,  497,  498,
+      507,  506,  518,  503,  546,  552,  557,  562,  548,  549,
+      550,  553,  551,  566,  569,  571,  572,  111,  574,  577,
+      587,   88,  592,  598,  597,  607,  608,  610,  618,  626,
+      629,  627,  630,  647,   80,  639,  645,   77,  649,  651,
+      660,  662,  666,  670,  679,  682,  685,  690,   97,   71,
 
-      716,   61,  732,  720,  733,  735,  737,  738,    0,   55,
-      748,  850,  754,  764,  756,   46,  765,   73,  760,   42,
-       34,  773,   38,   35,  850,   28,  850,  850,  825,  829,
-      833,  837,  839,  843,   70,  845
+      691,   61,  707,  695,  708,  710,  712,  713,    0,   55,
+      723,  825,  729,  739,  731,   46,  740,   73,  735,   42,
+       34,  748,   38,   35,  825,   28,  825,  825,  800,  804,
+      808,  812,  814,  818,   70,  820
     } ;
 
 static const flex_int16_t yy_def[237] =
@@ -492,7 +492,7 @@ static const flex_int16_t yy_def[237] =
       228,  228,  228,  228,  228,  228
     } ;
 
-static const flex_int16_t yy_nxt[915] =
+static const flex_int16_t yy_nxt[890] =
     {   0,
        10,   11,   12,   10,   13,   14,   15,   16,   17,   18,
        19,   20,   21,   22,   23,   24,   25,   26,   27,   28,
@@ -511,93 +511,89 @@ static const flex_int16_t yy_nxt[915] =
        88,   73,   82,  200,   79,   83,   84,   84,   84,   84,
        84,  188,  185,  172,   82,  120,  119,   82,   88,   88,
        88,   88,   88,   88,   88,   88,   88,   88,  118,   82,
-       89,   89,   83,  117,  116,   82,   87,   89,   89,   86,
-       71,   96,   92,   85,   89,  102,   72,   97,   75,   93,
-       82,   90,   75,   91,   89,   89,   94,  106,   98,   99,
-      103,  100,   89,   89,   89,  108,  101,  104,  105,   89,
+       89,   89,   83,  117,  116,   87,   97,   89,   89,   86,
+       85,   96,   92,   89,   89,  102,   75,   98,   99,   93,
+      100,   90,   89,   91,  106,  101,   94,  103,   75,   89,
+       89,   89,  108,  122,  104,  105,   89,   89,   89,   89,
 
-       89,   89,   89,   73,  109,  122,   89,   89,  110,   89,
-      107,   89,   89,   89,  115,   70,  111,   89,   89,   89,
-       89,   89,   74,   69,   89,   68,   89,  228,   89,  114,
-      112,   89,  123,  113,   76,   76,   76,   76,   76,  228,
-      123,  228,   70,  228,  228,  124,  228,  228,  123,  228,
-       70,  123,  228,  123,  228,   89,  228,  124,   70,  228,
-      228,   70,   89,   70,  125,  125,  125,  125,  125,  130,
-      128,  128,  128,  128,  128,  126,  228,   79,  124,   80,
-       80,   80,   80,   81,  228,   89,  228,  126,  228,  131,
-       82,   79,   89,   81,   81,   81,   81,   81,  228,   89,
+       74,  109,   69,   89,   89,  110,   89,  107,   89,   89,
+       89,  115,   68,  111,  228,   89,   89,   89,   89,  228,
+      123,   70,  228,   89,   89,   89,  114,  112,  123,   71,
+      113,   89,  228,   89,  228,   72,  123,  228,   89,  123,
+       89,  123,   76,   76,   76,   76,   76,  130,   70,  228,
+      228,  228,  228,  124,  228,  228,   70,  125,  125,  125,
+      125,  125,   73,  228,   70,  124,  228,   70,  126,   70,
+       79,  228,   80,   80,   80,   80,   81,  228,   89,  228,
+      126,  228,  131,   82,   79,   89,   81,   81,   81,   81,
+       81,  133,   89,  228,  127,   82,  127,   82,   89,  128,
 
-      228,  228,   82,  228,   82,  127,  228,  127,  126,  228,
-      128,  128,  128,  128,  128,   79,   82,   84,   84,   84,
-       84,   84,   89,   82,  133,  228,  228,  228,   82,   89,
-      228,   89,  228,  228,   89,  228,   89,   82,   89,  132,
-       82,   89,  228,   89,   89,   89,  228,  134,   89,  135,
-       89,   89,   89,  228,  127,   89,  137,   89,   89,   89,
-      136,   82,   89,   89,   89,  228,  228,  228,  228,  138,
-       89,   89,   89,  228,  228,   89,   89,   89,   89,   89,
-      140,  139,   89,   89,   89,  141,   89,   89,   89,   89,
-       89,   89,  146,  142,   89,   89,  228,  228,   89,  143,
+      128,  128,  128,  128,  228,   89,  228,  228,   79,   82,
+       84,   84,   84,   84,   84,   89,  228,   89,  228,  228,
+       89,   82,   89,  228,   89,  135,  228,   89,   89,   89,
+      134,   89,  132,   82,   89,   89,   89,   89,  228,   89,
+      228,  228,   89,   89,   89,  136,   89,  137,   89,   89,
+       89,  138,   89,   89,   89,   89,   89,  139,  228,   89,
+      146,   89,   89,   89,  140,  141,   89,  142,   89,   89,
+      228,   89,   89,  228,  228,  228,   89,  228,   89,   89,
+      228,   89,  228,   89,  143,   89,   89,  145,   89,  144,
+       89,   89,  147,   89,  228,   89,  228,   89,   89,  228,
 
-       89,   89,   89,  145,   89,  144,  147,   89,   89,  228,
-       89,   89,   89,   89,   89,   89,  151,   89,   89,   89,
-       89,  148,   89,  150,   89,   89,   89,   89,  149,   89,
-      228,   89,   89,  152,  228,  160,   89,  228,   89,   89,
-      228,  228,   89,   89,  153,   89,  155,  154,  155,   89,
-      228,  156,  156,  156,  156,  156,  125,  125,  125,  125,
-      125,  228,  228,  157,  228,  157,  228,  126,  158,  158,
-      158,  158,  158,  128,  128,  128,  128,  128,   89,  126,
-       89,  228,  228,   89,  145,   89,  228,   89,  228,  159,
-       89,   89,   89,  228,   89,  155,  145,   89,   89,  163,
+       89,   89,  228,   89,   89,   89,  148,   89,   89,  149,
+       89,   89,  150,   89,  228,   89,   89,   89,   89,  151,
+       89,  152,  228,   89,  228,   89,  153,   89,  228,  155,
+       89,  155,  154,  228,  156,  156,  156,  156,  156,  125,
+      125,  125,  125,  125,  228,  228,  157,  228,  157,  228,
+      126,  158,  158,  158,  158,  158,  128,  128,  128,  128,
+      128,   89,  126,  128,  128,  128,  128,  128,   89,  160,
+       89,   89,  159,   89,  145,   89,   89,   89,   89,  228,
+       89,  168,  228,   89,   89,   89,  145,   89,  161,  162,
+      163,   89,   89,  167,  164,  165,  228,   89,   89,   89,
 
-      126,  228,  168,  164,  228,   89,   89,   89,  161,  162,
-      167,  165,  157,   89,   89,   89,  228,   89,   89,  228,
-       89,   89,   89,   89,   89,   89,  166,   89,   89,   89,
-       89,   89,   89,  169,  145,   89,   89,   89,   89,   89,
-      171,   89,  170,   89,  228,   89,   89,  228,   89,   89,
-       89,  173,   89,   89,  228,   89,   89,   89,  174,   89,
-      228,  176,   89,   89,   89,   89,   89,  177,  175,   89,
-      228,   89,   89,  178,   89,   89,   89,  228,  145,   89,
-      180,   89,   89,  228,  179,  228,  228,  228,   89,   89,
-      156,  156,  156,  156,  156,  156,  156,  156,  156,  156,
+       89,   89,   89,  166,   89,   89,   89,   89,   89,   89,
+       89,   89,  169,   89,   89,   89,   89,   89,   89,   89,
+       89,   89,   89,  171,   89,  145,   89,  170,   89,   89,
+      228,   89,  173,   89,   89,   89,   89,  174,   89,  176,
+       89,   89,   89,   89,   89,   89,  177,   89,   89,   89,
+       89,   89,  178,  175,   89,   89,  228,   89,   89,  145,
+      228,  180,   89,  179,  156,  156,  156,  156,  156,   89,
+      156,  156,  156,  156,  156,  158,  158,  158,  158,  158,
+      158,  158,  158,  158,  158,   89,   89,   89,   89,  228,
+       89,  228,   89,   89,   89,   89,  145,   89,  181,   89,
 
-      158,  158,  158,  158,  158,  158,  158,  158,  158,  158,
-       89,   89,   89,   89,  228,   89,  228,   89,   89,   89,
-       89,  145,   89,  181,   89,   89,   89,   89,   89,   89,
-      145,   89,  182,   89,   89,   89,   89,  228,   89,   89,
-       89,   89,   89,   89,  145,   89,   89,   89,   89,   89,
-       89,  183,  184,   89,  189,  186,   89,  228,  228,   89,
-       89,   89,  228,   89,  145,  187,   89,   89,   89,   89,
-       89,  191,   89,   89,   89,  190,   89,   89,  228,   89,
-       89,  228,  194,   89,  192,  193,   89,   89,   89,   89,
-      195,   89,   89,  199,   89,   89,   89,  228,   89,  198,
+       89,   89,   89,   89,   89,  145,   89,  182,   89,   89,
+       89,   89,  228,   89,   89,   89,   89,   89,   89,  145,
+       89,   89,   89,   89,   89,   89,  183,  184,   89,  189,
+      186,   89,  228,  228,   89,   89,   89,  228,   89,  145,
+      187,   89,   89,   89,   89,   89,  191,   89,   89,   89,
+      190,   89,   89,  228,   89,   89,  228,  194,   89,  192,
+      193,   89,   89,   89,   89,  195,   89,   89,  199,   89,
+       89,   89,  228,   89,  198,  197,   89,   89,   89,  196,
+       89,   89,   89,   89,   89,  228,   89,  201,   89,   89,
+       89,   89,  203,   89,  145,   89,   89,   89,   89,   89,
 
-      197,   89,   89,   89,  196,   89,   89,   89,   89,   89,
-      228,   89,  201,   89,   89,   89,   89,  203,   89,  145,
-       89,   89,   89,   89,   89,   89,  204,   89,   89,   89,
-      228,   89,   89,  228,  206,   89,   89,  205,   89,   89,
-      145,   89,   89,  228,   89,  228,   89,   89,  145,  228,
-      145,   89,   89,  211,   89,   89,  228,   89,   89,   89,
-       89,   89,  228,  207,   89,  145,   89,   89,  208,   89,
-       89,   89,   89,  213,   89,   89,   89,   89,  145,   89,
-      218,   89,   89,   89,   89,   89,   89,  217,   89,  215,
-      214,   89,   89,   89,  228,  228,  228,   89,   89,   89,
+       89,  204,   89,   89,   89,  228,   89,   89,  228,  206,
+       89,   89,  205,   89,   89,  145,   89,   89,  228,   89,
+      228,   89,   89,  145,  228,  145,   89,   89,  211,   89,
+       89,  228,   89,   89,   89,   89,   89,  228,  207,   89,
+      145,   89,   89,  208,   89,   89,   89,   89,  213,   89,
+       89,   89,   89,  145,   89,  218,   89,   89,   89,   89,
+       89,   89,  217,   89,  215,  214,   89,   89,   89,  228,
+      228,  228,   89,   89,   89,   89,   89,   89,  222,   89,
+       89,  145,   89,   89,   89,   89,   89,  219,  228,  228,
+       89,   89,  145,  228,  228,  228,  228,  228,  228,   89,
 
-       89,   89,   89,  222,   89,   89,  145,   89,   89,   89,
-       89,   89,  219,  228,  228,   89,   89,  145,  228,  228,
-      228,  228,  228,  228,   89,   54,   54,   54,   54,   57,
-       57,   57,   57,   61,   61,   61,   61,   70,  228,   70,
-       70,   89,   89,  121,  228,  121,  121,   88,   88,    9,
+       54,   54,   54,   54,   57,   57,   57,   57,   61,   61,
+       61,   61,   70,  228,   70,   70,   89,   89,  121,  228,
+      121,  121,   88,   88,    9,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
-
-      228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
-      228,  228,  228,  228
+      228,  228,  228,  228,  228,  228,  228,  228,  228
     } ;
 
-static const flex_int16_t yy_chk[915] =
+static const flex_int16_t yy_chk[890] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -616,90 +612,86 @@ static const flex_int16_t yy_chk[915] =
        36,   70,   27,  185,   28,   27,   28,   28,   28,   28,
        28,  172,  168,  146,   27,   65,   60,   28,   37,   37,
        37,   37,   37,   38,   38,   38,   38,   38,   59,   28,
-       40,   42,   27,   56,   52,   27,   32,   40,   42,   31,
-       71,   40,   38,   30,   40,   42,   71,   41,   24,   38,
-       28,   37,   22,   37,   41,   43,   38,   44,   41,   41,
-       43,   41,   43,   45,   44,   46,   41,   43,   43,   43,
+       40,   42,   27,   56,   52,   32,   41,   40,   42,   31,
+       30,   40,   38,   41,   40,   42,   24,   41,   41,   38,
+       41,   37,   43,   37,   44,   41,   38,   43,   22,   43,
+       45,   44,   46,   67,   43,   43,   43,   45,   44,   46,
 
-       45,   44,   46,   71,   47,   67,   49,   45,   47,   46,
-       45,   47,   48,   49,   50,   73,   48,   89,   47,   48,
-       49,   50,   18,   15,   89,   13,   48,    9,   50,   49,
-       48,   89,   67,   48,   76,   76,   76,   76,   76,    0,
-       67,    0,   73,    0,    0,   76,    0,    0,   67,    0,
-       73,   67,    0,   67,    0,   90,    0,   76,   73,    0,
-        0,   73,   90,   73,   79,   79,   79,   79,   79,   90,
-      127,  127,  127,  127,  127,   79,    0,   80,   76,   80,
-       80,   80,   80,   80,    0,   91,    0,   79,    0,   91,
-       80,   81,   91,   81,   81,   81,   81,   81,    0,   91,
+       18,   47,   15,   49,   45,   47,   46,   45,   47,   48,
+       49,   50,   13,   48,    9,   47,   48,   49,   50,    0,
+       67,   73,    0,   48,   89,   50,   49,   48,   67,   71,
+       48,   89,    0,   90,    0,   71,   67,    0,   89,   67,
+       90,   67,   76,   76,   76,   76,   76,   90,   73,    0,
+        0,    0,    0,   76,    0,    0,   73,   79,   79,   79,
+       79,   79,   71,    0,   73,   76,    0,   73,   79,   73,
+       80,    0,   80,   80,   80,   80,   80,    0,   91,    0,
+       79,    0,   91,   80,   81,   91,   81,   81,   81,   81,
+       81,   93,   91,    0,   82,   80,   82,   81,   93,   82,
 
-        0,    0,   80,    0,   81,   82,    0,   82,   79,    0,
-       82,   82,   82,   82,   82,   84,   81,   84,   84,   84,
-       84,   84,   92,   80,   93,    0,    0,    0,   84,   92,
-        0,   93,    0,    0,   94,    0,   92,   81,   93,   92,
-       84,   94,    0,   96,   95,   97,    0,   94,   94,   95,
-       96,   95,   97,    0,   82,   98,   97,   96,   95,   97,
-       96,   84,   98,   99,  100,    0,    0,    0,    0,   98,
-       99,  100,  101,    0,    0,  102,  103,   99,  100,  101,
-      100,   99,  102,  103,  104,  101,  101,  105,  106,  102,
-      103,  104,  107,  102,  105,  106,    0,    0,  104,  104,
+       82,   82,   82,   82,    0,   93,    0,    0,   84,   81,
+       84,   84,   84,   84,   84,   92,    0,   94,    0,    0,
+       95,   84,   92,    0,   94,   95,    0,   95,   96,   92,
+       94,   94,   92,   84,   95,   96,   97,   98,    0,   99,
+        0,    0,   96,   97,   98,   96,   99,   97,  100,  102,
+       97,   98,  101,   99,  103,  100,  102,   99,    0,  101,
+      107,  103,  100,  102,  100,  101,  101,  102,  103,  104,
+        0,  105,  106,    0,    0,    0,  104,    0,  105,  106,
+        0,  107,    0,  104,  104,  105,  106,  106,  107,  105,
+      108,  110,  108,  109,    0,  107,    0,  108,  110,    0,
 
-      112,  105,  106,  106,  108,  105,  108,  112,  109,    0,
-      110,  108,  111,  107,  112,  109,  112,  110,  108,  111,
-      107,  109,  109,  111,  110,  113,  111,  107,  110,  114,
-        0,  115,  113,  113,    0,  131,  114,    0,  115,  113,
-        0,    0,  131,  114,  114,  115,  124,  115,  124,  131,
-        0,  124,  124,  124,  124,  124,  125,  125,  125,  125,
-      125,    0,    0,  126,    0,  126,    0,  125,  126,  126,
-      126,  126,  126,  128,  128,  128,  128,  128,  130,  125,
-      132,    0,    0,  133,  132,  130,    0,  132,    0,  130,
-      133,  134,  130,    0,  132,  124,  133,  133,  134,  135,
+      109,  111,    0,  112,  108,  110,  109,  109,  111,  110,
+      112,  114,  111,  113,    0,  111,  115,  112,  114,  112,
+      113,  113,    0,  115,    0,  114,  114,  113,    0,  124,
+      115,  124,  115,    0,  124,  124,  124,  124,  124,  125,
+      125,  125,  125,  125,    0,    0,  126,    0,  126,    0,
+      125,  126,  126,  126,  126,  126,  127,  127,  127,  127,
+      127,  130,  125,  128,  128,  128,  128,  128,  130,  131,
+      132,  134,  130,  133,  132,  130,  131,  132,  134,    0,
+      133,  139,    0,  131,  132,  134,  133,  133,  134,  134,
+      135,  136,  137,  138,  135,  136,    0,  135,  136,  137,
 
-      125,    0,  139,  135,    0,  134,  135,  136,  134,  134,
-      138,  136,  126,  135,  136,  137,    0,  138,  140,    0,
-      142,  136,  137,  139,  138,  140,  137,  142,  143,  137,
-      139,  141,  140,  141,  142,  143,  144,  139,  141,  145,
-      144,  147,  143,  144,    0,  141,  145,    0,  147,  149,
-      144,  147,  148,  145,    0,  147,  149,  150,  148,  148,
-        0,  150,  152,  149,  150,  151,  148,  151,  149,  152,
-        0,  150,  151,  151,  153,  154,  152,    0,  153,  151,
-      152,  153,  154,    0,  151,    0,    0,    0,  153,  154,
-      155,  155,  155,  155,  155,  156,  156,  156,  156,  156,
+      138,  140,  139,  137,  135,  136,  137,  138,  140,  139,
+      141,  142,  141,  143,  145,  140,  139,  141,  142,  144,
+      143,  145,  147,  144,  141,  142,  144,  143,  145,  147,
+        0,  148,  147,  144,  149,  150,  147,  148,  148,  150,
+      154,  149,  150,  152,  151,  148,  151,  154,  149,  150,
+      152,  151,  151,  149,  154,  153,    0,  152,  151,  153,
+        0,  152,  153,  151,  155,  155,  155,  155,  155,  153,
+      156,  156,  156,  156,  156,  157,  157,  157,  157,  157,
+      158,  158,  158,  158,  158,  159,  160,  161,  163,    0,
+      162,    0,  159,  160,  161,  163,  160,  162,  162,  159,
 
-      157,  157,  157,  157,  157,  158,  158,  158,  158,  158,
-      159,  160,  161,  163,    0,  162,    0,  159,  160,  161,
-      163,  160,  162,  162,  159,  160,  161,  163,  164,  162,
-      161,  165,  163,  166,  167,  164,  169,    0,  165,  170,
-      166,  167,  164,  169,  164,  165,  170,  166,  167,  171,
-      169,  166,  167,  170,  173,  170,  171,    0,    0,  175,
-      174,  173,    0,  171,  174,  171,  175,  174,  173,  176,
-      177,  176,  178,  175,  174,  175,  176,  177,    0,  178,
-      179,    0,  179,  176,  177,  178,  178,  179,  180,  182,
-      180,  181,  183,  184,  179,  180,  182,    0,  181,  183,
+      160,  161,  163,  164,  162,  161,  165,  163,  166,  167,
+      164,  169,    0,  165,  170,  166,  167,  164,  169,  164,
+      165,  170,  166,  167,  171,  169,  166,  167,  170,  173,
+      170,  171,    0,    0,  175,  174,  173,    0,  171,  174,
+      171,  175,  174,  173,  176,  177,  176,  178,  175,  174,
+      175,  176,  177,    0,  178,  179,    0,  179,  176,  177,
+      178,  178,  179,  180,  182,  180,  181,  183,  184,  179,
+      180,  182,    0,  181,  183,  182,  186,  180,  182,  181,
+      181,  183,  187,  186,  184,    0,  189,  187,  190,  187,
+      186,  184,  189,  189,  186,  190,  187,  191,  184,  192,
 
-      182,  186,  180,  182,  181,  181,  183,  187,  186,  184,
-        0,  189,  187,  190,  187,  186,  184,  189,  189,  186,
-      190,  187,  191,  184,  192,  189,  190,  190,  193,  191,
-        0,  192,  194,    0,  193,  193,  191,  192,  192,  194,
-      191,  195,  193,    0,  196,    0,  194,  197,  195,    0,
-      194,  196,  198,  201,  197,  195,    0,  204,  196,  198,
-      201,  197,    0,  196,  204,  197,  198,  201,  198,  203,
-      205,  204,  206,  203,  207,  208,  203,  205,  207,  206,
-      214,  207,  208,  203,  205,  211,  206,  211,  207,  208,
-      205,  213,  211,  215,    0,    0,    0,  219,  213,  211,
+      189,  190,  190,  193,  191,    0,  192,  194,    0,  193,
+      193,  191,  192,  192,  194,  191,  195,  193,    0,  196,
+        0,  194,  197,  195,    0,  194,  196,  198,  201,  197,
+      195,    0,  204,  196,  198,  201,  197,    0,  196,  204,
+      197,  198,  201,  198,  203,  205,  204,  206,  203,  207,
+      208,  203,  205,  207,  206,  214,  207,  208,  203,  205,
+      211,  206,  211,  207,  208,  205,  213,  211,  215,    0,
+        0,    0,  219,  213,  211,  215,  214,  217,  219,  219,
+      213,  217,  215,  214,  217,  222,  219,  215,    0,    0,
+      214,  217,  222,    0,    0,    0,    0,    0,    0,  222,
 
-      215,  214,  217,  219,  219,  213,  217,  215,  214,  217,
-      222,  219,  215,    0,    0,  214,  217,  222,    0,    0,
-        0,    0,    0,    0,  222,  229,  229,  229,  229,  230,
-      230,  230,  230,  231,  231,  231,  231,  232,    0,  232,
-      232,  233,  233,  234,    0,  234,  234,  236,  236,  228,
+      229,  229,  229,  229,  230,  230,  230,  230,  231,  231,
+      231,  231,  232,    0,  232,  232,  233,  233,  234,    0,
+      234,  234,  236,  236,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
       228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
-
-      228,  228,  228,  228,  228,  228,  228,  228,  228,  228,
-      228,  228,  228,  228
+      228,  228,  228,  228,  228,  228,  228,  228,  228
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -718,35 +710,33 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "gocompiler.l"
 #line 2 "gocompiler.l"
-/*  
-    * Projeto de Compiladores 2021/2022
-    * 2019218953 João Miguel Ferreira Castelo Branco Catré
-    * 2019227240 Sofia Botelho Vieira Alves
-*/  
-
-    //C
-    #include <stdio.h>
-
-    //YACC+
+    /*  
+        * Projeto de Compiladores 2021/2022
+        * Meta 2
+        * 2019218953 João Miguel Ferreira Castelo Branco Catré
+        * 2019227240 Sofia Botelho Vieira Alves
+    */  
     #include "structures.h"
     #include "y.tab.h"
     
     int yylex_destroy(void);
     void pos(int length, int opt);
 
-    int semicolon_flag = 0;
+    int semicolon_flag = 0; //flag used to check if it is necessary to add a semicolon at the end
     int line_num = 1;
     int column_num = 1;
     int last_col_pos = 1;
     int last_line_pos = 1;
-    int flag_lex = 0;
-    int flag_return = 0;
+    int flag_lex = 0; //flag used to make lexical analysis if -l is used
+    int flag_return = 0; //flag used to build tree
 
-    
-#line 747 "lex.yy.c"
+    extern int flag_syntax_error; //flag used to check if there are any syntax errors in order to build (or not) the tree
+
+    extern node* program_root;  
+#line 737 "lex.yy.c"
 /* Define states for line comments and general comments */
 
-#line 750 "lex.yy.c"
+#line 740 "lex.yy.c"
 
 #define INITIAL 0
 #define LINE_COM 1
@@ -966,9 +956,9 @@ YY_DECL
 		}
 
 	{
-#line 101 "gocompiler.l"
+#line 99 "gocompiler.l"
 
-#line 972 "lex.yy.c"
+#line 962 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1001,7 +991,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 850 );
+		while ( yy_base[yy_current_state] != 825 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -1027,348 +1017,353 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 102 "gocompiler.l"
-{semicolon_flag = 1; if(flag_lex == 1) printf("STRLIT(%s)\n",yytext); pos(yyleng, 0); if(flag_return) return STRLIT;}
+#line 100 "gocompiler.l"
+{semicolon_flag = 1; if(flag_lex == 1) printf("STRLIT(%s)\n",yytext); pos(yyleng, 0);yylval.value = (char*) strdup(yytext); if(flag_return) return STRLIT;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 103 "gocompiler.l"
+#line 101 "gocompiler.l"
 {BEGIN STRING_COND; last_line_pos = line_num; last_col_pos = column_num; column_num+=yyleng; semicolon_flag = 0;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 104 "gocompiler.l"
-{semicolon_flag = 1; if(flag_lex == 1) printf("STRLIT(%s)\n",yytext); column_num+=yyleng; BEGIN 0;}
+#line 102 "gocompiler.l"
+{semicolon_flag = 1; if(flag_lex == 1) printf("STRLIT(%s)\n",yytext); yylval.value = (char*) strdup(yytext); column_num+=yyleng; BEGIN 0;}
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 105 "gocompiler.l"
-{BEGIN 0; printf("Line %d, column %d: unterminated string literal\n", last_line_pos, column_num); column_num = 1; line_num++;}
+#line 103 "gocompiler.l"
+{BEGIN 0; printf("Line %d, column %d: unterminated string literal\n", last_line_pos, last_col_pos); column_num = 1; line_num++;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 106 "gocompiler.l"
+#line 104 "gocompiler.l"
 {column_num+=yyleng;} 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 107 "gocompiler.l"
+#line 105 "gocompiler.l"
 {printf("Line %d, column %d: invalid escape sequence (%s)\n", last_line_pos, column_num, yytext); column_num+=yyleng; semicolon_flag = 0;}
 	YY_BREAK
 case YY_STATE_EOF(STRING_COND):
-#line 108 "gocompiler.l"
+#line 106 "gocompiler.l"
 {BEGIN 0; printf("Line %d, column %d: unterminated string literal\n", last_line_pos, last_col_pos);} 
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 110 "gocompiler.l"
+#line 108 "gocompiler.l"
 {BEGIN LINE_COM; column_num+=yyleng;}
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
-#line 111 "gocompiler.l"
+#line 109 "gocompiler.l"
 {column_num = 1; BEGIN 0; line_num++;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 112 "gocompiler.l"
+#line 110 "gocompiler.l"
 {column_num+=yyleng;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 114 "gocompiler.l"
+#line 112 "gocompiler.l"
 {last_line_pos = line_num; last_col_pos = column_num; BEGIN GENERAL_COM; column_num+=yyleng;}
 	YY_BREAK
 case 11:
 /* rule 11 can match eol */
 YY_RULE_SETUP
-#line 115 "gocompiler.l"
+#line 113 "gocompiler.l"
 {column_num = 1; line_num++;}
 	YY_BREAK
 case YY_STATE_EOF(GENERAL_COM):
-#line 116 "gocompiler.l"
+#line 114 "gocompiler.l"
 {printf("Line %d, column %d: unterminated comment\n", last_line_pos, last_col_pos); yyterminate();}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 117 "gocompiler.l"
+#line 115 "gocompiler.l"
 {column_num+=yyleng;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 118 "gocompiler.l"
+#line 116 "gocompiler.l"
 {BEGIN 0; column_num+=yyleng;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 120 "gocompiler.l"
-{if(flag_lex == 1) printf("INTLIT(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1;  if(flag_return == 1) return INTLIT;}
+#line 118 "gocompiler.l"
+{if(flag_lex == 1) printf("INTLIT(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return INTLIT;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 121 "gocompiler.l"
-{printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext); semicolon_flag = 1; column_num+=yyleng;}
+#line 119 "gocompiler.l"
+{printf("Line %d, column %d: invalid octal constant (%s)\n", line_num, column_num, yytext); semicolon_flag = 0; column_num+=yyleng;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 123 "gocompiler.l"
-{if(flag_lex == 1) printf("REALLIT(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1;  if(flag_return == 1) return REALLIT;} 
+#line 121 "gocompiler.l"
+{if(flag_lex == 1) printf("REALLIT(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return REALLIT;} 
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 124 "gocompiler.l"
-{if(flag_lex == 1) printf("SEMICOLON\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return SEMICOLON;}
+#line 122 "gocompiler.l"
+{if(flag_lex == 1) printf("SEMICOLON\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return SEMICOLON;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 125 "gocompiler.l"
-{if(flag_lex == 1) printf("COMMA\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return COMMA;}
+#line 123 "gocompiler.l"
+{if(flag_lex == 1) printf("COMMA\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return COMMA;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 126 "gocompiler.l"
-{if(flag_lex == 1) printf("ASSIGN\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return ASSIGN;}
+#line 124 "gocompiler.l"
+{if(flag_lex == 1) printf("ASSIGN\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return ASSIGN;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 127 "gocompiler.l"
-{if(flag_lex == 1) printf("STAR\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return STAR;}
+#line 125 "gocompiler.l"
+{if(flag_lex == 1) printf("STAR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return STAR;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 128 "gocompiler.l"
-{if(flag_lex == 1) printf("DIV\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return DIV;}
+#line 126 "gocompiler.l"
+{if(flag_lex == 1) printf("DIV\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return DIV;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 129 "gocompiler.l"
-{if(flag_lex == 1) printf("MINUS\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return MINUS;}
+#line 127 "gocompiler.l"
+{if(flag_lex == 1) printf("MINUS\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return MINUS;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 130 "gocompiler.l"
-{if(flag_lex == 1) printf("PLUS\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return PLUS;}
+#line 128 "gocompiler.l"
+{if(flag_lex == 1) printf("PLUS\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return PLUS;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 131 "gocompiler.l"
-{if(flag_lex == 1) printf("EQ\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return EQ;} 
+#line 129 "gocompiler.l"
+{if(flag_lex == 1) printf("EQ\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return EQ;} 
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 132 "gocompiler.l"
-{if(flag_lex == 1) printf("GE\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return GE;}
+#line 130 "gocompiler.l"
+{if(flag_lex == 1) printf("GE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return GE;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 133 "gocompiler.l"
-{if(flag_lex == 1) printf("GT\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return GT;}
+#line 131 "gocompiler.l"
+{if(flag_lex == 1) printf("GT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return GT;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 134 "gocompiler.l"
-{if(flag_lex == 1) printf("LBRACE\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return LBRACE;}
+#line 132 "gocompiler.l"
+{if(flag_lex == 1) printf("LBRACE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return LBRACE;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 135 "gocompiler.l"
-{if(flag_lex == 1) printf("LE\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return LE;}
+#line 133 "gocompiler.l"
+{if(flag_lex == 1) printf("LE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return LE;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 136 "gocompiler.l"
-{if(flag_lex == 1) printf("LPAR\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return LPAR;}
+#line 134 "gocompiler.l"
+{if(flag_lex == 1) printf("LPAR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return LPAR;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 137 "gocompiler.l"
-{if(flag_lex == 1) printf("LSQ\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return LSQ;}
+#line 135 "gocompiler.l"
+{if(flag_lex == 1) printf("LSQ\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return LSQ;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 138 "gocompiler.l"
-{if(flag_lex == 1) printf("LT\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return LT;}
+#line 136 "gocompiler.l"
+{if(flag_lex == 1) printf("LT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return LT;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 139 "gocompiler.l"
-{if(flag_lex == 1) printf("MOD\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return MOD;}
+#line 137 "gocompiler.l"
+{if(flag_lex == 1) printf("MOD\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return MOD;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 140 "gocompiler.l"
-{if(flag_lex == 1) printf("NE\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return NE;}
+#line 138 "gocompiler.l"
+{if(flag_lex == 1) printf("NE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return NE;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 141 "gocompiler.l"
-{if(flag_lex == 1) printf("NOT\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return NOT;}
+#line 139 "gocompiler.l"
+{if(flag_lex == 1) printf("NOT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return NOT;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 142 "gocompiler.l"
-{if(flag_lex == 1) printf("AND\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return AND;}
+#line 140 "gocompiler.l"
+{if(flag_lex == 1) printf("AND\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return AND;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 143 "gocompiler.l"
-{if(flag_lex == 1) printf("OR\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return OR;}
+#line 142 "gocompiler.l"
+{if(flag_lex == 1) printf("OR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return OR;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 144 "gocompiler.l"
-{if(flag_lex == 1) printf("RBRACE\n"); pos(yyleng, 0); semicolon_flag = 1;  if(flag_return == 1) return RBRACE;}
+#line 143 "gocompiler.l"
+{if(flag_lex == 1) printf("RBRACE\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RBRACE;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 145 "gocompiler.l"
-{if(flag_lex == 1) printf("RPAR\n"); pos(yyleng, 0); semicolon_flag = 1;  if(flag_return == 1) return RPAR;}
+#line 144 "gocompiler.l"
+{if(flag_lex == 1) printf("RPAR\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RPAR;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 146 "gocompiler.l"
-{if(flag_lex == 1) printf("RSQ\n"); pos(yyleng, 0); semicolon_flag = 1;  if(flag_return == 1) return RSQ;}
+#line 145 "gocompiler.l"
+{if(flag_lex == 1) printf("RSQ\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RSQ;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 147 "gocompiler.l"
-{if(flag_lex == 1) printf("PACKAGE\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return PACKAGE;}
+#line 146 "gocompiler.l"
+{if(flag_lex == 1) printf("PACKAGE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return PACKAGE;}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 148 "gocompiler.l"
-{if(flag_lex == 1) printf("RETURN\n"); pos(yyleng, 0); semicolon_flag = 1;  if(flag_return == 1) return RETURN;}
+#line 147 "gocompiler.l"
+{if(flag_lex == 1) printf("RETURN\n"); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RETURN;}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 149 "gocompiler.l"
-{if(flag_lex == 1) printf("ELSE\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return ELSE;}
+#line 148 "gocompiler.l"
+{if(flag_lex == 1) printf("ELSE\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return ELSE;}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 150 "gocompiler.l"
-{if(flag_lex == 1) printf("FOR\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return FOR;}
+#line 149 "gocompiler.l"
+{if(flag_lex == 1) printf("FOR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return FOR;}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 151 "gocompiler.l"
-{if(flag_lex == 1) printf("IF\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return IF;}
+#line 150 "gocompiler.l"
+{if(flag_lex == 1) printf("IF\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return IF;}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 152 "gocompiler.l"
-{if(flag_lex == 1) printf("VAR\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return VAR;}
+#line 151 "gocompiler.l"
+{if(flag_lex == 1) printf("VAR\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return VAR;}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 153 "gocompiler.l"
-{if(flag_lex == 1) printf("INT\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return INT;}
+#line 152 "gocompiler.l"
+{if(flag_lex == 1) printf("INT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return INT;}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 154 "gocompiler.l"
-{if(flag_lex == 1) printf("FLOAT32\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return FLOAT32;}
+#line 153 "gocompiler.l"
+{if(flag_lex == 1) printf("FLOAT32\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return FLOAT32;}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 155 "gocompiler.l"
-{if(flag_lex == 1) printf("BOOL\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return BOOL;}
+#line 154 "gocompiler.l"
+{if(flag_lex == 1) printf("BOOL\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return BOOL;}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 156 "gocompiler.l"
-{if(flag_lex == 1) printf("STRING\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return STRING;}
+#line 155 "gocompiler.l"
+{if(flag_lex == 1) printf("STRING\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return STRING;}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 157 "gocompiler.l"
-{if(flag_lex == 1) printf("PRINT\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return PRINT;}
+#line 156 "gocompiler.l"
+{if(flag_lex == 1) printf("PRINT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return PRINT;}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 158 "gocompiler.l"
-{if(flag_lex == 1) printf("PARSEINT\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return PARSEINT;}
+#line 157 "gocompiler.l"
+{if(flag_lex == 1) printf("PARSEINT\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return PARSEINT;}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 159 "gocompiler.l"
-{if(flag_lex == 1) printf("FUNC\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return FUNC;}
+#line 158 "gocompiler.l"
+{if(flag_lex == 1) printf("FUNC\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return FUNC;}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 160 "gocompiler.l"
-{if(flag_lex == 1) printf("CMDARGS\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return CMDARGS;}
+#line 159 "gocompiler.l"
+{if(flag_lex == 1) printf("CMDARGS\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return CMDARGS;}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 161 "gocompiler.l"
-{if(flag_lex == 1) printf("RESERVED(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return RESERVED;}
+#line 160 "gocompiler.l"
+{if(flag_lex == 1) printf("RESERVED(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return RESERVED;}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 162 "gocompiler.l"
-{if(flag_lex == 1) printf("BLANKID\n"); pos(yyleng, 0); semicolon_flag = 0;  if(flag_return == 1) return BLANKID;}
+#line 161 "gocompiler.l"
+{if(flag_lex == 1) printf("BLANKID\n"); pos(yyleng, 0); semicolon_flag = 0; yylval.value = (char*) strdup(yytext); if(flag_return == 1)  return BLANKID;}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 163 "gocompiler.l"
-{if(flag_lex == 1) printf("ID(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1; if(flag_return == 1) return ID;}
+#line 162 "gocompiler.l"
+{if(flag_lex == 1) printf("ID(%s)\n", yytext); pos(yyleng, 0); semicolon_flag = 1; yylval.value = (char*) strdup(yytext); if(flag_return == 1) return ID;}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 165 "gocompiler.l"
+#line 164 "gocompiler.l"
 {column_num+=yyleng;}   
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 166 "gocompiler.l"
+#line 165 "gocompiler.l"
 {column_num+=yyleng;}
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
-#line 168 "gocompiler.l"
+#line 167 "gocompiler.l"
 {pos(yyleng, 1);
                                 if(semicolon_flag == 1){
+                                    semicolon_flag = 0;
                                     if(flag_lex == 1){
-                                        printf("SEMICOLON\n");
+                                        printf("SEMICOLON\n");                                      
                                     }
-                                    else if(flag_return == 1){
-                                        semicolon_flag = 0;
+                                    yylval.value = (char*) strdup(yytext);
+                                    if(flag_return == 1){
+                                        semicolon_flag = 0;                                
                                         return SEMICOLON;
+                                        }
                                     }
-                                }
-                                semicolon_flag = 0;
                                 }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(LINE_COM):
 #line 181 "gocompiler.l"
-{if(semicolon_flag == 1){
+{pos(yyleng, 0); 
+                                if(semicolon_flag == 1){
                                     semicolon_flag = 0;
-                                    if(flag_lex == 1)
-                                        printf("SEMICOLON\n");
+                                    if(flag_lex == 1){
+                                        printf("SEMICOLON\n");                                       
+                                        }
+                                   
                                     if(flag_return == 1){
-                                        yyterminate();
+                                        semicolon_flag = 0;
                                         return SEMICOLON;
                                         }
                                     }
+                                    yylval.value = (char*) strdup(yytext);
                                     yyterminate(); return EOF;
                                 }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 192 "gocompiler.l"
+#line 196 "gocompiler.l"
 {printf("Line %d, column %d: illegal character (%s)\n", line_num, column_num, yytext); pos(yyleng, 0); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 194 "gocompiler.l"
+#line 198 "gocompiler.l"
 ECHO;
 	YY_BREAK
-#line 1372 "lex.yy.c"
+#line 1367 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2371,7 +2366,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 194 "gocompiler.l"
+#line 198 "gocompiler.l"
 
 
 void pos(int length, int opt) {  
@@ -2385,8 +2380,9 @@ void pos(int length, int opt) {
     }
 }
 
-void yyerror (char *s) {
-    printf ("Line %d, column %d: %s: %s\n", last_line_pos, last_col_pos, s, yytext);
+void yyerror (char *str) {
+    flag_syntax_error=1;
+    printf ("Line %d, column %d: %s: %s\n", last_line_pos, last_col_pos, str, yytext);
 }
 
 int main(int argc, char* argv[])
@@ -2394,18 +2390,18 @@ int main(int argc, char* argv[])
     if (argc > 1 && strcmp(argv[1], "-l") == 0){
         flag_lex = 1;
         yylex();
-        yylex_destroy();
     }
     if (argc > 1 && strcmp(argv[1], "-t") == 0){
         flag_return = 1;
         yyparse();
-        yylex_destroy();
+        if(flag_syntax_error == 0){
+            print_ast(program_root, 0);
+        }
     }
 
     else if(argc == 1){
         flag_return = 1;
         yyparse();
-        yylex_destroy();
     }
 return 0;
 }

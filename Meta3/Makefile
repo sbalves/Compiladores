@@ -29,7 +29,7 @@ exe: ${FILENAME} ${FILENAME2}
 		lex ${FILENAME}
 		yacc -y -d -v -t ${FILENAME2}
 		cc -o ${EXE} -ggdb3 y.tab.c lex.yy.c structures.c semantic_analysis.c
-		valgrind --leak-check=full --show-leak-kinds=all --log-file="valgrind.txt" ./gocompiler < meta3_testes/logical_operators.dgo
+		#valgrind --leak-check=full --show-leak-kinds=all --log-file="valgrind.txt" ./gocompiler < meta3_testes/logical_operators.dgo
 		@echo "$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)$(GREEN)Done$(NORM)$(RESET)$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)"
 
 clear:

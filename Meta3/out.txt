@@ -1,11 +1,80 @@
 ===== Global Symbol Table =====
-factorial	(int)	int
+ia		int
+ib		int
+ic		int
+id		int
+ie		int
+fa		float32
+fb		float32
+fc		float32
+fd		float32
+fe		float32
+ba		bool
+bb		bool
+bc		bool
+bd		bool
+sa		string
+sb		string
+sc		string
+fca	()	none
+fcb	()	int
+fcd	()	float32
+fce	()	string
+fcf	()	bool
+fcg	(int,float32)	int
+fch	(int,float32,string)	float32
+fci	(int,int,float32,float32,string)	float32
+fcj	(int,int,float32,float32,bool)	int
 main	()	none
 
-===== Function factorial(int) Symbol Table =====
+===== Function fca() Symbol Table =====
+return		none
+
+===== Function fcb() Symbol Table =====
 return		int
-n		int	param
+fafcb		int
+
+===== Function fcd() Symbol Table =====
+return		float32
+
+===== Function fce() Symbol Table =====
+return		string
+strfce		string
+
+===== Function fcf() Symbol Table =====
+return		bool
+bafcf		bool
+
+===== Function fcg(int,float32) Symbol Table =====
+return		int
+iafcg		int	param
+fafcg		float32	param
+
+===== Function fch(int,float32,string) Symbol Table =====
+return		float32
+iafch		int	param
+fafch		float32	param
+safch		string	param
+
+===== Function fci(int,int,float32,float32,string) Symbol Table =====
+return		float32
+iafci		int	param
+ibfci		int	param
+fafci		float32	param
+fbfci		float32	param
+safci		string	param
+
+===== Function fcj(int,int,float32,float32,bool) Symbol Table =====
+return		int
+iafcj		int	param
+ibfcj		int	param
+fafcj		float32	param
+fbfcj		float32	param
+bafcj		bool	param
+fcjia		int
+fcjib		int
 
 ===== Function main() Symbol Table =====
 return		none
-argument		int
+mia		int
+mib		int
