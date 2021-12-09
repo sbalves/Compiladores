@@ -6,7 +6,6 @@ void add_element(table_t * table, element_t * new_elem){
 
     if(table->list_elems == NULL){
        table->list_elems = new_elem;
-        //printf("element %s (%s) added to %s table^^\n", new_elem->id, new_elem->type, table->id);
     }
     else{
         element_t * current = table->list_elems;
@@ -14,7 +13,6 @@ void add_element(table_t * table, element_t * new_elem){
             current = current->next_elem;
         }
         current->next_elem = new_elem;
-        //printf("element %s (%s) added to %s table^^\n", new_elem->id, new_elem->type, table->id);
 
     }
 }
@@ -37,7 +35,7 @@ parameter_t * create_param(ast_node * node){
     parameter_t * parameter = (parameter_t *)malloc(sizeof(parameter_t));
     
     //(node->first_child)->id) = (ParamDecl->Type->Id)
-    parameter->param_type = strdup((node->first_child)->id); //? não sei se posso fazer assim, mas tecnicamente são dois chars
+    parameter->param_type = strdup((node->first_child)->id);
     parameter->next_param = NULL;
 
     return parameter;
@@ -74,10 +72,6 @@ void find_params(parameter_t * param, ast_node * node, table_t * table){
 
 table_t * add_table(table_t * root, char * table_id){
     table_t * table = NULL;
-    //printf("Entrei na add_table\n");
-
-    //printf("hello! %p\n", table_id);
-
     if(root != NULL){
         table_t * current = root;
         while (current->next_table) {
@@ -85,22 +79,13 @@ table_t * add_table(table_t * root, char * table_id){
         }
 
         table = create_table(table_id);
-        //printf("nice\n");
         current->next_table = table;
-        //printf("nice\n");
-        //printf("table %s added ^^\n", table_id);
-        //printf("nice\n");
-
     }
     return table;
 }
 
 
 table_t * create_table(char * id){
-    //printf("Entrei na create_table\n");
-    //printf("Criei a tabela %s\n", id);
-
-
     table_t * table = (table_t *)malloc(sizeof(table_t));
 
     table->id = strdup(id);
@@ -113,27 +98,18 @@ table_t * create_table(char * id){
 
 
 void funcdecl_analysis(ast_node * node){
-    //printf("Entrei na funcdecl_analysis\n");
-    //char * table_id = strdup(((node->first_child)->first_child)->value); //retirar o nome da função (header->id-> valor, i.e. nome da função neste caso). Vai ser importante para adicionar na tabela global e para criar uma tabela com este nome
+    //retirar o nome da função (header->id-> valor, i.e. nome da função neste caso). Vai ser importante para adicionar na tabela global e para criar uma tabela com este nome
     ast_node * return_type = (((node->first_child)->first_child)->sibling); //retirar o return type da função (header->id-> typespe). Vai ser importante para adicionar na tabela global
     element_t * first_param_elem; // criar elemento associado à função para adicionar à tabela global
-
-    //printf("hello1! %p\n", table_id);
-    //printf("hello2! %s\n", table_id);
-    //printf("helloo\n");
 
     ast_node * params;
     char * return_type_table;
     //temos que tornar minusculo para depois anotar na árvore
     // verificar o que a função retorna e encontrar o nó FuncParams
-        //printf("helloo6\n");
 
     if(!strcmp(return_type->id,"FuncParams")){
         return_type_table= strdup("none");
-        //printf("helloo2\n");
         params = return_type;
-        //printf("helloo3\n");
-
     }
     else{
         return_type_table= strdup(return_type->id);
@@ -201,16 +177,11 @@ void vardecl_analysis(ast_node * node){
 
 element_t * find_table(table_t * table, char * function_name){
     element_t * element_func = NULL;
-
-    //printf("entrei na find_table_type com o id %s e estou na tabela %s\n", function_name, table->id);
     for(element_t * current = table->list_elems; current; current = current->next_elem){
-        //printf("%s-%s\n", current->id, function_name);
         if(!strcmp(current->id, function_name)){
             element_func = current;
         }
-        //printf("%s\n", current->id);
     } 
-    //printf("hello3\n");
     //return "erro"; //ver depois :S
     /*
 
@@ -230,10 +201,6 @@ char * lowercase(char * word){
         return "string";
     else if(!strcmp(word,"Bool"))
         return "bool";
-    /*
-    else if(!strcmp(word,"none"))
-        return "";
-    */
     return word;
 }
 
@@ -248,11 +215,9 @@ void print_table_params(parameter_t * list){
 }
 
 void print_params(element_t * elem){
-    //parameter_t * list = elem->list_params;
     if(elem){
         if(elem->list_params){
             printf("(");
-            //printf("fist p %s", lowercase((elem->list_params)->param_type));
             for (parameter_t * current = elem->list_params; current; current = current->next_param) {
                 printf("%s", lowercase(current->param_type));
                 if(current->next_param) printf(",");
@@ -297,33 +262,22 @@ void print_table_list(table_t * table){
 void semantic_analysis(ast_node * node){
 
     if(node != NULL){
-        //printf("node %s\n", node->id);
         if(!strcmp(node->id, "Program")){
-            //printf("Entrei no if 176\n");
             current_table = tables_root = create_table("Global");
             semantic_analysis(node->first_child);
         }
 
         if(!strcmp(node->id, "FuncDecl")){
-            //printf("Estou no FuncDecl\n");
             funcdecl_analysis(node);
         }
         else if(!strcmp(node->id, "FuncBody")){
-        //printf("Estou no body\n");
         semantic_analysis(node->first_child);
         }
 
         else if(!strcmp(node->id, "VarDecl")){
-            //printf("Estou no VarDecl\n");
             vardecl_analysis(node);
         }
-        
-        //semantic_analysis(node->first_child);
         semantic_analysis(node->sibling);
 
     }
-
-    //printf("O nó é null\n");
-
-
 }
