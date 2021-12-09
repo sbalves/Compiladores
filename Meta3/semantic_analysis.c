@@ -161,7 +161,7 @@ void funcdecl_analysis(ast_node * node){
 }
 
 
-//O erro está aqui.
+//O erro estava aqui
 void vardecl_analysis(ast_node * node){
     element_t * new_elem = create_element(((node->first_child)->sibling)->value, ((node->first_child)->id), NULL);
 
