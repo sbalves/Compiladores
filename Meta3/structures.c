@@ -3,9 +3,7 @@
     * Meta 3
     * 2019218953 João Miguel Ferreira Castelo Branco Catré
     * 2019227240 Sofia Botelho Vieira Alves
-    * valgrind --leak-check=full --show-leak-kinds=all --log-file="valgrind.txt" ./gocompiler -s < meta3_testes/errors.dgo
 */ 
-
 #include "structures.h"
 
 
@@ -15,6 +13,8 @@ ast_node *newNode(char *type, char *value)
     new_node->id = (char *)strdup(type); // type -> "FuncDecl", "Id", ...
     new_node->first_child = NULL;
     new_node->sibling = NULL;
+    new_node->annotation_type = NULL;
+
     /*
     new_node->col = column;
     new_node->line = line;
@@ -74,6 +74,9 @@ void print_ast(ast_node *current_node, int n)
                 {
                     printf("%s\n", current_node->id);
                 }
+                if(current_node->annotation_type)
+                    printf(" - %s\n", current_node->annotation_type);
+
                 if (current_node->first_child != NULL)
                 {
                     print_ast(current_node->first_child, n + 1);

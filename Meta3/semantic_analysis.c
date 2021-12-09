@@ -161,13 +161,13 @@ void funcdecl_analysis(ast_node * node){
 }
 
 
-//O erro estava aqui
 void vardecl_analysis(ast_node * node){
     element_t * new_elem = create_element(((node->first_child)->sibling)->value, ((node->first_child)->id), NULL);
 
     /* 
     verificar se já foi declarado dentro do mesmo scope
     */
+    node->annotation_type = strdup(lowercase((node->first_child)->id)); 
 
     add_element(current_table, new_elem);
 
@@ -183,9 +183,7 @@ element_t * find_table(table_t * table, char * function_name){
     } 
     //return "erro"; //ver depois :S
     /*
-
     VERIFICAR ERRO: quando o elemento procurado n se encotra na tabela global !!!!
-
     */
     return element_func;
 }
@@ -269,14 +267,25 @@ void semantic_analysis(ast_node * node){
         if(!strcmp(node->id, "FuncDecl")){
             funcdecl_analysis(node);
         }
-        else if(!strcmp(node->id, "FuncBody")){
+
+        if(!strcmp(node->id, "FuncBody")){
         semantic_analysis(node->first_child);
         }
 
-        else if(!strcmp(node->id, "VarDecl")){
+        if(!strcmp(node->id, "VarDecl")){
             vardecl_analysis(node);
         }
+
+        if(!strcmp(node->id, "INTLIT")){
+            node->annotation_type = strdup("int"); 
+        } 
+
+        if(!strcmp(node->id, "REALLIT")){
+            node->annotation_type = strdup("float32"); 
+        }   
+
         semantic_analysis(node->sibling);
+
 
     }
 }

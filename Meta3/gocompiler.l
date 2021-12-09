@@ -236,13 +236,14 @@ int main(int argc, char* argv[])
         yyparse();
         semantic_analysis(program_root);
         print_table_list(tables_root);
+        print_ast(program_root, 0);
     }
 
     else if(argc == 1){
         flag_return = 1;
         yyparse();
     }
-    free_ast(program_root);
+    //free_ast(program_root);
     return 0;
 }
 

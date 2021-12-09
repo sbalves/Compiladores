@@ -23,6 +23,8 @@ struct node
     int col;
     char *value;
     char *id;
+    char * annotation_type;
+
     ast_node *first_child;
     ast_node *sibling;
 };
