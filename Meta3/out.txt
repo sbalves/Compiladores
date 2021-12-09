@@ -1,80 +1,54 @@
 ===== Global Symbol Table =====
-ia		int
-ib		int
-ic		int
-id		int
-ie		int
-fa		float32
-fb		float32
-fc		float32
-fd		float32
-fe		float32
-ba		bool
-bb		bool
-bc		bool
-bd		bool
-sa		string
-sb		string
-sc		string
-fca	()	none
-fcb	()	int
-fcd	()	float32
-fce	()	string
-fcf	()	bool
-fcg	(int,float32)	int
-fch	(int,float32,string)	float32
-fci	(int,int,float32,float32,string)	float32
-fcj	(int,int,float32,float32,bool)	int
+factorial	(int)	int
 main	()	none
 
-===== Function fca() Symbol Table =====
-return		none
-
-===== Function fcb() Symbol Table =====
+===== Function factorial(int) Symbol Table =====
 return		int
-fafcb		int
-
-===== Function fcd() Symbol Table =====
-return		float32
-
-===== Function fce() Symbol Table =====
-return		string
-strfce		string
-
-===== Function fcf() Symbol Table =====
-return		bool
-bafcf		bool
-
-===== Function fcg(int,float32) Symbol Table =====
-return		int
-iafcg		int	param
-fafcg		float32	param
-
-===== Function fch(int,float32,string) Symbol Table =====
-return		float32
-iafch		int	param
-fafch		float32	param
-safch		string	param
-
-===== Function fci(int,int,float32,float32,string) Symbol Table =====
-return		float32
-iafci		int	param
-ibfci		int	param
-fafci		float32	param
-fbfci		float32	param
-safci		string	param
-
-===== Function fcj(int,int,float32,float32,bool) Symbol Table =====
-return		int
-iafcj		int	param
-ibfcj		int	param
-fafcj		float32	param
-fbfcj		float32	param
-bafcj		bool	param
-fcjia		int
-fcjib		int
+n		int	param
 
 ===== Function main() Symbol Table =====
 return		none
-mia		int
-mib		int
+argument		int
+
+Program
+..FuncDecl
+....FuncHeader
+......Id(factorial)
+......Int
+......FuncParams
+........ParamDecl
+..........Int
+..........Id(n)
+....FuncBody
+......If
+........Eq
+..........Id(n)
+..........IntLit(0)
+........Block
+..........Return
+............IntLit(1)
+........Block
+......Return
+........Mul
+..........Id(n)
+..........Call
+............Id(factorial)
+............Sub
+..............Id(n)
+..............IntLit(1)
+..FuncDecl
+....FuncHeader
+......Id(main)
+......FuncParams
+....FuncBody
+......VarDecl
+ - int
+........Int
+........Id(argument)
+......ParseArgs
+........Id(argument)
+........IntLit(1)
+......Print
+........Call
+..........Id(factorial)
+..........Id(argument)

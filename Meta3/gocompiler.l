@@ -236,6 +236,7 @@ int main(int argc, char* argv[])
         yyparse();
         semantic_analysis(program_root);
         print_table_list(tables_root);
+        printf("\n");
         print_ast(program_root, 0);
     }
 
