@@ -68,10 +68,10 @@ void print_ast(ast_node *current_node, int n)
                 {
                     printf("..");
                 }
-
+                /*
                 if(is_arithmetic_operator(current_node->id)){
                     
-                }
+                }*/
 
                 if (current_node->value != NULL)
                 {

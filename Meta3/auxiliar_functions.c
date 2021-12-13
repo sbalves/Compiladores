@@ -2,9 +2,9 @@
 
 //char * expressions_aux[50][30] = {"Call", "Id", , , "Minus", "Plus", "IntLit", "RealLit"};
 
-char * logical_operators[8][3] = {"Or", "And", "Lt", "Gt", "Eq", "Ne", "Le", "Ge", "Not"};
+const char logical_operators[9][3] = {"Or", "And", "Lt", "Gt", "Eq", "Ne", "Le", "Ge", "Not"};
 
-char * arithmentic_operators[5][3] = {"Add", "Mul", "Sub", "Div", "Mod"};
+const char arithmentic_operators[5][3] = {"Add", "Mul", "Sub", "Div", "Mod"};
 
 bool is_arithmetic_operator(char * id){
     for(int i = 0; i < sizeof(arithmentic_operators)/sizeof(arithmentic_operators[0]); i++){
