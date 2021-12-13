@@ -1,9 +1,10 @@
-FILENAME = gocompiler.l
+FILENAME1 = gocompiler.l
 FILENAME2 = gocompiler.y
 FILENAME3 = structures.c
 FILENAME4 = structures.h
 FILENAME5 = semantic_analysis.c
 FILENAME6 = semantic_analysis.h
+FILENAME7 = auxiliar_functions.c
 EXE = gocompiler
 ZIP := zip
 
@@ -24,9 +25,9 @@ else
 	NORM 	:= ""
 endif
 
-exe: ${FILENAME} ${FILENAME2}
+exe: ${FILENAME1} ${FILENAME2}
 		@echo "$(GREEN)$(BOLD)--------------------$(NORM)$(RESET)$(GREEN)COMPILING$(NORM)$(RESET)$(GREEN)$(BOLD)---------------------$(NORM)$(RESET)$(BLUE)"
-		lex ${FILENAME}
+		lex ${FILENAME1}
 		yacc -y -d -v -t ${FILENAME2}
 		cc -o ${EXE} -ggdb3 y.tab.c lex.yy.c structures.c semantic_analysis.c auxiliar_functions.c
 		valgrind --leak-check=full --show-leak-kinds=all --log-file="valgrind.txt" ./gocompiler < meta3_testes/logical_operators.dgo
@@ -38,5 +39,5 @@ clear:
 
 zip:
 	@echo "$(GREEN)$(BOLD)--------------$(NORM)$(RESET)$(GREEN)Compressing $(EXE)$(NORM)$(RESET)$(GREEN)$(BOLD)-------------$(NORM)$(RESET)$(BLUE)"
-	zip -r $(EXE).zip ${FILENAME} ${FILENAME2} ${FILENAME3} ${FILENAME4} ${FILENAME5} ${FILENAME6}  
+	zip -r $(EXE).zip ${FILENAME1} ${FILENAME2} ${FILENAME3} ${FILENAME4} ${FILENAME5} ${FILENAME6} ${FILENAME7}  
 	@echo "$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)$(GREEN)Done$(NORM)$(RESET)$(GREEN)$(BOLD)----------------------$(NORM)$(RESET)"
