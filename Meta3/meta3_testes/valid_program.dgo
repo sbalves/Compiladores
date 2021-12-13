@@ -16,6 +16,8 @@ func fcb() int {
     return fafcb;
 }
 
+
+
 func fcd() float32 {
     return .1e1 + 0.007;
 }

@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <stdbool.h>
+
 
 
 typedef struct node ast_node;
@@ -62,5 +64,5 @@ void add_child(ast_node *parent, ast_node *child);
 void add_sibling(ast_node *child, ast_node *new_sibling);
 void print_ast(ast_node *current_node, int n); // n é o número de pontos
 void free_ast(ast_node *head);
-
+bool is_arithmetic_operator(char * id);
 #endif // __AST_H

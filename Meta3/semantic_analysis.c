@@ -1,6 +1,8 @@
 #include "semantic_analysis.h"
 
 table_t * current_table = NULL;
+ast_node * program_root;
+extern char * expressions_aux;
 
 void add_element(table_t * table, element_t * new_elem){
 
@@ -17,6 +19,15 @@ void add_element(table_t * table, element_t * new_elem){
     }
 }
 
+/*
+//ast_level serve para comparar variáveis globais com locais (se for repetida, dá erro)
+//aux_level serve para se as variáveis estão na mesma função (caso esteja repetida, dá erro)
+int checknewvar(char * name, int ast_level, int aux_level){
+    while(){
+
+    }
+}*/
+
 element_t * create_element(char * id, char * type, parameter_t * params_list){
     element_t * new_element = (element_t * )malloc(sizeof(element_t));
 
@@ -27,9 +38,45 @@ element_t * create_element(char * id, char * type, parameter_t * params_list){
     new_element->is_parameter = 0;
     new_element->next_elem = NULL;
     
-    return new_element;
+    //if(checknewvar(new_element->id)){
+        return new_element;
+    //}
+
+    //return NULL;
 }
 
+void semantic_analysis(ast_node * node){
+
+    if(node != NULL){
+        if(!strcmp(node->id, "Program")){
+            program_root = node;
+            current_table = tables_root = create_table("Global");
+            semantic_analysis(node->first_child);
+        }
+
+        if(!strcmp(node->id, "FuncDecl")){
+            funcdecl_analysis(node);
+        }
+
+        if(!strcmp(node->id, "FuncBody")){
+        semantic_analysis(node->first_child);
+        }
+
+        if(!strcmp(node->id, "VarDecl")){
+            vardecl_analysis(node);
+        }
+
+        if(!strcmp(node->id, "INTLIT")){
+            node->annotation_type = strdup("int"); 
+        } 
+
+        if(!strcmp(node->id, "REALLIT")){
+            node->annotation_type = strdup("float32"); 
+        }   
+
+        semantic_analysis(node->sibling);
+    }
+}
 
 parameter_t * create_param(ast_node * node){
     parameter_t * parameter = (parameter_t *)malloc(sizeof(parameter_t));
@@ -130,7 +177,7 @@ void funcdecl_analysis(ast_node * node){
     parameter_t * params_list = NULL;
 
     // encontrar os parametros da função + adicionar à tabela da função
-    if(params->first_child != NULL){ //seams fishy af :s ver!!
+    if(params->first_child != NULL){ //seems fishy af :s ver!!
         params_list = create_param(params->first_child);
         first_param_elem = create_element((((params->first_child)->first_child)->sibling)->value,((params->first_child)->first_child)->id, NULL);
         first_param_elem->is_parameter = 1;
@@ -167,11 +214,13 @@ void vardecl_analysis(ast_node * node){
     /* 
     verificar se já foi declarado dentro do mesmo scope
     */
+   if(!new_elem){
+       return;
+   }
+
     node->annotation_type = strdup(lowercase((node->first_child)->id)); 
 
     add_element(current_table, new_elem);
-
-    //semantic_analysis(node->sibling); //Era aqui!
 }
 
 element_t * find_table(table_t * table, char * function_name){
@@ -254,38 +303,4 @@ void print_table_list(table_t * table){
             printf("\n");
         }
         
-}
-
-void semantic_analysis(ast_node * node){
-
-    if(node != NULL){
-        if(!strcmp(node->id, "Program")){
-            current_table = tables_root = create_table("Global");
-            semantic_analysis(node->first_child);
-        }
-
-        if(!strcmp(node->id, "FuncDecl")){
-            funcdecl_analysis(node);
-        }
-
-        if(!strcmp(node->id, "FuncBody")){
-        semantic_analysis(node->first_child);
-        }
-
-        if(!strcmp(node->id, "VarDecl")){
-            vardecl_analysis(node);
-        }
-
-        if(!strcmp(node->id, "INTLIT")){
-            node->annotation_type = strdup("int"); 
-        } 
-
-        if(!strcmp(node->id, "REALLIT")){
-            node->annotation_type = strdup("float32"); 
-        }   
-
-        semantic_analysis(node->sibling);
-
-
-    }
 }

@@ -287,7 +287,7 @@ Statement:  ID ASSIGN Expr                                              {$$ = ne
         |   PRINT LPAR STRLIT RPAR                                      {$$ = newNode("Print", NULL);
                                                                         aux = newNode("StrLit", $3);
                                                                         add_child($$, aux);}
-        |   error                                                       {$$ = newNode("Error", NULL);}
+        |   error                                                       {$$ = newNode("Error", NULL); free_ast(program_root);}
         ;
 
 StatementList: StatementList Statement SEMICOLON        {$$ = $1; add_sibling($1, $2);}
@@ -303,6 +303,7 @@ ParseArgs:  ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR     
                                                                                 aux = newNode("Id", $1);
                                                                                 add_child($$, aux);
                                                                                 add_sibling(aux, newNode("Error", NULL));
+                                                                                free_ast(program_root);
                                                                                 }
         ;
 
@@ -312,7 +313,7 @@ FuncID: ID                                                   {$$ = newNode("Id",
 FuncInvocation: FuncID LPAR RPAR                                {$$ = $1;}
               | FuncID LPAR Expr RPAR                           {$$ = $1; add_sibling($1, $3);}
               | FuncID LPAR Expr CommaExpressionList RPAR       {$$ = $1; add_sibling($1, $3); add_sibling($3, $4);}
-              | FuncID LPAR error RPAR                          {$$ = $1; add_sibling($1, newNode("Error", NULL));}
+              | FuncID LPAR error RPAR                          {$$ = $1; add_sibling($1, newNode("Error", NULL)); free_ast(program_root);}
               ;
 
 CommaExpressionList: CommaExpressionList COMMA Expr          {$$ = $1; add_sibling($1, $3);}
@@ -341,6 +342,6 @@ Expr:   Expr OR Expr            {$$ = newNode("Or", NULL); add_child($$, $1); ad
     |   ID                      {$$ = newNode("Id", $1);}
     |   FuncInvocation          {$$ = newNode("Call", NULL); add_child($$, $1);}
     |   LPAR Expr RPAR          {$$ = $2;}
-    |   LPAR error RPAR         {$$ = newNode("Error", NULL);}
+    |   LPAR error RPAR         {$$ = newNode("Error", NULL); free_ast(program_root);}
     ;
 %%

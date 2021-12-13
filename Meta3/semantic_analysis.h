@@ -11,6 +11,7 @@
 #include "structures.h"
 
 
+
 extern table_t * tables_root;
 
 table_t * add_table(table_t * root, char * table_id);
@@ -28,6 +29,7 @@ void print_table_params(parameter_t * list);
 void print_elements(element_t * elem);
 void print_table_list(table_t * table);
 void semantic_analysis(ast_node * node);
+int checknewvar(char * name);
 
 
 #endif //SEM_A

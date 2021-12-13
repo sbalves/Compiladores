@@ -1,54 +1,614 @@
 ===== Global Symbol Table =====
-factorial	(int)	int
+ia		int
+ib		int
+ic		int
+id		int
+ie		int
+fa		float32
+fb		float32
+fc		float32
+fd		float32
+fe		float32
+ba		bool
+bb		bool
+bc		bool
+bd		bool
+sa		string
+sb		string
+sc		string
+fca	()	none
+fcb	()	int
+fcd	()	float32
+fce	()	string
+fcf	()	bool
+fcg	(int,float32)	int
+fch	(int,float32,string)	float32
+fci	(int,int,float32,float32,string)	float32
+fcj	(int,int,float32,float32,bool)	int
 main	()	none
 
-===== Function factorial(int) Symbol Table =====
+===== Function fca() Symbol Table =====
+return		none
+
+===== Function fcb() Symbol Table =====
 return		int
-n		int	param
+fafcb		int
+
+===== Function fcd() Symbol Table =====
+return		float32
+
+===== Function fce() Symbol Table =====
+return		string
+strfce		string
+
+===== Function fcf() Symbol Table =====
+return		bool
+bafcf		bool
+
+===== Function fcg(int,float32) Symbol Table =====
+return		int
+iafcg		int	param
+fafcg		float32	param
+
+===== Function fch(int,float32,string) Symbol Table =====
+return		float32
+iafch		int	param
+fafch		float32	param
+safch		string	param
+
+===== Function fci(int,int,float32,float32,string) Symbol Table =====
+return		float32
+iafci		int	param
+ibfci		int	param
+fafci		float32	param
+fbfci		float32	param
+safci		string	param
+
+===== Function fcj(int,int,float32,float32,bool) Symbol Table =====
+return		int
+iafcj		int	param
+ibfcj		int	param
+fafcj		float32	param
+fbfcj		float32	param
+bafcj		bool	param
+fcjia		int
+fcjib		int
 
 ===== Function main() Symbol Table =====
 return		none
-argument		int
+mia		int
+mib		int
 
 Program
+..VarDecl
+....Int
+....Id(ia)
+..VarDecl
+....Int
+....Id(ib)
+..VarDecl
+....Int
+....Id(ic)
+..VarDecl
+....Int
+....Id(id)
+..VarDecl
+....Int
+....Id(ie)
+..VarDecl
+....Float32
+....Id(fa)
+..VarDecl
+....Float32
+....Id(fb)
+..VarDecl
+....Float32
+....Id(fc)
+..VarDecl
+....Float32
+....Id(fd)
+..VarDecl
+....Float32
+....Id(fe)
+..VarDecl
+....Bool
+....Id(ba)
+..VarDecl
+....Bool
+....Id(bb)
+..VarDecl
+....Bool
+....Id(bc)
+..VarDecl
+....Bool
+....Id(bd)
+..VarDecl
+....String
+....Id(sa)
+..VarDecl
+....String
+....Id(sb)
+..VarDecl
+....String
+....Id(sc)
 ..FuncDecl
 ....FuncHeader
-......Id(factorial)
+......Id(fca)
+......FuncParams
+....FuncBody
+..FuncDecl
+....FuncHeader
+......Id(fcb)
+......Int
+......FuncParams
+....FuncBody
+......VarDecl
+........Int
+........Id(fafcb)
+......Assign
+........Id(fafcb)
+........IntLit(132)
+......Return
+........Id(fafcb)
+..FuncDecl
+....FuncHeader
+......Id(fcd)
+......Float32
+......FuncParams
+....FuncBody
+......Return
+........Add
+..........RealLit(.1e1)
+..........RealLit(0.007)
+..FuncDecl
+....FuncHeader
+......Id(fce)
+......String
+......FuncParams
+....FuncBody
+......VarDecl
+........String
+........Id(strfce)
+......Return
+........Id(strfce)
+..FuncDecl
+....FuncHeader
+......Id(fcf)
+......Bool
+......FuncParams
+....FuncBody
+......VarDecl
+........Bool
+........Id(bafcf)
+......Return
+........Id(bafcf)
+..FuncDecl
+....FuncHeader
+......Id(fcg)
 ......Int
 ......FuncParams
 ........ParamDecl
 ..........Int
-..........Id(n)
+..........Id(iafcg)
+........ParamDecl
+..........Float32
+..........Id(fafcg)
 ....FuncBody
 ......If
-........Eq
-..........Id(n)
-..........IntLit(0)
+........Gt
+..........Call
+............Id(fcd)
+..........Id(fafcg)
 ........Block
+..........Call
+............Id(fca)
 ..........Return
-............IntLit(1)
+............Id(iafcg)
 ........Block
 ......Return
-........Mul
-..........Id(n)
+........Call
+..........Id(fcb)
+..FuncDecl
+....FuncHeader
+......Id(fch)
+......Float32
+......FuncParams
+........ParamDecl
+..........Int
+..........Id(iafch)
+........ParamDecl
+..........Float32
+..........Id(fafch)
+........ParamDecl
+..........String
+..........Id(safch)
+....FuncBody
+......Call
+........Id(fcg)
+........Call
+..........Id(fcb)
+........Call
+..........Id(fcd)
+......Print
+........Id(safch)
+......If
+........Id(bb)
+........Block
+..........Assign
+............Id(iafch)
+............Add
+..............Id(ia)
+..............Id(ib)
+..........Assign
+............Id(fafch)
+............Id(fa)
+..........Assign
+............Id(fb)
+............Id(fafch)
+..........Assign
+............Id(id)
+............Id(iafch)
+........Block
+......Return
+........RealLit(.01)
+..FuncDecl
+....FuncHeader
+......Id(fci)
+......Float32
+......FuncParams
+........ParamDecl
+..........Int
+..........Id(iafci)
+........ParamDecl
+..........Int
+..........Id(ibfci)
+........ParamDecl
+..........Float32
+..........Id(fafci)
+........ParamDecl
+..........Float32
+..........Id(fbfci)
+........ParamDecl
+..........String
+..........Id(safci)
+....FuncBody
+......Call
+........Id(fch)
+........Call
+..........Id(fcg)
 ..........Call
-............Id(factorial)
-............Sub
-..............Id(n)
-..............IntLit(1)
+............Id(fcb)
+..........Call
+............Id(fcd)
+........Call
+..........Id(fcd)
+........Call
+..........Id(fce)
+......Assign
+........Id(iafci)
+........Add
+..........Add
+............Add
+..............Id(ibfci)
+..............IntLit(12)
+............Id(ic)
+..........Call
+............Id(fcb)
+......If
+........Call
+..........Id(fcf)
+........Block
+..........Print
+............Id(safci)
+..........Return
+............Call
+..............Id(fch)
+..............Id(ia)
+..............Id(fa)
+..............Id(sa)
+........Block
+..........Assign
+............Id(fafci)
+............Add
+..............Mul
+................Id(fa)
+................Id(fbfci)
+..............Call
+................Id(fcd)
+..........Return
+............Call
+..............Id(fcd)
+..FuncDecl
+....FuncHeader
+......Id(fcj)
+......Int
+......FuncParams
+........ParamDecl
+..........Int
+..........Id(iafcj)
+........ParamDecl
+..........Int
+..........Id(ibfcj)
+........ParamDecl
+..........Float32
+..........Id(fafcj)
+........ParamDecl
+..........Float32
+..........Id(fbfcj)
+........ParamDecl
+..........Bool
+..........Id(bafcj)
+....FuncBody
+......VarDecl
+........Int
+........Id(fcjia)
+......VarDecl
+........Int
+........Id(fcjib)
+......Assign
+........Id(fcjia)
+........Sub
+..........Add
+............Id(ia)
+............Id(ib)
+..........Mod
+............Mul
+..............Id(ic)
+..............Id(id)
+............Id(ie)
+......If
+........Gt
+..........Id(fcjia)
+..........Call
+............Id(fcg)
+............Id(fcjia)
+............Call
+..............Id(fci)
+..............Call
+................Id(fcb)
+..............Id(fcjib)
+..............Call
+................Id(fch)
+................Call
+..................Id(fcb)
+................Id(fb)
+................Id(sa)
+..............Id(fd)
+..............Id(sb)
+........Block
+..........If
+............Id(ba)
+............Block
+..............Assign
+................Id(fc)
+................RealLit(.01)
+............Block
+..............Assign
+................Id(fc)
+................Add
+..................Id(fc)
+..................Id(fe)
+..............If
+................Id(bafcj)
+................Block
+..................For
+....................Call
+......................Id(fcf)
+....................Block
+......................Assign
+........................Id(fcjib)
+........................Sub
+..........................Add
+............................Add
+..............................Id(fcjia)
+..............................Div
+................................Call
+..................................Id(fcb)
+................................IntLit(12)
+............................Call
+..............................Id(fcg)
+..............................Add
+................................Id(ia)
+................................Id(iafcj)
+..............................Id(fa)
+..........................Id(ibfcj)
+......................Assign
+........................Id(fbfcj)
+........................Id(fafcj)
+................Block
+........Block
+......For
+........Id(bb)
+........Block
+..........If
+............Id(bc)
+............Block
+..............Assign
+................Id(bd)
+................And
+..................Id(bd)
+..................Id(ba)
+..............Assign
+................Id(bd)
+................Or
+..................And
+....................Id(ba)
+....................Call
+......................Id(fcf)
+..................And
+....................Id(bd)
+....................Not
+......................Id(bc)
+............Block
+......Return
+........Minus
+..........IntLit(101)
 ..FuncDecl
 ....FuncHeader
 ......Id(main)
 ......FuncParams
 ....FuncBody
-......VarDecl
- - int
-........Int
-........Id(argument)
-......ParseArgs
-........Id(argument)
+......Assign
+........Id(ia)
 ........IntLit(1)
-......Print
-........Call
-..........Id(factorial)
-..........Id(argument)
+......Assign
+........Id(ib)
+........IntLit(1)
+......Assign
+........Id(ic)
+........IntLit(1)
+......Assign
+........Id(id)
+........IntLit(1)
+......Assign
+........Id(ie)
+........IntLit(1)
+......Assign
+........Id(fa)
+........RealLit(.1)
+......Assign
+........Id(fb)
+........RealLit(.1)
+......Assign
+........Id(fc)
+........RealLit(.1)
+......Assign
+........Id(fd)
+........RealLit(.1)
+......Assign
+........Id(fe)
+........RealLit(.1)
+......VarDecl
+........Int
+........Id(mia)
+......VarDecl
+........Int
+........Id(mib)
+......For
+........And
+..........Gt
+............Id(ia)
+............Id(ib)
+..........Call
+............Id(fcf)
+........Block
+..........If
+............Gt
+..............Call
+................Id(fcb)
+..............Call
+................Id(fcj)
+................Call
+..................Id(fcg)
+..................Call
+....................Id(fcb)
+..................Id(fe)
+................Id(mia)
+................Call
+..................Id(fci)
+..................Call
+....................Id(fcg)
+....................Call
+......................Id(fcb)
+....................Call
+......................Id(fcd)
+..................IntLit(123)
+..................Call
+....................Id(fch)
+....................Id(ia)
+....................Call
+......................Id(fcd)
+....................Call
+......................Id(fce)
+..................Call
+....................Id(fcd)
+..................Id(sc)
+................Call
+..................Id(fcd)
+................Call
+..................Id(fcf)
+............Block
+..............Assign
+................Id(mib)
+................Call
+..................Id(fcj)
+..................IntLit(12)
+..................Id(ia)
+..................Id(fa)
+..................RealLit(.1e12)
+..................Id(ba)
+............Block
+..............Assign
+................Id(mib)
+................Add
+..................Id(ia)
+..................Call
+....................Id(fcb)
+......Assign
+........Id(mia)
+........Add
+..........Id(mib)
+..........Call
+............Id(fcj)
+............Add
+..............IntLit(123)
+..............Call
+................Id(fcg)
+................Add
+..................IntLit(456)
+..................Call
+....................Id(fcb)
+................Add
+..................Call
+....................Id(fcd)
+..................RealLit(123.321)
+............Add
+..............Sub
+................Add
+..................Id(ia)
+..................Id(ib)
+................Div
+..................Id(ic)
+..................IntLit(12)
+..............Mod
+................Mul
+..................Id(id)
+..................Id(ie)
+................Call
+..................Id(fcg)
+..................Call
+....................Id(fcb)
+..................Id(fa)
+............Call
+..............Id(fci)
+..............Add
+................Id(ia)
+................Id(ib)
+..............IntLit(123)
+..............Sub
+................Id(fa)
+................Div
+..................Call
+....................Id(fcd)
+..................RealLit(.1e12)
+..............Call
+................Id(fcd)
+..............Call
+................Id(fce)
+............Call
+..............Id(fch)
+..............Add
+................IntLit(312)
+................IntLit(12)
+..............Add
+................Call
+..................Id(fcd)
+................RealLit(.1e23)
+..............Call
+................Id(fce)
+............Or
+..............And
+................Call
+..................Id(fcf)
+................Id(ba)
+..............Id(bb)

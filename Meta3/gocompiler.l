@@ -244,7 +244,7 @@ int main(int argc, char* argv[])
         flag_return = 1;
         yyparse();
     }
-    //free_ast(program_root);
+    free_ast(program_root);
     return 0;
 }
 

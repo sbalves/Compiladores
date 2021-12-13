@@ -7,6 +7,7 @@
 #include "structures.h"
 
 
+
 ast_node *newNode(char *type, char *value)
 {
     ast_node *new_node = (ast_node *)malloc(sizeof(ast_node));
@@ -48,6 +49,8 @@ void add_sibling(ast_node *child, ast_node *new_sibling)
 }
 
 
+
+
 void print_ast(ast_node *current_node, int n)
 {
     if (current_node == NULL)
@@ -66,19 +69,40 @@ void print_ast(ast_node *current_node, int n)
                     printf("..");
                 }
 
+                if(is_arithmetic_operator(current_node->id)){
+                    
+                }
+
                 if (current_node->value != NULL)
                 {
                     printf("%s(%s)\n", current_node->id, current_node->value);
                 }
                 else
-                {
+                {   
                     printf("%s\n", current_node->id);
                 }
-                if(current_node->annotation_type)
-                    printf(" - %s\n", current_node->annotation_type);
+                /*
+                if(current_node->annotation_type != NULL && num_anottation == 0){
+                    printf(" - ()");
+                }
+
+                if(current_node->annotation_type != NULL && num_anottation == 1){
+                    printf(" - %s", current_node->annotation_type);
+                }
+
+                if(current_node->annotation_type != NULL &&  num_anottation > 1){
+                    printf(" - (%s", current_node->annotation_type[0]);
+                    for(int i; i == num_anottation-1; i++){
+                       printf(", %s", current_node->annotation_type[i]); 
+                    }
+                    printf(", %s)", current_node->annotation_type[num_anotattion-1]);
+                }
+               */
 
                 if (current_node->first_child != NULL)
                 {
+                    if(strcmp((current_node->first_child)->id, "Expr"))
+
                     print_ast(current_node->first_child, n + 1);
                 }
                 if (current_node->sibling != NULL)
@@ -100,7 +124,6 @@ void print_ast(ast_node *current_node, int n)
         }
     }
 }
-
 
 void free_ast(ast_node *current_node)
 {
