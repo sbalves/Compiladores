@@ -1,6 +1,6 @@
 #include "structures.h"
 
-//char * expressions_aux[50][30] = {"Call", "Id", , , "Minus", "Plus", "IntLit", "RealLit"};
+//const char expressions_aux[50][8] = {"Call", "Id", , , "Minus", "Plus", "IntLit", "RealLit"};
 
 const char logical_operators[9][3] = {"Or", "And", "Lt", "Gt", "Eq", "Ne", "Le", "Ge", "Not"};
 

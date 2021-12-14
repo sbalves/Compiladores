@@ -6,15 +6,18 @@
 */ 
 #include "structures.h"
 
+//extern bool is_arithmetic_operator;
+//extern bool is_logical_operator;
 
 
-ast_node *newNode(char *type, char *value)
+ast_node *newNode(char *type, char *value, int expr)
 {
     ast_node *new_node = (ast_node *)malloc(sizeof(ast_node));
     new_node->id = (char *)strdup(type); // type -> "FuncDecl", "Id", ...
     new_node->first_child = NULL;
     new_node->sibling = NULL;
     new_node->annotation_type = NULL;
+    new_node->is_expr = expr;
 
     /*
     new_node->col = column;
@@ -49,6 +52,23 @@ void add_sibling(ast_node *child, ast_node *new_sibling)
 }
 
 
+void verify_types(ast_node * node){
+    if(strcmp((node->first_child)->annotation_type, "int") && strcmp(((node->first_child)->sibling)->annotation_type, "int")){
+        printf(node);
+    }
+}
+
+
+
+void print_annotation(ast_node *node){
+    if(is_arithmetic_operator(node)){
+        if(strcmp((node->first_child)->id, "Id") && strcmp(((node->first_child)->sibling)->id, "Id"))
+            verify_types(node);
+    }
+
+
+}
+
 
 
 void print_ast(ast_node *current_node, int n)
@@ -68,10 +88,6 @@ void print_ast(ast_node *current_node, int n)
                 {
                     printf("..");
                 }
-                /*
-                if(is_arithmetic_operator(current_node->id)){
-                    
-                }*/
 
                 if (current_node->value != NULL)
                 {
@@ -81,6 +97,7 @@ void print_ast(ast_node *current_node, int n)
                 {   
                     printf("%s\n", current_node->id);
                 }
+                
                 /*
                 if(current_node->annotation_type != NULL && num_anottation == 0){
                     printf(" - ()");
@@ -98,6 +115,10 @@ void print_ast(ast_node *current_node, int n)
                     printf(", %s)", current_node->annotation_type[num_anotattion-1]);
                 }
                */
+
+                if(current_node->is_expr){
+                    printf(" - %s", current_node->annotation_type);
+                }
 
                 if (current_node->first_child != NULL)
                 {

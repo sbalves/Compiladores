@@ -1,534 +1,534 @@
-==7944== Memcheck, a memory error detector
-==7944== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==7944== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==7944== Command: ./gocompiler
-==7944== Parent PID: 7943
-==7944== 
-==7944== 
-==7944== HEAP SUMMARY:
-==7944==     in use at exit: 17,488 bytes in 316 blocks
-==7944==   total heap usage: 428 allocs, 112 frees, 23,328 bytes allocated
-==7944== 
-==7944== 1 bytes in 1 blocks are still reachable in loss record 1 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E817: yylex (gocompiler.l:197)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 2 bytes in 1 blocks are definitely lost in loss record 2 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DBA6: yylex (gocompiler.l:137)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 2 bytes in 1 blocks are definitely lost in loss record 3 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D834: yylex (gocompiler.l:128)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 2 bytes in 1 blocks are definitely lost in loss record 4 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E66D: yylex (gocompiler.l:165)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 2 bytes in 1 blocks are definitely lost in loss record 5 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DCCC: yylex (gocompiler.l:140)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 2 bytes in 1 blocks are definitely lost in loss record 6 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E03E: yylex (gocompiler.l:149)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 2 bytes in 1 blocks are definitely lost in loss record 7 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x11068D: newNode (structures.c:28)
-==7944==    by 0x10C208: yyparse (gocompiler.y:298)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 2 bytes in 1 blocks are definitely lost in loss record 8 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DF7A: yylex (gocompiler.l:147)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 3 bytes in 1 blocks are definitely lost in loss record 9 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DDF2: yylex (gocompiler.l:143)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 3 bytes in 1 blocks are definitely lost in loss record 10 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C65E: yyparse (gocompiler.y:329)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 3 bytes in 1 blocks are definitely lost in loss record 11 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DEB6: yylex (gocompiler.l:145)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 3 bytes in 1 blocks are definitely lost in loss record 12 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C208: yyparse (gocompiler.y:298)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 3 bytes in 1 blocks are definitely lost in loss record 13 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B4D2: yyparse (gocompiler.y:157)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 4 bytes in 1 blocks are definitely lost in loss record 14 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D770: yylex (gocompiler.l:126)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 4 bytes in 1 blocks are definitely lost in loss record 15 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x11068D: newNode (structures.c:28)
-==7944==    by 0x10CA36: yyparse (gocompiler.y:341)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 4 bytes in 1 blocks are definitely lost in loss record 16 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C4DE: yyparse (gocompiler.y:325)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 4 bytes in 2 blocks are definitely lost in loss record 17 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D6B6: yylex (gocompiler.l:123)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 4 bytes in 2 blocks are definitely lost in loss record 18 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x11068D: newNode (structures.c:28)
-==7944==    by 0x10CA11: yyparse (gocompiler.y:340)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 4 bytes in 2 blocks are definitely lost in loss record 19 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D95A: yylex (gocompiler.l:131)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 4 bytes in 2 blocks are definitely lost in loss record 20 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D8F8: yylex (gocompiler.l:130)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 5 bytes in 1 blocks are definitely lost in loss record 21 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E538: yylex (gocompiler.l:162)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 5 bytes in 1 blocks are definitely lost in loss record 22 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B8A5: yyparse (gocompiler.y:197)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 5 bytes in 1 blocks are definitely lost in loss record 23 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C9D0: yyparse (gocompiler.y:339)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 5 bytes in 1 blocks are definitely lost in loss record 24 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x11068D: newNode (structures.c:28)
-==7944==    by 0x10B4D2: yyparse (gocompiler.y:157)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 1 blocks are definitely lost in loss record 25 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C997: yyparse (gocompiler.y:338)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 1 blocks are definitely lost in loss record 26 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C0C6: yyparse (gocompiler.y:285)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 2 blocks are definitely lost in loss record 27 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DA80: yylex (gocompiler.l:134)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 2 blocks are definitely lost in loss record 28 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C5FE: yyparse (gocompiler.y:328)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 3 blocks are definitely lost in loss record 29 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DC6A: yylex (gocompiler.l:139)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 3 blocks are definitely lost in loss record 30 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DFDC: yylex (gocompiler.l:148)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 3 blocks are definitely lost in loss record 31 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DA1E: yylex (gocompiler.l:133)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 6 bytes in 3 blocks are definitely lost in loss record 32 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D9BC: yylex (gocompiler.l:132)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 1 blocks are still reachable in loss record 33 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x1103CA: yyalloc (lex.yy.c:2351)
-==7944==    by 0x10FE93: yyensure_buffer_stack (lex.yy.c:2049)
-==7944==    by 0x10D112: yylex (lex.yy.c:955)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 1 blocks are definitely lost in loss record 34 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E0A0: yylex (gocompiler.l:150)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 1 blocks are definitely lost in loss record 35 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10CA36: yyparse (gocompiler.y:341)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 1 blocks are definitely lost in loss record 36 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E59A: yylex (gocompiler.l:163)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 1 blocks are definitely lost in loss record 37 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10AD95: yyparse (gocompiler.y:80)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 2 blocks are definitely lost in loss record 38 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E2EC: yylex (gocompiler.l:156)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 2 blocks are definitely lost in loss record 39 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B179: yyparse (gocompiler.y:123)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 2 blocks are definitely lost in loss record 40 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C77E: yyparse (gocompiler.y:332)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 2 blocks are definitely lost in loss record 41 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C89E: yyparse (gocompiler.y:335)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 2 blocks are definitely lost in loss record 42 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C83E: yyparse (gocompiler.y:334)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 8 bytes in 2 blocks are definitely lost in loss record 43 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C7DE: yyparse (gocompiler.y:333)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 9 bytes in 1 blocks are definitely lost in loss record 44 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B7C5: yyparse (gocompiler.y:191)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 9 bytes in 1 blocks are definitely lost in loss record 45 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B496: yyparse (gocompiler.y:155)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 10 bytes in 1 blocks are definitely lost in loss record 46 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C1E4: yyparse (gocompiler.y:297)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 10 bytes in 2 blocks are definitely lost in loss record 47 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E3B0: yylex (gocompiler.l:158)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 10 bytes in 2 blocks are definitely lost in loss record 48 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B1B3: yyparse (gocompiler.y:125)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 10 bytes in 5 blocks are definitely lost in loss record 49 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10DD90: yylex (gocompiler.l:142)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 11 bytes in 1 blocks are definitely lost in loss record 50 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B4AE: yyparse (gocompiler.y:156)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 11 bytes in 1 blocks are definitely lost in loss record 51 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B51C: yyparse (gocompiler.y:160)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 12 bytes in 1 blocks are definitely lost in loss record 52 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E474: yylex (gocompiler.l:160)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 13 bytes in 1 blocks are definitely lost in loss record 53 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E4D6: yylex (gocompiler.l:161)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 14 bytes in 2 blocks are definitely lost in loss record 54 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E412: yylex (gocompiler.l:159)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 14 bytes in 2 blocks are definitely lost in loss record 55 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B1D0: yyparse (gocompiler.y:126)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 14 bytes in 2 blocks are definitely lost in loss record 56 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10CA11: yyparse (gocompiler.y:340)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 16 bytes in 2 blocks are definitely lost in loss record 57 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E34E: yylex (gocompiler.l:157)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 16 bytes in 2 blocks are definitely lost in loss record 58 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B196: yyparse (gocompiler.y:124)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 16 bytes in 8 blocks are definitely lost in loss record 59 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x11068D: newNode (structures.c:28)
-==7944==    by 0x10AF1A: yyparse (gocompiler.y:99)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 20 bytes in 5 blocks are definitely lost in loss record 60 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10C8FE: yyparse (gocompiler.y:336)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 24 bytes in 8 blocks are definitely lost in loss record 61 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10AF1A: yyparse (gocompiler.y:99)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 26 bytes in 13 blocks are definitely lost in loss record 62 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x11068D: newNode (structures.c:28)
-==7944==    by 0x10B8E6: yyparse (gocompiler.y:201)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 28 bytes in 14 blocks are definitely lost in loss record 63 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D896: yylex (gocompiler.l:129)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 32 bytes in 8 blocks are definitely lost in loss record 64 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E28A: yylex (gocompiler.l:155)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 39 bytes in 13 blocks are definitely lost in loss record 65 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B8E6: yyparse (gocompiler.y:201)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 48 bytes in 24 blocks are definitely lost in loss record 66 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10D7D2: yylex (gocompiler.l:127)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 58 bytes in 29 blocks are definitely lost in loss record 67 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x11068D: newNode (structures.c:28)
-==7944==    by 0x10CA5B: yyparse (gocompiler.y:342)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 64 bytes in 1 blocks are still reachable in loss record 68 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x1103CA: yyalloc (lex.yy.c:2351)
-==7944==    by 0x10FA08: yy_create_buffer (lex.yy.c:1889)
-==7944==    by 0x10D13C: yylex (lex.yy.c:957)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 64 bytes in 8 blocks are definitely lost in loss record 69 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10AEDA: yyparse (gocompiler.y:98)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 87 bytes in 29 blocks are definitely lost in loss record 70 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10CA5B: yyparse (gocompiler.y:342)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 91 bytes in 13 blocks are definitely lost in loss record 71 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x110639: newNode (structures.c:14)
-==7944==    by 0x10B8C2: yyparse (gocompiler.y:200)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 112 bytes in 53 blocks are definitely lost in loss record 72 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x48F550E: strdup (strdup.c:42)
-==7944==    by 0x10E6DE: yylex (gocompiler.l:166)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== 16,386 bytes in 1 blocks are still reachable in loss record 73 of 73
-==7944==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==7944==    by 0x1103CA: yyalloc (lex.yy.c:2351)
-==7944==    by 0x10FA3D: yy_create_buffer (lex.yy.c:1898)
-==7944==    by 0x10D13C: yylex (lex.yy.c:957)
-==7944==    by 0x10AAA2: yyparse (y.tab.c:1517)
-==7944==    by 0x1105E6: main (gocompiler.l:245)
-==7944== 
-==7944== LEAK SUMMARY:
-==7944==    definitely lost: 1,029 bytes in 312 blocks
-==7944==    indirectly lost: 0 bytes in 0 blocks
-==7944==      possibly lost: 0 bytes in 0 blocks
-==7944==    still reachable: 16,459 bytes in 4 blocks
-==7944==         suppressed: 0 bytes in 0 blocks
-==7944== 
-==7944== For lists of detected and suppressed errors, rerun with: -s
-==7944== ERROR SUMMARY: 69 errors from 69 contexts (suppressed: 0 from 0)
+==8195== Memcheck, a memory error detector
+==8195== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==8195== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==8195== Command: ./gocompiler
+==8195== Parent PID: 8194
+==8195== 
+==8195== 
+==8195== HEAP SUMMARY:
+==8195==     in use at exit: 17,488 bytes in 316 blocks
+==8195==   total heap usage: 428 allocs, 112 frees, 23,328 bytes allocated
+==8195== 
+==8195== 1 bytes in 1 blocks are still reachable in loss record 1 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E817: yylex (gocompiler.l:197)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 2 bytes in 1 blocks are definitely lost in loss record 2 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DBA6: yylex (gocompiler.l:137)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 2 bytes in 1 blocks are definitely lost in loss record 3 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D834: yylex (gocompiler.l:128)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 2 bytes in 1 blocks are definitely lost in loss record 4 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E66D: yylex (gocompiler.l:165)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 2 bytes in 1 blocks are definitely lost in loss record 5 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DCCC: yylex (gocompiler.l:140)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 2 bytes in 1 blocks are definitely lost in loss record 6 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E03E: yylex (gocompiler.l:149)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 2 bytes in 1 blocks are definitely lost in loss record 7 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x11068D: newNode (structures.c:29)
+==8195==    by 0x10C208: yyparse (gocompiler.y:298)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 2 bytes in 1 blocks are definitely lost in loss record 8 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DF7A: yylex (gocompiler.l:147)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 3 bytes in 1 blocks are definitely lost in loss record 9 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DDF2: yylex (gocompiler.l:143)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 3 bytes in 1 blocks are definitely lost in loss record 10 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C65E: yyparse (gocompiler.y:329)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 3 bytes in 1 blocks are definitely lost in loss record 11 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DEB6: yylex (gocompiler.l:145)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 3 bytes in 1 blocks are definitely lost in loss record 12 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C208: yyparse (gocompiler.y:298)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 3 bytes in 1 blocks are definitely lost in loss record 13 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B4D2: yyparse (gocompiler.y:157)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 4 bytes in 1 blocks are definitely lost in loss record 14 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D770: yylex (gocompiler.l:126)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 4 bytes in 1 blocks are definitely lost in loss record 15 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x11068D: newNode (structures.c:29)
+==8195==    by 0x10CA36: yyparse (gocompiler.y:341)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 4 bytes in 1 blocks are definitely lost in loss record 16 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C4DE: yyparse (gocompiler.y:325)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 4 bytes in 2 blocks are definitely lost in loss record 17 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D6B6: yylex (gocompiler.l:123)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 4 bytes in 2 blocks are definitely lost in loss record 18 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x11068D: newNode (structures.c:29)
+==8195==    by 0x10CA11: yyparse (gocompiler.y:340)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 4 bytes in 2 blocks are definitely lost in loss record 19 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D95A: yylex (gocompiler.l:131)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 4 bytes in 2 blocks are definitely lost in loss record 20 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D8F8: yylex (gocompiler.l:130)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 5 bytes in 1 blocks are definitely lost in loss record 21 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E538: yylex (gocompiler.l:162)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 5 bytes in 1 blocks are definitely lost in loss record 22 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B8A5: yyparse (gocompiler.y:197)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 5 bytes in 1 blocks are definitely lost in loss record 23 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C9D0: yyparse (gocompiler.y:339)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 5 bytes in 1 blocks are definitely lost in loss record 24 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x11068D: newNode (structures.c:29)
+==8195==    by 0x10B4D2: yyparse (gocompiler.y:157)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 1 blocks are definitely lost in loss record 25 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C997: yyparse (gocompiler.y:338)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 1 blocks are definitely lost in loss record 26 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C0C6: yyparse (gocompiler.y:285)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 2 blocks are definitely lost in loss record 27 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DA80: yylex (gocompiler.l:134)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 2 blocks are definitely lost in loss record 28 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C5FE: yyparse (gocompiler.y:328)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 3 blocks are definitely lost in loss record 29 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DC6A: yylex (gocompiler.l:139)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 3 blocks are definitely lost in loss record 30 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DFDC: yylex (gocompiler.l:148)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 3 blocks are definitely lost in loss record 31 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DA1E: yylex (gocompiler.l:133)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 6 bytes in 3 blocks are definitely lost in loss record 32 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D9BC: yylex (gocompiler.l:132)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 1 blocks are still reachable in loss record 33 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x1103CA: yyalloc (lex.yy.c:2351)
+==8195==    by 0x10FE93: yyensure_buffer_stack (lex.yy.c:2049)
+==8195==    by 0x10D112: yylex (lex.yy.c:955)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 1 blocks are definitely lost in loss record 34 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E0A0: yylex (gocompiler.l:150)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 1 blocks are definitely lost in loss record 35 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10CA36: yyparse (gocompiler.y:341)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 1 blocks are definitely lost in loss record 36 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E59A: yylex (gocompiler.l:163)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 1 blocks are definitely lost in loss record 37 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10AD95: yyparse (gocompiler.y:80)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 2 blocks are definitely lost in loss record 38 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E2EC: yylex (gocompiler.l:156)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 2 blocks are definitely lost in loss record 39 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B179: yyparse (gocompiler.y:123)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 2 blocks are definitely lost in loss record 40 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C77E: yyparse (gocompiler.y:332)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 2 blocks are definitely lost in loss record 41 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C89E: yyparse (gocompiler.y:335)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 2 blocks are definitely lost in loss record 42 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C83E: yyparse (gocompiler.y:334)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 8 bytes in 2 blocks are definitely lost in loss record 43 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C7DE: yyparse (gocompiler.y:333)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 9 bytes in 1 blocks are definitely lost in loss record 44 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B7C5: yyparse (gocompiler.y:191)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 9 bytes in 1 blocks are definitely lost in loss record 45 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B496: yyparse (gocompiler.y:155)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 10 bytes in 1 blocks are definitely lost in loss record 46 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C1E4: yyparse (gocompiler.y:297)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 10 bytes in 2 blocks are definitely lost in loss record 47 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E3B0: yylex (gocompiler.l:158)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 10 bytes in 2 blocks are definitely lost in loss record 48 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B1B3: yyparse (gocompiler.y:125)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 10 bytes in 5 blocks are definitely lost in loss record 49 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10DD90: yylex (gocompiler.l:142)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 11 bytes in 1 blocks are definitely lost in loss record 50 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B4AE: yyparse (gocompiler.y:156)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 11 bytes in 1 blocks are definitely lost in loss record 51 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B51C: yyparse (gocompiler.y:160)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 12 bytes in 1 blocks are definitely lost in loss record 52 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E474: yylex (gocompiler.l:160)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 13 bytes in 1 blocks are definitely lost in loss record 53 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E4D6: yylex (gocompiler.l:161)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 14 bytes in 2 blocks are definitely lost in loss record 54 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E412: yylex (gocompiler.l:159)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 14 bytes in 2 blocks are definitely lost in loss record 55 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B1D0: yyparse (gocompiler.y:126)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 14 bytes in 2 blocks are definitely lost in loss record 56 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10CA11: yyparse (gocompiler.y:340)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 16 bytes in 2 blocks are definitely lost in loss record 57 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E34E: yylex (gocompiler.l:157)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 16 bytes in 2 blocks are definitely lost in loss record 58 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B196: yyparse (gocompiler.y:124)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 16 bytes in 8 blocks are definitely lost in loss record 59 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x11068D: newNode (structures.c:29)
+==8195==    by 0x10AF1A: yyparse (gocompiler.y:99)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 20 bytes in 5 blocks are definitely lost in loss record 60 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10C8FE: yyparse (gocompiler.y:336)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 24 bytes in 8 blocks are definitely lost in loss record 61 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10AF1A: yyparse (gocompiler.y:99)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 26 bytes in 13 blocks are definitely lost in loss record 62 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x11068D: newNode (structures.c:29)
+==8195==    by 0x10B8E6: yyparse (gocompiler.y:201)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 28 bytes in 14 blocks are definitely lost in loss record 63 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D896: yylex (gocompiler.l:129)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 32 bytes in 8 blocks are definitely lost in loss record 64 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E28A: yylex (gocompiler.l:155)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 39 bytes in 13 blocks are definitely lost in loss record 65 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B8E6: yyparse (gocompiler.y:201)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 48 bytes in 24 blocks are definitely lost in loss record 66 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10D7D2: yylex (gocompiler.l:127)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 58 bytes in 29 blocks are definitely lost in loss record 67 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x11068D: newNode (structures.c:29)
+==8195==    by 0x10CA5B: yyparse (gocompiler.y:342)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 64 bytes in 1 blocks are still reachable in loss record 68 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x1103CA: yyalloc (lex.yy.c:2351)
+==8195==    by 0x10FA08: yy_create_buffer (lex.yy.c:1889)
+==8195==    by 0x10D13C: yylex (lex.yy.c:957)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 64 bytes in 8 blocks are definitely lost in loss record 69 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10AEDA: yyparse (gocompiler.y:98)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 87 bytes in 29 blocks are definitely lost in loss record 70 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10CA5B: yyparse (gocompiler.y:342)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 91 bytes in 13 blocks are definitely lost in loss record 71 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x110639: newNode (structures.c:15)
+==8195==    by 0x10B8C2: yyparse (gocompiler.y:200)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 112 bytes in 53 blocks are definitely lost in loss record 72 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x48F550E: strdup (strdup.c:42)
+==8195==    by 0x10E6DE: yylex (gocompiler.l:166)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== 16,386 bytes in 1 blocks are still reachable in loss record 73 of 73
+==8195==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8195==    by 0x1103CA: yyalloc (lex.yy.c:2351)
+==8195==    by 0x10FA3D: yy_create_buffer (lex.yy.c:1898)
+==8195==    by 0x10D13C: yylex (lex.yy.c:957)
+==8195==    by 0x10AAA2: yyparse (y.tab.c:1517)
+==8195==    by 0x1105E6: main (gocompiler.l:245)
+==8195== 
+==8195== LEAK SUMMARY:
+==8195==    definitely lost: 1,029 bytes in 312 blocks
+==8195==    indirectly lost: 0 bytes in 0 blocks
+==8195==      possibly lost: 0 bytes in 0 blocks
+==8195==    still reachable: 16,459 bytes in 4 blocks
+==8195==         suppressed: 0 bytes in 0 blocks
+==8195== 
+==8195== For lists of detected and suppressed errors, rerun with: -s
+==8195== ERROR SUMMARY: 69 errors from 69 contexts (suppressed: 0 from 0)

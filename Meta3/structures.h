@@ -21,8 +21,10 @@
 typedef struct node ast_node;
 struct node
 {
+    int is_expr;
     int line;
     int col;
+
     char *value;
     char *id;
     char * annotation_type;
