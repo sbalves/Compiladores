@@ -65,7 +65,7 @@ void annotate_id(ast_node * node){
         verificar se existe ou não. se não existir -> ERRO (n está definido)
     */
     
-    node->annotation.type = strdup(element->type);
+    node->annotation.type = strdup(lowercase(element->type));
 
 }
 

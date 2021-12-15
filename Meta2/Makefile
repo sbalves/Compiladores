@@ -1,6 +1,6 @@
 FILENAME = gocompiler.l
 FILENAME2 = gocompiler.y
-FILENAME3 = structures.c
+FILENAME3 = ast.c
 FILENAME4 = structures.h
 EXE = gocompiler
 ZIP := zip
@@ -26,7 +26,7 @@ exe: ${FILENAME} ${FILENAME2}
 		@echo "$(GREEN)$(BOLD)--------------------$(NORM)$(RESET)$(GREEN)COMPILING$(NORM)$(RESET)$(GREEN)$(BOLD)---------------------$(NORM)$(RESET)$(BLUE)"
 		lex ${FILENAME}
 		yacc -y -d -v -t ${FILENAME2}
-		cc -o ${EXE} y.tab.c lex.yy.c structures.c
+		cc -o ${EXE} y.tab.c lex.yy.c ast.c
 		@echo "$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)$(GREEN)Done$(NORM)$(RESET)$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)"
 
 clear:

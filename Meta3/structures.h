@@ -33,7 +33,6 @@ struct annotation {
 typedef struct node ast_node;
 struct node
 {
-    int is_expr;
     int line;
     int col;
 
