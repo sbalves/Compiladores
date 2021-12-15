@@ -58,18 +58,12 @@ void verify_types(ast_node * node){
     }
 }
 
-
-
 void print_annotation(ast_node *node){
     if(is_arithmetic_operator(node)){
         if(strcmp((node->first_child)->id, "Id") && strcmp(((node->first_child)->sibling)->id, "Id"))
             verify_types(node);
     }
-
-
 }
-
-
 
 void print_ast(ast_node *current_node, int n)
 {
