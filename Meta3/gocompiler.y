@@ -5,7 +5,10 @@
         * 2019218953 João Miguel Ferreira Castelo Branco Catré
         * 2019227240 Sofia Botelho Vieira Alves
       */ 
+        #include "ast.h"
+        #include "structures.h"
         #include "semantic_analysis.h"
+
 
         int yylex();
         int yyparse();
@@ -95,7 +98,7 @@ VarDeclaration: VAR VarSpec                           {$$ = $2;}
               | VAR LPAR VarSpec SEMICOLON RPAR       {$$ = $3;}
               ;
 
-VarSpec: ID Type                {$$ = newNode("VarDecl", NULL); add_child($$, $2, 0);
+VarSpec: ID Type                {$$ = newNode("VarDecl", NULL, 0); add_child($$, $2);
                                 add_sibling($2, newNode("Id", $1, 0));
                                 } 
 
@@ -123,7 +126,7 @@ VarSpecList:    COMMA ID VarSpecList    {$$ = newNode("VarDecl", NULL, 0); varsp
 Type: INT      {$$ = newNode("Int", NULL, 0);} 
     | FLOAT32  {$$ = newNode("Float32", NULL, 0);}    
     | BOOL     {$$ = newNode("Bool", NULL, 0);}
-    | STRING   {$$ = newNode("String", NUL, 0L);}      
+    | STRING   {$$ = newNode("String", NULL, 0);}      
     ;
 
 FuncDeclaration: FUNC ID LPAR Parameters RPAR Type FuncBody     {$$ = newNode("FuncDecl", NULL, 0); 
@@ -193,7 +196,7 @@ FuncBody:   LBRACE VarsAndStatements RBRACE       {$$ = newNode("FuncBody", NULL
 
 VarsAndStatements:  VarsAndStatements VarDeclaration SEMICOLON  {$$ = $1; add_sibling($1, $2);}
                  |  VarsAndStatements Statement SEMICOLON       {$$ = $1; add_sibling($1, $2);}
-                 |  VarsAndStatements SEMICOLON                 {$1 = $1;}
+                 |  VarsAndStatements SEMICOLON                 {$$ = $1;}
                  |  /*Epsilon = NULL*/                          {$$ = newNode("NULL", NULL, 0);}
                  ;
 
@@ -295,7 +298,7 @@ StatementList: StatementList Statement SEMICOLON        {$$ = $1; add_sibling($1
               ;
 
 ParseArgs:  ID COMMA BLANKID ASSIGN PARSEINT LPAR CMDARGS LSQ Expr RSQ RPAR     {$$ = newNode("ParseArgs", NULL, 1);
-                                                                                aux = newNode("Id", $1);
+                                                                                aux = newNode("Id", $1, 1);
                                                                                 add_child($$, aux);
                                                                                 add_sibling(aux, $9);
                                                                                 }

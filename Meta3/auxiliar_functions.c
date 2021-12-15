@@ -1,9 +1,8 @@
-#include "structures.h"
+#include "auxiliar_functions.h"
 
 //const char expressions_aux[50][8] = {"Call", "Id", , , "Minus", "Plus", "IntLit", "RealLit"};
 
 const char logical_operators[9][3] = {"Or", "And", "Lt", "Gt", "Eq", "Ne", "Le", "Ge", "Not"};
-
 const char arithmentic_operators[5][3] = {"Add", "Mul", "Sub", "Div", "Mod"};
 
 bool is_arithmetic_operator(char * id){

@@ -9,25 +9,20 @@
     * , int *line, int *col
 */ 
 #include "structures.h"
+#include "symbol_table.h"
+#include "auxiliar_functions.h"
 
 
+ast_node * program_root;
 
+extern table_t * current_table;
 extern table_t * tables_root;
+extern char * expressions_aux;
 
-table_t * add_table(table_t * root, char * table_id);
-void add_element(table_t * table, element_t * new_elem);
-element_t * create_element(char * id, char * type, parameter_t * params_list);
-parameter_t * create_param(ast_node * node);
-void find_params(parameter_t * param, ast_node * node,  table_t * table);
-table_t * create_table(char * id);
+void anotate_arithmetic_operator(ast_node * node);
+void anotate_logical_operator(ast_node * node);
 void funcdecl_analysis(ast_node * node);
 void vardecl_analysis(ast_node * node);
-element_t * find_table(table_t * table, char * function_name);
-char * lowercase(char * word);
-void print_table_params(parameter_t * list);
-void print_table_params(parameter_t * list);
-void print_elements(element_t * elem);
-void print_table_list(table_t * table);
 void semantic_analysis(ast_node * node);
 int checknewvar(char * name);
 

@@ -1,12 +1,11 @@
-#ifndef __AST_H
-#define __AST_H
+#ifndef __STRUCTURES_H
+#define __STRUCTURES_H
 /*  
     * Projeto de Compiladores 2021/2022
     * Meta 3
     * 2019218953 João Miguel Ferreira Castelo Branco Catré
     * 2019227240 Sofia Botelho Vieira Alves
     * 
-    * , int *line, int *col
 */ 
 
 
@@ -16,7 +15,20 @@
 #include <stdarg.h>
 #include <stdbool.h>
 
+typedef const char *type_t;
 
+typedef struct parameters parameter_t;
+struct parameters
+{
+    char * param_type;
+    parameter_t * next_param;
+};
+
+typedef struct annotation annotation_t;
+struct annotation {
+    type_t type;
+    parameter_t *parameters;
+};
 
 typedef struct node ast_node;
 struct node
@@ -27,18 +39,12 @@ struct node
 
     char *value;
     char *id;
-    char * annotation_type;
 
+    annotation_t annotation;
     ast_node *first_child;
     ast_node *sibling;
 };
 
-typedef struct parameters parameter_t;
-struct parameters
-{
-    char * param_type;
-    parameter_t * next_param;
-};
 
 typedef struct element element_t;
 struct element
@@ -59,12 +65,6 @@ struct table
     table_t * next_table;
 };
 
-//ast_node *newNode(char *type, char *value, int line, int column);
 
-ast_node *newNode(char *type, char *value);
-void add_child(ast_node *parent, ast_node *child);
-void add_sibling(ast_node *child, ast_node *new_sibling);
-void print_ast(ast_node *current_node, int n); // n é o número de pontos
-void free_ast(ast_node *head);
-bool is_arithmetic_operator(char * id);
-#endif // __AST_H
+
+#endif // __STRUCTURES_H
