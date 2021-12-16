@@ -1,13 +1,106 @@
-entrou  RETURN Expr
-entrou IF Expr LBRACE StatementList RBRACE
-entrou  RETURN Expr
-entrou ParseArgs
-entrou  PRINT LPAR Expr RPAR
 Node id: Program
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+is null
+is null
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: VarDecl
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+Node id: Return
+is null
+is null
+is null
+is null
+is null
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: Return
+is null
+is null
+is null
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: VarDecl
+Node id: Return
+is null
+is null
+is null
+is null
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: VarDecl
+Node id: Return
+is null
+is null
+is null
+is null
 Node id: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: If
+its an statement_token If
+Node id: Gt
+its an relational Gt
+Node id: Call
+Node id: Id
+its an id Id
+is null
+is null
+Node id: Block
+Node id: Block
+is null
+is null
+is null
+Node id: Return
+is null
+is null
+is null
+is null
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: Call
+Node id: Print
+Node id: If
+its an statement_token If
+Node id: Id
+its an id Id
+Node id: Block
+Node id: Block
+is null
+is null
+is null
+Erro
 Node id: Return
 is null
 is null
@@ -18,71 +111,4 @@ is null
 Node id: FuncDecl
 Node id: FuncBody
 Node id: NULL
-Node id: VarDecl
-Node id: ParseArgs
-Node id: Print
-is null
-is null
-is null
-is null
-is null
-is null
-is null
-is null
-is null
-is null
-is null
-is null
-===== Global Symbol Table =====
-factorial	(int)	int
-main	()	none
-
-===== Function factorial(int) Symbol Table =====
-return		int
-n		int	param
-
-===== Function main() Symbol Table =====
-return		none
-argument		int
-
-Program
-..FuncDecl
-....FuncHeader
-......Id(factorial)
-......Int
-......FuncParams
-........ParamDecl
-..........Int
-..........Id(n)
-....FuncBody
-......If
-........Eq - (null)
-..........Id(n) - (null)
-..........IntLit(0) - (null)
-........Block
-..........Return - (null)
-............IntLit(1) - (null)
-........Block
-......Return - (null)
-........Mul - (null)
-..........Id(n) - (null)
-..........Call - (null)
-............Id(factorial)
-............Sub - (null)
-..............Id(n) - (null)
-..............IntLit(1) - (null)
-..FuncDecl
-....FuncHeader
-......Id(main)
-......FuncParams
-....FuncBody
-......VarDecl
-........Int
-........Id(argument)
-......ParseArgs - (null)
-........Id(argument) - (null)
-........IntLit(1) - (null)
-......Print
-........Call - (null)
-..........Id(factorial)
-..........Id(argument) - (null)
+Node id: Call

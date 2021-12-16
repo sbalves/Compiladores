@@ -10,7 +10,7 @@
 //extern bool is_logical_operator;
 
 
-ast_node *newNode(char *type, char *value, int expr)
+ast_node *newNode(char *type, char *value)
 {
     ast_node *new_node = (ast_node *)malloc(sizeof(ast_node));
     new_node->id = (char *)strdup(type); // type -> "FuncDecl", "Id", ...
@@ -18,7 +18,6 @@ ast_node *newNode(char *type, char *value, int expr)
     new_node->sibling = NULL;
     new_node->annotation.type= NULL;
     new_node->annotation.parameters = NULL;
-    new_node->is_expr = expr;
 
     /*
     new_node->col = column;
@@ -73,10 +72,8 @@ void print_annotation(ast_node *node){
 
 void print_ast(ast_node *current_node, int n) /*o parametro "n" serve para calcular o nível de identação*/
 {
-    if (current_node == NULL)
-        return; // empty node
-
-    if (current_node != NULL)
+  
+    if (current_node)
     {
         if (current_node->id)
         {
@@ -87,21 +84,30 @@ void print_ast(ast_node *current_node, int n) /*o parametro "n" serve para calcu
                     printf("..");
                 }
                 printf("%s", current_node->id);
-                if (current_node->value != NULL)
-                {
+                if (current_node->value)
                     printf("(%s)", current_node->value);
-                } 
-                /*if(annotation.type){
-                    printf(" - %s", annotation.type);
-                    if (annotation.parameters) {
-                        print_parameter_list(annotation.parameters);
-                    }
-                }*/
-
-                if(current_node->is_expr){
+                if(current_node->annotation.type){
                     printf(" - %s", current_node->annotation.type);
+                    if(current_node->annotation.parameters)
+                        print_table_params(current_node->annotation.parameters);
                 }
 
+                    /*
+                    element_t * elem;
+                    if(!strcmp(current_node->id,"Id")){ 
+                        elem = find_element(tables_root, current_node->value);
+                        if(elem){ 
+                            if(elem->is_func == 0)  printf(" - %s", current_node->annotation.type);
+                        }  
+                        
+                        if (current_node->annotation.parameters){ 
+                            printf(" - ");
+                            print_table_params(current_node->annotation.parameters);
+                        }
+                            
+                    }
+                    else printf(" - %s", current_node->annotation.type);
+                }*/
                 printf("\n");
 
                 if (current_node->first_child != NULL)

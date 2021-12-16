@@ -16,7 +16,7 @@ ast_node *newNode(char *type, char *value, int expr)
     new_node->id = (char *)strdup(type); // type -> "FuncDecl", "Id", ...
     new_node->first_child = NULL;
     new_node->sibling = NULL;
-    new_node->annotation_type = NULL;
+    new_node->annotation.type = NULL;
     new_node->is_expr = expr;
 
     /*
@@ -53,7 +53,7 @@ void add_sibling(ast_node *child, ast_node *new_sibling)
 
 
 void verify_types(ast_node * node){
-    if(strcmp((node->first_child)->annotation_type, "int") && strcmp(((node->first_child)->sibling)->annotation_type, "int")){
+    if(strcmp((node->first_child)->annotation.type, "int") && strcmp(((node->first_child)->sibling)->annotation.type, "int")){
         printf(node);
     }
 }
@@ -111,7 +111,7 @@ void print_ast(ast_node *current_node, int n)
                */
 
                 if(current_node->is_expr){
-                    printf(" - %s", current_node->annotation_type);
+                    printf(" - %s", current_node->annotation.type);
                 }
 
                 if (current_node->first_child != NULL)
