@@ -19,6 +19,9 @@ extern table_t * current_table;
 extern table_t * tables_root;
 extern char * expressions_aux;
 
+void annotate_parseargs(ast_node * node);
+void annotate_call(ast_node * node);
+void annotate_return(ast_node * node);
 void anotate_statement_token(ast_node * node);
 void anotate_unary_operator(ast_node * node);
 void anotate_relational_operator(ast_node * node);

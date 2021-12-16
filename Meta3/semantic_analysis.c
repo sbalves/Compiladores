@@ -2,7 +2,41 @@
 
 table_t * current_table = NULL;
 
+void annotate_parseargs(ast_node * node){
+    printf("annotating parseargs\n");
+    if(!strcmp((node->first_child)->annotation.type, "int") && !strcmp(((node->first_child)->sibling)->annotation.type, "int")){
+        node->annotation.type = strdup("int");
+    }
+    /*
+        ver erros quais n sei
+    */
+    printf("parseargs annoted\n");
+}
+
+void annotate_call(ast_node * node){
+    printf("annotating call\n");
+    element_t * elem = find_element(current_table, (node->first_child)->value);
+
+    if(!elem){
+        elem = find_element(tables_root, (node->first_child)->value);
+
+    }
+
+    node->annotation.type = strdup(lowercase(elem->type));
+    printf("call annoted\n");
+}
+
+void annotate_return(ast_node * node){
+    /*
+    if(node->first_child)
+        verificar se tem o mesmo tipo
+    
+    verificar se a func é void
+    */
+}
+
 void anotate_statement_token(ast_node * node){
+    printf("annotating statement_token\n");
     if(node){
         if(strcmp((node->first_child)->annotation.type, "bool")){
             printf("Erro\n");
@@ -11,62 +45,91 @@ void anotate_statement_token(ast_node * node){
             */
         }
     }
+    printf("tatement_token annoted\n");
 }
 
 void anotate_unary_operator(ast_node * node){
-    if(!strcmp((node->first_child)->annotation.type, "int") && !strcmp(((node->first_child)->sibling)->annotation.type, "int")){
-        node->annotation.type = strdup("int");
-    }
-    else if(!strcmp((node->first_child)->annotation.type, "float32") && !strcmp(((node->first_child)->sibling)->annotation.type, "float32")){
-        node->annotation.type = strdup("float32");
-    }
-    /*
+    printf("annotating unary_operator\n");
+
+    if(!strcmp(node->id, "Plus") || !strcmp(node->id, "Minus")){
+        if(!strcmp((node->first_child)->annotation.type, "int")){
+            node->annotation.type = strdup("int");
+        }
+        else if(!strcmp((node->first_child)->annotation.type, "float32")){
+            node->annotation.type = strdup("float32");
+        }
+    } 
+
+      /*
         Ver erros
     */
+    printf("unary_operator annoted\n");
 }
 
 void anotate_relational_operator(ast_node * node){
+    printf("annotating relational_operator\n");
     
     /*
         Ver erros
     */
 
     node->annotation.type = strdup("bool");
-
+    printf("relational_operator annotated\n");
 
 }
 
 void anotate_logical_operator(ast_node * node){
+   printf("annotating logical_operator \n");
     /*
         Ver erros
     */
     node->annotation.type = strdup("bool");
+    printf("logical_operator annotated\n");
 }
 
 void anotate_arithmetic_operator(ast_node * node){
-    if(!strcmp((node->first_child)->annotation.type, "int") && !strcmp(((node->first_child)->sibling)->annotation.type, "int")){
-        node->annotation.type = strdup("int");
+    printf("annotating arithmetic_operator \n");
+    //if((node->first_child)->annotation.type) printf("tem %s anot\n", (node->first_child)->id);
+    //if((node->first_child)->sibling->annotation.type == NULL) printf("%s n tem anot\n", (node->first_child)->sibling->id);
+
+    if(!strcmp(node->id, "Add") && !strcmp(node->id, "Sub")){
+        if(!strcmp((node->first_child)->annotation.type, "undef") || !strcmp(((node->first_child)->sibling)->annotation.type, "undef") ||
+        !strcmp((node->first_child)->annotation.type, "none") || !strcmp(((node->first_child)->sibling)->annotation.type, "none") ){
+            node->annotation.type = strdup("undef");
+        }
     }
-    else if(!strcmp((node->first_child)->annotation.type, "float32") && !strcmp(((node->first_child)->sibling)->annotation.type, "float32")){
-        node->annotation.type = strdup("float32");
+
+    if(!strcmp(node->id, "Add") && !strcmp(node->id, "Sub")){
+        if(!strcmp((node->first_child)->annotation.type, "undef") || !strcmp(((node->first_child)->sibling)->annotation.type, "undef")){
+            node->annotation.type = strdup("undef");
+        }
     }
+    node->annotation.type = strdup((node->first_child)->annotation.type);
+    
 
     /*
         Verificar erros:
         se for MOD - ver se ambos são inteiros (mod é sobre inteiros)
         ADD - podemos somar strings penso...not sure tho, confirmar com o andré
     */
-
+    printf("arithmetic_operator annotated\n");
 }
 
 void annotate_id(ast_node * node){
-    element_t * element = find_element(tables_root,node->value);
-    /* 
-        verificar se existe ou não. se não existir -> ERRO (n está definido)
-    */
+    printf("annotating id \n");
+    element_t * element = find_element(current_table,node->value);
+
+    if(!element){
+        element = find_element(tables_root, node->value);
+
+        /* 
+            verificar se existe ou não. se não existir -> ERRO (n está definido)
+        */
+    }
     
     node->annotation.type = strdup(lowercase(element->type));
-
+    node->annotation.parameters = element->list_params;
+    printf("id annotated\n");
 }
 
 
@@ -145,8 +208,6 @@ void vardecl_analysis(ast_node * node){
        return;
    }
 
-    node->annotation.type = strdup(lowercase((node->first_child)->id)); 
-
     add_element(current_table, new_elem);
 }
 
@@ -174,10 +235,32 @@ void semantic_analysis(ast_node * node){
             semantic_analysis(node->first_child);
         }
 
+        if(!strcmp(node->id, "Block")){
+            semantic_analysis(node->first_child);
+        }
+
+        if(!strcmp(node->id, "Print")){
+            semantic_analysis(node->first_child);
+        }
+
+        if(!strcmp(node->id, "Return")){
+            semantic_analysis(node->first_child);
+            annotate_return(node);
+        }
+
+        if(!strcmp(node->id, "Call")){
+            semantic_analysis(node->first_child);
+            annotate_call(node);
+        }
+
         if(!strcmp(node->id, "VarDecl")){
             vardecl_analysis(node);
         }
 
+        if(!strcmp(node->id, "ParseArgs")){
+            semantic_analysis(node->first_child);
+            annotate_parseargs(node);
+        }
         /*
         if(!strcmp(node->id, "Assign")){
             printf("Assignnnnn\n");

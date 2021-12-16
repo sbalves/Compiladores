@@ -12,7 +12,6 @@ element_t * find_table(table_t * table, char * function_name);
 table_t * create_table(char * id);
 char * lowercase(char * word);
 void print_table_params(parameter_t * list);
-void print_table_params(parameter_t * list);
 void print_elements(element_t * elem);
 void print_table_list(table_t * table);
 //void print_parameter_list(parameter_t * parameters);

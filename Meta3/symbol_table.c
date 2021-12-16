@@ -150,13 +150,16 @@ char * lowercase(char * word){
 }
 
 void print_table_params(parameter_t * list){
-    printf("(");
-    for(parameter_t * current = list; current; current = current->next_param){
-        printf("%s", lowercase(current->param_type));
-        if(current->next_param)
-            printf(",");
+    if(list){
+        printf("(");
+        for(parameter_t * current = list; current; current = current->next_param){
+            printf("%s", lowercase(current->param_type));
+            if(current->next_param)
+                printf(",");
+        }
+        printf(")");
     }
-    printf(")");
+    //printf("()");
 }
 
 void print_params(element_t * elem){

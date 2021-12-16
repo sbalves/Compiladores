@@ -1,0 +1,538 @@
+Node id: Program
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: RealLit
+its an realit RealLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: VarDecl
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Ne
+its an relational Ne
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Eq
+its an relational Eq
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: And
+its an logical And
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating logical_operator 
+logical_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Eq
+its an relational Eq
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Add
+its an arith Add
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Div
+its an arith Div
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Mul
+its an arith Mul
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Sub
+its an arith Sub
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Sub
+its an arith Sub
+Node id: Add
+its an arith Add
+Node id: Mod
+its an arith Mod
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Mod
+its an arith Mod
+Node id: Mul
+its an arith Mul
+Node id: Mod
+its an arith Mod
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Mod
+its an arith Mod
+Node id: Div
+its an arith Div
+Node id: Mod
+its an arith Mod
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Minus
+its an unary Minus
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+annotating unary_operator
+unary_operator annoted
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Plus
+its an unary Plus
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+annotating unary_operator
+unary_operator annoted
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Print
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+Node id: ParseArgs
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating parseargs
+parseargs annoted
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+===== Global Symbol Table =====
+i		float32
+f		int
+s		bool
+b		string
+main	()	none
+
+===== Function main() Symbol Table =====
+return		none
+i		int
+f		float32
+s		string
+b		bool
+
+Program
+..VarDecl
+....Float32
+....Id(i)
+..VarDecl
+....Int
+....Id(f)
+..VarDecl
+....Bool
+....Id(s)
+..VarDecl
+....String
+....Id(b)
+..FuncDecl
+....FuncHeader
+......Id(main)
+......FuncParams
+....FuncBody
+......Assign - float32
+........Id(i) - float32
+........RealLit(1.1) - float32
+......VarDecl
+........Int
+........Id(i)
+......Assign - int
+........Id(i) - int
+........IntLit(1) - int
+......VarDecl
+........Float32
+........Id(f)
+......VarDecl
+........String
+........Id(s)
+......VarDecl
+........Bool
+........Id(b)
+......Assign - bool
+........Id(b) - bool
+........Ne - bool
+..........Id(i) - int
+..........Id(i) - int
+......Assign - bool
+........Id(b) - bool
+........Eq - bool
+..........Id(f) - float32
+..........Id(f) - float32
+......Assign - bool
+........Id(b) - bool
+........And - bool
+..........Id(b) - bool
+..........Id(b) - bool
+......Assign - bool
+........Id(b) - bool
+........Eq - bool
+..........Id(b) - bool
+..........Id(b) - bool
+......Assign - int
+........Id(i) - int
+........Add - int
+..........Id(i) - int
+..........Id(i) - int
+......Assign - int
+........Id(i) - int
+........Div - int
+..........Id(i) - int
+..........Id(i) - int
+......Assign - float32
+........Id(f) - float32
+........Mul - float32
+..........Id(f) - float32
+..........Id(f) - float32
+......Assign - float32
+........Id(f) - float32
+........Sub - float32
+..........Id(f) - float32
+..........Id(f) - float32
+......Assign - int
+........Id(i) - int
+........Sub - int
+..........Add - int
+............Mod - int
+..............Id(i) - int
+..............Id(i) - int
+............Mod - int
+..............Mul - int
+................Mod - int
+..................Id(i) - int
+..................Id(i) - int
+................Id(i) - int
+..............Id(i) - int
+..........Mod - int
+............Div - int
+..............Mod - int
+................Id(i) - int
+................Id(i) - int
+..............Id(i) - int
+............Id(i) - int
+......Assign - float32
+........Id(f) - float32
+........Minus - float32
+..........Id(f) - float32
+......Assign - float32
+........Id(f) - float32
+........Plus - float32
+..........Id(f) - float32
+......Print
+........Id(s) - string
+......ParseArgs - int
+........Id(i) - int
+........IntLit(1) - int

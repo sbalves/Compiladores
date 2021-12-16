@@ -3,9 +3,9 @@
 //const char expressions_aux[50][8] = {"Call", "Id", , , "Minus", "Plus", "IntLit", "RealLit"};
 
 const char * statement_token[] = {"For", "If"};
-const char * unary_operator[] = {"Minus", "Plus", "Not"};
+const char * unary_operator[] = {"Minus", "Plus"};
 const char * realtional_operator[] = {"Lt", "Gt", "Eq", "Ne", "Le", "Ge"};
-const char * logical_operators[] = {"Or", "And"};
+const char * logical_operators[] = {"Or", "And", "Not"};
 const char * arithmentic_operators[] = {"Add", "Mul", "Sub", "Div", "Mod", "Assign"};
 
 bool is_statement_token(char * id){
