@@ -1,0 +1,15 @@
+package main;
+
+func fcb() int {};
+
+func fcbx() int {
+    var fafcb int;
+    fafcb = 132;
+
+    fcb();
+
+    return fafcb;
+}
+
+
+var ia int;

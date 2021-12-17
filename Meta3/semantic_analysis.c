@@ -3,27 +3,29 @@
 table_t * current_table = NULL;
 
 void annotate_parseargs(ast_node * node){
-    printf("annotating parseargs\n");
+    //printf("annotating parseargs\n");
     if(!strcmp((node->first_child)->annotation.type, "int") && !strcmp(((node->first_child)->sibling)->annotation.type, "int")){
         node->annotation.type = strdup("int");
     }
     /*
         ver erros quais n sei
     */
-    printf("parseargs annoted\n");
+   // printf("parseargs annoted\n");
 }
 
 void annotate_call(ast_node * node){
-    printf("annotating call\n");
-    element_t * elem = find_element(current_table, (node->first_child)->value);
+    //printf("annotating call\n");
+    element_t * elem = find_element(current_table->list_elems, (node->first_child)->value);
 
     if(!elem){
-        elem = find_element(tables_root, (node->first_child)->value);
+        //printf("ver na global\n");
+        elem = find_element(tables_root->list_elems, (node->first_child)->value);
 
     }
 
-    node->annotation.type = strdup(lowercase(elem->type));
-    printf("call annoted\n");
+    if(strcmp((elem->type), "none"))
+        node->annotation.type = strdup(lowercase(elem->type));
+    //printf("call annoted\n");
 }
 
 void annotate_return(ast_node * node){
@@ -36,8 +38,9 @@ void annotate_return(ast_node * node){
 }
 
 void anotate_statement_token(ast_node * node){
-    printf("annotating statement_token\n");
-    if(node){
+    //printf("annotating statement_token\n");
+    //if((node->first_child)) printf("has a child\n");
+    if((node->first_child)->annotation.type){
         if(strcmp((node->first_child)->annotation.type, "bool")){
             printf("Erro\n");
             /*
@@ -45,11 +48,11 @@ void anotate_statement_token(ast_node * node){
             */
         }
     }
-    printf("tatement_token annoted\n");
+    //printf("tatement_token annoted\n");
 }
 
 void anotate_unary_operator(ast_node * node){
-    printf("annotating unary_operator\n");
+    //printf("annotating unary_operator\n");
 
     if(!strcmp(node->id, "Plus") || !strcmp(node->id, "Minus")){
         if(!strcmp((node->first_child)->annotation.type, "int")){
@@ -63,32 +66,32 @@ void anotate_unary_operator(ast_node * node){
       /*
         Ver erros
     */
-    printf("unary_operator annoted\n");
+    //printf("unary_operator annoted\n");
 }
 
 void anotate_relational_operator(ast_node * node){
-    printf("annotating relational_operator\n");
+    //printf("annotating relational_operator\n");
     
     /*
         Ver erros
     */
 
     node->annotation.type = strdup("bool");
-    printf("relational_operator annotated\n");
+    //printf("relational_operator annotated\n");
 
 }
 
 void anotate_logical_operator(ast_node * node){
-   printf("annotating logical_operator \n");
+   //printf("annotating logical_operator \n");
     /*
         Ver erros
     */
     node->annotation.type = strdup("bool");
-    printf("logical_operator annotated\n");
+    //printf("logical_operator annotated\n");
 }
 
 void anotate_arithmetic_operator(ast_node * node){
-    printf("annotating arithmetic_operator \n");
+    //printf("annotating arithmetic_operator \n");
     //if((node->first_child)->annotation.type) printf("tem %s anot\n", (node->first_child)->id);
     //if((node->first_child)->sibling->annotation.type == NULL) printf("%s n tem anot\n", (node->first_child)->sibling->id);
 
@@ -112,15 +115,15 @@ void anotate_arithmetic_operator(ast_node * node){
         se for MOD - ver se ambos são inteiros (mod é sobre inteiros)
         ADD - podemos somar strings penso...not sure tho, confirmar com o andré
     */
-    printf("arithmetic_operator annotated\n");
+    //printf("arithmetic_operator annotated\n");
 }
 
 void annotate_id(ast_node * node){
-    printf("annotating id \n");
-    element_t * element = find_element(current_table,node->value);
+    //printf("annotating id %s\n",node->value);
+    element_t * element = find_element(current_table->list_elems,node->value);
 
     if(!element){
-        element = find_element(tables_root, node->value);
+        element = find_element(tables_root->list_elems, node->value);
 
         /* 
             verificar se existe ou não. se não existir -> ERRO (n está definido)
@@ -129,7 +132,7 @@ void annotate_id(ast_node * node){
     
     node->annotation.type = strdup(lowercase(element->type));
     node->annotation.parameters = element->list_params;
-    printf("id annotated\n");
+    //printf("id annotated\n");
 }
 
 
@@ -151,6 +154,13 @@ void funcdecl_analysis(ast_node * node){
         return_type_table= strdup(return_type->id);
 
         params = return_type->sibling;
+    }
+
+    table_t * table = find_table(tables_root->list_elems, ((node->first_child)->first_child)->value);
+    if(table){
+        //printf("Line %s, col %d: Symbol %s already defined", (node->first_child)->line, (node->first_child)->col, (node->first_child)->value);
+        //free_elem()
+        return;
     }
 
     // criar tabela da função 
@@ -203,6 +213,12 @@ void vardecl_analysis(ast_node * node){
     /* 
     verificar se já foi declarado dentro do mesmo scope
     */
+    element_t * elem = find_element(current_table, (node->first_child)->value);
+    if(elem){
+        //printf("Line %s, col %d: Symbol %s already defined", (node->first_child)->line, (node->first_child)->col, (node->first_child)->value);
+        //free_elem()
+        return;
+    }
 
    if(!new_elem){
        return;
@@ -217,7 +233,7 @@ void semantic_analysis(ast_node * node){
 
 
     if(node != NULL){
-        printf("Node id: %s\n", node->id);
+        //printf("Node id: %s\n", node->id);
         //printf("Node id: %s\n", (node->first_child)->id);
 
 
@@ -228,6 +244,8 @@ void semantic_analysis(ast_node * node){
         }
 
         if(!strcmp(node->id, "FuncDecl")){
+        //printf("in a funcdecl: %s\n", node->value);
+            //if(node->sibling) printf("Irmão: %s\n", node->sibling->id);
             funcdecl_analysis(node);
         }
 
@@ -249,6 +267,7 @@ void semantic_analysis(ast_node * node){
         }
 
         if(!strcmp(node->id, "Call")){
+            //printf("its a call\n");
             semantic_analysis(node->first_child);
             annotate_call(node);
         }
@@ -261,62 +280,54 @@ void semantic_analysis(ast_node * node){
             semantic_analysis(node->first_child);
             annotate_parseargs(node);
         }
-        /*
-        if(!strcmp(node->id, "Assign")){
-            printf("Assignnnnn\n");
-            semantic_analysis(node->first_child);
-            anotate_arithmetic_operator(node);
-        }*/
-
-
-
+      
         if(is_arithmetic_operator(node->id)){
-            printf("its an arith %s\n", node->id);
+            //printf("its an arith %s\n", node->id);
             semantic_analysis(node->first_child);
             anotate_arithmetic_operator(node);
         }
 
         if(is_logical_operator(node->id)){
-            printf("its an logical %s\n", node->id);
+            //printf("its an logical %s\n", node->id);
             semantic_analysis(node->first_child);
             anotate_logical_operator(node);
         }
 
         if(is_realtional_operator(node->id)){
-            printf("its an relational %s\n", node->id);
+            //printf("its an relational %s\n", node->id);
             semantic_analysis(node->first_child);
             anotate_relational_operator(node);
         }
 
         if(is_unary_operator(node->id)){
-            printf("its an unary %s\n", node->id);
+            //printf("its an unary %s\n", node->id);
             semantic_analysis(node->first_child);
             anotate_unary_operator(node);
         }
 
         if(is_statement_token(node->id)){
-            printf("its an statement_token %s\n", node->id);
+            //printf("its an statement_token %s\n", node->id);
             semantic_analysis(node->first_child);
             anotate_statement_token(node);
         }
 
         if(!strcmp(node->id, "IntLit")){
-            printf("its an intlit %s\n", node->id);
+            //printf("its an intlit %s\n", node->id);
             node->annotation.type = strdup("int"); 
         } 
 
         if(!strcmp(node->id, "RealLit")){
-            printf("its an realit %s\n", node->id);
+            //printf("its an realit %s\n", node->id);
             node->annotation.type = strdup("float32"); 
         }   
 
         if(!strcmp(node->id, "Id")){
-            printf("its an id %s\n", node->id);
+            //printf("its an id %s\n", node->id);
             annotate_id(node); 
         }   
 
         if(node->sibling != NULL)
             semantic_analysis(node->sibling);
     }
-    printf("is null\n");
+    //printf("is null\n");
 }

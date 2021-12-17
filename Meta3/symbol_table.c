@@ -1,30 +1,27 @@
 #include "symbol_table.h"
 
 
-
-element_t * find_element(table_t * table, char * id){
-    for(table_t * current_table = table; current_table; current_table = current_table->next_table){
-        for(element_t * current_elem = current_table->list_elems; current_elem; current_elem = current_elem->next_elem){
-            if(!strcmp(current_elem->id, id))
-                return current_elem;
-        }
+element_t * find_element(element_t * elem_root, char * id){
+    for(element_t * current_elem = elem_root; current_elem; current_elem = current_elem->next_elem){
+        if(!strcmp(current_elem->id, id))
+            return current_elem;
     }
+
     return NULL;
 }
 
 
-element_t * find_table(table_t * table, char * function_name){
-    element_t * element_func = NULL;
-    for(element_t * current = table->list_elems; current; current = current->next_elem){
+table_t * find_table(table_t * table, char * function_name){
+    for(table_t * current = table; current; current = current->next_table){
         if(!strcmp(current->id, function_name)){
-            element_func = current;
+            return current;
         }
     } 
     //return "erro"; //ver depois :S
     /*
     VERIFICAR ERRO: quando o elemento procurado n se encotra na tabela global !!!!
     */
-    return element_func;
+    return NULL;
 }
 
 void find_params(parameter_t * param, ast_node * node, table_t * table){
@@ -150,15 +147,15 @@ char * lowercase(char * word){
 }
 
 void print_table_params(parameter_t * list){
-    if(list){
-        printf("(");
-        for(parameter_t * current = list; current; current = current->next_param){
-            printf("%s", lowercase(current->param_type));
-            if(current->next_param)
-                printf(",");
-        }
-        printf(")");
+    
+    printf("(");
+    for(parameter_t * current = list; current; current = current->next_param){
+        printf("%s", lowercase(current->param_type));
+        if(current->next_param)
+            printf(",");
     }
+    printf(")");
+
     //printf("()");
 }
 
@@ -199,7 +196,7 @@ void print_table_list(table_t * table){
         
         for(table_t * current = table->next_table; current; current = current->next_table){
             printf("\n===== Function %s", current->id);
-            print_params(find_table(tables_root, current->id));
+            print_params(find_element(tables_root->list_elems, current->id));
             printf(" Symbol Table =====\n");
             print_elements(current->list_elems);
             printf("\n");

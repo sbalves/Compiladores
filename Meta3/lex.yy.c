@@ -2405,7 +2405,7 @@ int main(int argc, char* argv[])
         semantic_analysis(program_root);
         print_table_list(tables_root);
         printf("\n");
-        print_ast(program_root, 0);
+        print_ast1(program_root, 0);
     }
 
     else if(argc == 1){

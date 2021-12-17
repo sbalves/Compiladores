@@ -4,6 +4,7 @@ Node id: VarDecl
 Node id: VarDecl
 Node id: VarDecl
 Node id: FuncDecl
+in a funcdecl: (null)
 Node id: FuncBody
 Node id: NULL
 Node id: Assign

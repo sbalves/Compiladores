@@ -1,0 +1,9 @@
+// ./gocompiler < Comp2021/meta3/teste_funcoes.dgo | sort
+
+package main;
+
+func func4(a int, a float32, b bool) int {
+	var vd bool;;
+
+	a=a+1;
+}

@@ -1,0 +1,106 @@
+===== Global Symbol Table =====
+a1	float32
+a2	float32
+b1	float32
+b2	float32
+sayHello	()	none
+calc	(float32)	float32
+nothing	(float32)	none
+justReturn	()	float32
+main	()	none
+
+===== Function sayHello() Symbol Table =====
+return		none
+
+===== Function calc(float32) Symbol Table =====
+return		float32
+p		float32	param
+
+===== Function nothing(float32) Symbol Table =====
+return		none
+p		float32	param
+
+===== Function justReturn() Symbol Table =====
+return		float32
+
+===== Function main() Symbol Table =====
+return		none
+c1		int
+c2		float32
+
+Program
+..VarDecl
+....Float32
+....Id(a1)
+..VarDecl
+....Float32
+....Id(a2)
+..VarDecl
+....Float32
+....Id(b1)
+..VarDecl
+....Float32
+....Id(b2)
+..FuncDecl
+....FuncHeader
+......Id(sayHello)
+......FuncParams
+....FuncBody
+......Print
+........StrLit("Hello")
+..FuncDecl
+....FuncHeader
+......Id(calc)
+......Float32
+......FuncParams
+........ParamDecl
+..........Float32
+..........Id(p)
+....FuncBody
+......Assign - int
+........Id(a1) - float32
+........IntLit(1) - int
+......Return
+........Mul - float32
+..........Id(a1) - float32
+..........Id(p) - float32
+..FuncDecl
+....FuncHeader
+......Id(nothing)
+......FuncParams
+........ParamDecl
+..........Float32
+..........Id(p)
+....FuncBody
+......Assign - float32
+........Id(a2) - float32
+........Id(p) - float32
+..FuncDecl
+....FuncHeader
+......Id(justReturn)
+......Float32
+......FuncParams
+....FuncBody
+......Return
+........RealLit(1.1) - float32
+..FuncDecl
+....FuncHeader
+......Id(main)
+......FuncParams
+....FuncBody
+......VarDecl
+........Int
+........Id(c1)
+......Assign - int
+........Id(c1) - int
+........IntLit(132) - int
+......VarDecl
+........Float32
+........Id(c2)
+......Assign - float32
+........Id(c2) - float32
+........Add - float32
+..........Id(c1) - int
+..........Mul - float32
+............Id(b1) - float32
+............Id(b2) - float32

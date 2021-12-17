@@ -17,11 +17,15 @@ Node id: VarDecl
 Node id: VarDecl
 Node id: VarDecl
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: VarDecl
@@ -49,6 +53,8 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: Return
@@ -67,6 +73,8 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: VarDecl
@@ -81,6 +89,8 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: VarDecl
@@ -95,6 +105,8 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: If
@@ -102,12 +114,14 @@ its an statement_token If
 Node id: Gt
 its an relational Gt
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Id
 its an id Id
@@ -119,12 +133,14 @@ annotating relational_operator
 relational_operator annotated
 Node id: Block
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Return
 Node id: Id
@@ -143,12 +159,14 @@ annotating statement_token
 tatement_token annoted
 Node id: Return
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -156,33 +174,41 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 Node id: Print
 Node id: Id
@@ -285,60 +311,74 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 Node id: Assign
 its an arith Assign
@@ -371,12 +411,14 @@ is null
 annotating arithmetic_operator 
 arithmetic_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -389,12 +431,14 @@ arithmetic_operator annotated
 Node id: If
 its an statement_token If
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Block
 Node id: Print
@@ -405,6 +449,7 @@ id annotated
 is null
 Node id: Return
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -426,6 +471,7 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -454,12 +500,14 @@ is null
 annotating arithmetic_operator 
 arithmetic_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -471,12 +519,14 @@ annotating arithmetic_operator
 arithmetic_operator annotated
 Node id: Return
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -492,6 +542,8 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
+Irmão: FuncDecl
 Node id: FuncBody
 Node id: NULL
 Node id: VarDecl
@@ -559,6 +611,7 @@ its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -568,48 +621,40 @@ its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
-call annoted
-Node id: Id
-its an id Id
-annotating id 
-id annotated
-Node id: Id
-its an id Id
-annotating id 
-id annotated
-is null
-is null
-is null
-is null
-annotating call
+ver na global
 call annoted
 Node id: Id
 its an id Id
@@ -623,14 +668,31 @@ is null
 is null
 is null
 is null
+annotating call
+ver na global
+call annoted
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+is null
+is null
+is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -692,12 +754,14 @@ Node id: Block
 Node id: For
 its an statement_token For
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Block
 Node id: Assign
@@ -719,12 +783,14 @@ id annotated
 Node id: Div
 its an arith Div
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: IntLit
 its an intlit IntLit
@@ -737,6 +803,7 @@ is null
 annotating arithmetic_operator 
 arithmetic_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -763,6 +830,7 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -876,12 +944,14 @@ its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -946,6 +1016,7 @@ is null
 is null
 is null
 Node id: FuncDecl
+in a funcdecl: (null)
 Node id: FuncBody
 Node id: NULL
 Node id: Assign
@@ -1089,12 +1160,14 @@ is null
 annotating relational_operator
 relational_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1106,78 +1179,93 @@ its an statement_token If
 Node id: Gt
 its an relational Gt
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
-call annoted
-Node id: Id
-its an id Id
-annotating id 
-id annotated
-is null
-is null
-is null
-annotating call
+ver na global
 call annoted
 Node id: Id
 its an id Id
 annotating id 
 id annotated
-Node id: Call
+is null
+is null
+is null
+annotating call
+ver na global
+call annoted
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 Node id: IntLit
 its an intlit IntLit
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -1187,34 +1275,41 @@ its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Id
 its an id Id
@@ -1227,22 +1322,27 @@ is null
 is null
 is null
 annotating call
-call annoted
-Node id: Call
-Node id: Id
-its an id Id
-annotating id 
-id annotated
-is null
-annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
+call annoted
+Node id: Call
+its a call
+Node id: Id
+its an id Id
+annotating id 
+id annotated
+is null
+annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1251,6 +1351,7 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1264,6 +1365,7 @@ its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -1291,6 +1393,7 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1311,12 +1414,14 @@ its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1350,6 +1455,7 @@ its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -1359,6 +1465,7 @@ its an arith Add
 Node id: IntLit
 its an intlit IntLit
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -1368,12 +1475,14 @@ its an arith Add
 Node id: IntLit
 its an intlit IntLit
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1382,12 +1491,14 @@ arithmetic_operator annotated
 Node id: Add
 its an arith Add
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: RealLit
 its an realit RealLit
@@ -1399,6 +1510,7 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1455,17 +1567,20 @@ is null
 annotating arithmetic_operator 
 arithmetic_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Id
 its an id Id
@@ -1475,6 +1590,7 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1485,6 +1601,7 @@ is null
 annotating arithmetic_operator 
 arithmetic_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -1514,12 +1631,14 @@ id annotated
 Node id: Div
 its an arith Div
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: RealLit
 its an realit RealLit
@@ -1532,20 +1651,24 @@ is null
 annotating arithmetic_operator 
 arithmetic_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1554,8 +1677,10 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
@@ -1573,12 +1698,14 @@ arithmetic_operator annotated
 Node id: Add
 its an arith Add
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: RealLit
 its an realit RealLit
@@ -1587,30 +1714,35 @@ is null
 annotating arithmetic_operator 
 arithmetic_operator annotated
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 Node id: Or
 its an logical Or
 Node id: And
 its an logical And
 Node id: Call
+its a call
 Node id: Id
 its an id Id
 annotating id 
 id annotated
 is null
 annotating call
+ver na global
 call annoted
 Node id: Id
 its an id Id
@@ -1635,6 +1767,7 @@ is null
 is null
 is null
 annotating call
+ver na global
 call annoted
 is null
 is null
@@ -1887,17 +2020,17 @@ Program
 ......If
 ........Gt - bool
 ..........Call - float32
-............Id(fcd) - float32
+............Id(fcd) - ()
 ..........Id(fafcg) - float32
 ........Block
-..........Call - none
-............Id(fca) - none
+..........Call
+............Id(fca) - ()
 ..........Return
 ............Id(iafcg) - int
 ........Block
 ......Return
 ........Call - int
-..........Id(fcb) - int
+..........Id(fcb) - ()
 ..FuncDecl
 ....FuncHeader
 ......Id(fch)
@@ -1914,11 +2047,11 @@ Program
 ..........Id(safch)
 ....FuncBody
 ......Call - int
-........Id(fcg) - int(int,float32)
+........Id(fcg) - (int,float32)
 ........Call - int
-..........Id(fcb) - int
+..........Id(fcb) - ()
 ........Call - float32
-..........Id(fcd) - float32
+..........Id(fcd) - ()
 ......Print
 ........Id(safch) - string
 ......If
@@ -1963,17 +2096,17 @@ Program
 ..........Id(safci)
 ....FuncBody
 ......Call - float32
-........Id(fch) - float32(int,float32,string)
+........Id(fch) - (int,float32,string)
 ........Call - int
-..........Id(fcg) - int(int,float32)
+..........Id(fcg) - (int,float32)
 ..........Call - int
-............Id(fcb) - int
+............Id(fcb) - ()
 ..........Call - float32
-............Id(fcd) - float32
+............Id(fcd) - ()
 ........Call - float32
-..........Id(fcd) - float32
+..........Id(fcd) - ()
 ........Call - string
-..........Id(fce) - string
+..........Id(fce) - ()
 ......Assign - int
 ........Id(iafci) - int
 ........Add - int
@@ -1983,16 +2116,16 @@ Program
 ..............IntLit(12) - int
 ............Id(ic) - int
 ..........Call - int
-............Id(fcb) - int
+............Id(fcb) - ()
 ......If
 ........Call - bool
-..........Id(fcf) - bool
+..........Id(fcf) - ()
 ........Block
 ..........Print
 ............Id(safci) - string
 ..........Return
 ............Call - float32
-..............Id(fch) - float32(int,float32,string)
+..............Id(fch) - (int,float32,string)
 ..............Id(ia) - int
 ..............Id(fa) - float32
 ..............Id(sa) - string
@@ -2004,10 +2137,10 @@ Program
 ................Id(fa) - float32
 ................Id(fbfci) - float32
 ..............Call - float32
-................Id(fcd) - float32
+................Id(fcd) - ()
 ..........Return
 ............Call - float32
-..............Id(fcd) - float32
+..............Id(fcd) - ()
 ..FuncDecl
 ....FuncHeader
 ......Id(fcj)
@@ -2050,17 +2183,17 @@ Program
 ........Gt - bool
 ..........Id(fcjia) - int
 ..........Call - int
-............Id(fcg) - int(int,float32)
+............Id(fcg) - (int,float32)
 ............Id(fcjia) - int
 ............Call - float32
-..............Id(fci) - float32(int,int,float32,float32,string)
+..............Id(fci) - (int,int,float32,float32,string)
 ..............Call - int
-................Id(fcb) - int
+................Id(fcb) - ()
 ..............Id(fcjib) - int
 ..............Call - float32
-................Id(fch) - float32(int,float32,string)
+................Id(fch) - (int,float32,string)
 ................Call - int
-..................Id(fcb) - int
+..................Id(fcb) - ()
 ................Id(fb) - float32
 ................Id(sa) - string
 ..............Id(fd) - float32
@@ -2083,7 +2216,7 @@ Program
 ................Block
 ..................For
 ....................Call - bool
-......................Id(fcf) - bool
+......................Id(fcf) - ()
 ....................Block
 ......................Assign - int
 ........................Id(fcjib) - int
@@ -2093,10 +2226,10 @@ Program
 ..............................Id(fcjia) - int
 ..............................Div - int
 ................................Call - int
-..................................Id(fcb) - int
+..................................Id(fcb) - ()
 ................................IntLit(12) - int
 ............................Call - int
-..............................Id(fcg) - int(int,float32)
+..............................Id(fcg) - (int,float32)
 ..............................Add - int
 ................................Id(ia) - int
 ................................Id(iafcj) - int
@@ -2124,7 +2257,7 @@ Program
 ..................And - bool
 ....................Id(ba) - bool
 ....................Call - bool
-......................Id(fcf) - bool
+......................Id(fcf) - ()
 ..................And - bool
 ....................Id(bd) - bool
 ....................Not - bool
@@ -2180,48 +2313,48 @@ Program
 ............Id(ia) - int
 ............Id(ib) - int
 ..........Call - bool
-............Id(fcf) - bool
+............Id(fcf) - ()
 ........Block
 ..........If
 ............Gt - bool
 ..............Call - int
-................Id(fcb) - int
+................Id(fcb) - ()
 ..............Call - int
-................Id(fcj) - int(int,int,float32,float32,bool)
+................Id(fcj) - (int,int,float32,float32,bool)
 ................Call - int
-..................Id(fcg) - int(int,float32)
+..................Id(fcg) - (int,float32)
 ..................Call - int
-....................Id(fcb) - int
+....................Id(fcb) - ()
 ..................Id(fe) - float32
 ................Id(mia) - int
 ................Call - float32
-..................Id(fci) - float32(int,int,float32,float32,string)
+..................Id(fci) - (int,int,float32,float32,string)
 ..................Call - int
-....................Id(fcg) - int(int,float32)
+....................Id(fcg) - (int,float32)
 ....................Call - int
-......................Id(fcb) - int
+......................Id(fcb) - ()
 ....................Call - float32
-......................Id(fcd) - float32
+......................Id(fcd) - ()
 ..................IntLit(123) - int
 ..................Call - float32
-....................Id(fch) - float32(int,float32,string)
+....................Id(fch) - (int,float32,string)
 ....................Id(ia) - int
 ....................Call - float32
-......................Id(fcd) - float32
+......................Id(fcd) - ()
 ....................Call - string
-......................Id(fce) - string
+......................Id(fce) - ()
 ..................Call - float32
-....................Id(fcd) - float32
+....................Id(fcd) - ()
 ..................Id(sc) - string
 ................Call - float32
-..................Id(fcd) - float32
+..................Id(fcd) - ()
 ................Call - bool
-..................Id(fcf) - bool
+..................Id(fcf) - ()
 ............Block
 ..............Assign - int
 ................Id(mib) - int
 ................Call - int
-..................Id(fcj) - int(int,int,float32,float32,bool)
+..................Id(fcj) - (int,int,float32,float32,bool)
 ..................IntLit(12) - int
 ..................Id(ia) - int
 ..................Id(fa) - float32
@@ -2233,24 +2366,24 @@ Program
 ................Add - int
 ..................Id(ia) - int
 ..................Call - int
-....................Id(fcb) - int
+....................Id(fcb) - ()
 ......Assign - int
 ........Id(mia) - int
 ........Add - int
 ..........Id(mib) - int
 ..........Call - int
-............Id(fcj) - int(int,int,float32,float32,bool)
+............Id(fcj) - (int,int,float32,float32,bool)
 ............Add - int
 ..............IntLit(123) - int
 ..............Call - int
-................Id(fcg) - int(int,float32)
+................Id(fcg) - (int,float32)
 ................Add - int
 ..................IntLit(456) - int
 ..................Call - int
-....................Id(fcb) - int
+....................Id(fcb) - ()
 ................Add - float32
 ..................Call - float32
-....................Id(fcd) - float32
+....................Id(fcd) - ()
 ..................RealLit(123.321) - float32
 ............Add - int
 ..............Sub - int
@@ -2265,12 +2398,12 @@ Program
 ..................Id(id) - int
 ..................Id(ie) - int
 ................Call - int
-..................Id(fcg) - int(int,float32)
+..................Id(fcg) - (int,float32)
 ..................Call - int
-....................Id(fcb) - int
+....................Id(fcb) - ()
 ..................Id(fa) - float32
 ............Call - float32
-..............Id(fci) - float32(int,int,float32,float32,string)
+..............Id(fci) - (int,int,float32,float32,string)
 ..............Add - int
 ................Id(ia) - int
 ................Id(ib) - int
@@ -2279,26 +2412,26 @@ Program
 ................Id(fa) - float32
 ................Div - float32
 ..................Call - float32
-....................Id(fcd) - float32
+....................Id(fcd) - ()
 ..................RealLit(.1e12) - float32
 ..............Call - float32
-................Id(fcd) - float32
+................Id(fcd) - ()
 ..............Call - string
-................Id(fce) - string
+................Id(fce) - ()
 ............Call - float32
-..............Id(fch) - float32(int,float32,string)
+..............Id(fch) - (int,float32,string)
 ..............Add - int
 ................IntLit(312) - int
 ................IntLit(12) - int
 ..............Add - float32
 ................Call - float32
-..................Id(fcd) - float32
+..................Id(fcd) - ()
 ................RealLit(.1e23) - float32
 ..............Call - string
-................Id(fce) - string
+................Id(fce) - ()
 ............Or - bool
 ..............And - bool
 ................Call - bool
-..................Id(fcf) - bool
+..................Id(fcf) - ()
 ................Id(ba) - bool
 ..............Id(bb) - bool

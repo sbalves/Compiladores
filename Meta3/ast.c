@@ -69,6 +69,44 @@ void print_annotation(ast_node *node){
 */
 
 
+void print_node(const char *id, char * value, annotation_t annotation, int indent_level) {
+    if(strcmp(id,"NULL")){
+        for (int i = 0; i < indent_level; ++i)
+            printf("..");
+        printf("%s", id);
+        if (value) printf("(%s)", value);
+        if (annotation.type) {
+            element_t * elem;
+            
+            if(!strcmp(id, "Id")){ 
+                elem = find_element(tables_root->list_elems, value);
+                if(elem){   
+                    //printf("chegou aqui: (%s)(%s)\n", id, value);
+                    if(elem->is_func){ 
+                        printf(" - ");
+                        print_table_params(annotation.parameters);
+                        printf("\n");
+                        return;
+                    }
+                }
+                printf(" - %s", annotation.type);
+                printf("\n");
+                return;
+            }
+            printf(" - %s", annotation.type);
+        }
+        printf("\n");
+    }
+}
+
+void print_ast1(ast_node *node, int indent_level) {
+    print_node(node->id, node->value, node->annotation, indent_level);
+    if (node->first_child != NULL)
+        print_ast1(node->first_child, indent_level + 1);
+    if (node->sibling != NULL)
+        print_ast1(node->sibling, indent_level);
+}
+
 
 void print_ast(ast_node *current_node, int n) /*o parametro "n" serve para calcular o nível de identação*/
 {

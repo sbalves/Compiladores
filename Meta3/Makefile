@@ -1,15 +1,14 @@
-FILENAME1 = gocompiler.l
+FILENAME = gocompiler.l
 FILENAME2 = gocompiler.y
-FILENAME3 = ast.c
-FILENAME4 = ast.h
-FILENAME5 = structures.h
-FILENAME6 = semantic_analysis.c
-FILENAME7 = semantic_analysis.h
-FILENAME8 = auxiliar_functions.c
-FILENAME9 = auxiliar_functions.h
+FILENAME3 = structures.h
+FILENAME4 = semantic_analysis.c
+FILENAME5 = semantic_analysis.h
+FILENAME6 = auxiliar_functions.c
+FILENAME7 = auxiliar_functions.h
+FILENAME8 = ast.c
+FILENAME9 = ast.h
 FILENAME10 = symbol_table.c
 FILENAME11 = symbol_table.h
-
 EXE = gocompiler
 ZIP := zip
 
@@ -30,11 +29,11 @@ else
 	NORM 	:= ""
 endif
 
-exe: ${FILENAME1} ${FILENAME2}
+exe: ${FILENAME} ${FILENAME2}
 		@echo "$(GREEN)$(BOLD)--------------------$(NORM)$(RESET)$(GREEN)COMPILING$(NORM)$(RESET)$(GREEN)$(BOLD)---------------------$(NORM)$(RESET)$(BLUE)"
-		lex ${FILENAME1}
+		lex ${FILENAME}
 		yacc -y -d -v -t ${FILENAME2}
-		cc -o ${EXE} -ggdb3 y.tab.c lex.yy.c ast.c semantic_analysis.c auxiliar_functions.c symbol_table.c
+		cc -o ${EXE} -ggdb3 y.tab.c lex.yy.c semantic_analysis.c ast.c symbol_table.c auxiliar_functions.c
 		#valgrind --leak-check=full --show-leak-kinds=all --log-file="valgrind.txt" ./gocompiler < meta3_testes/logical_operators.dgo
 		@echo "$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)$(GREEN)Done$(NORM)$(RESET)$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)"
 
@@ -44,5 +43,5 @@ clear:
 
 zip:
 	@echo "$(GREEN)$(BOLD)--------------$(NORM)$(RESET)$(GREEN)Compressing $(EXE)$(NORM)$(RESET)$(GREEN)$(BOLD)-------------$(NORM)$(RESET)$(BLUE)"
-	zip -r $(EXE).zip ${FILENAME1} ${FILENAME2} ${FILENAME3} ${FILENAME4} ${FILENAME5} ${FILENAME6} ${FILENAME7} ${FILENAME8} ${FILENAME9} ${FILENAME10} ${FILENAME11}
+	zip -r $(EXE).zip ${FILENAME} ${FILENAME2} ${FILENAME3} ${FILENAME4} ${FILENAME5} ${FILENAME6} ${FILENAME7} ${FILENAME8} ${FILENAME9} ${FILENAME10} ${FILENAME11}        
 	@echo "$(GREEN)$(BOLD)-----------------------$(NORM)$(RESET)$(GREEN)Done$(NORM)$(RESET)$(GREEN)$(BOLD)----------------------$(NORM)$(RESET)"

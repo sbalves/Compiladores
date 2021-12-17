@@ -1,0 +1,461 @@
+Node id: Program
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: If
+its an statement_token If
+Node id: And
+its an logical And
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating logical_operator 
+logical_operator annotated
+Node id: Block
+Node id: If
+its an statement_token If
+Node id: Or
+its an logical Or
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+is null
+is null
+annotating logical_operator 
+logical_operator annotated
+Node id: Block
+Node id: If
+its an statement_token If
+Node id: Le
+its an relational Le
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+Node id: RealLit
+its an realit RealLit
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+Node id: Block
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+Node id: Add
+its an arith Add
+Node id: Mul
+its an arith Mul
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: RealLit
+its an realit RealLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+Node id: Block
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+Node id: Sub
+its an arith Sub
+Node id: Div
+its an arith Div
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: RealLit
+its an realit RealLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+is null
+is null
+annotating statement_token
+has a child
+tatement_token annoted
+is null
+Node id: Block
+is null
+is null
+is null
+is null
+annotating statement_token
+has a child
+tatement_token annoted
+is null
+Node id: Block
+is null
+is null
+is null
+is null
+annotating statement_token
+has a child
+tatement_token annoted
+is null
+is null
+is null
+is null
+is null
+is null
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: VarDecl
+Node id: Block
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Block
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id d
+id annotated
+Node id: RealLit
+its an realit RealLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+is null
+Node id: For
+its an statement_token For
+Node id: Eq
+its an relational Eq
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+Node id: Block
+Node id: For
+its an statement_token For
+Node id: Lt
+its an relational Lt
+Node id: Mul
+its an arith Mul
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+Node id: Block
+Node id: Print
+Node id: StrLit
+is null
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Id
+its an id Id
+annotating id d
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Block
+Node id: Print
+Node id: StrLit
+is null
+Node id: Print
+Node id: StrLit
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+annotating statement_token
+has a child
+tatement_token annoted
+is null
+is null
+is null
+annotating statement_token
+has a child
+tatement_token annoted
+is null
+is null
+is null
+is null
+is null
+Node id: VarDecl
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: Block
+Node id: ParseArgs
+Node id: Id
+its an id Id
+annotating id arg
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating parseargs
+parseargs annoted
+Node id: ParseArgs
+Node id: Id
+its an id Id
+annotating id arg
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating parseargs
+parseargs annoted
+is null
+is null
+Node id: Print
+Node id: StrLit
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+===== Global Symbol Table =====
+funcao1	()	none
+funcao2	()	none
+arg		int
+main	()	none
+
+===== Function funcao1() Symbol Table =====
+return		none
+a		int
+b		int
+c		int
+
+===== Function funcao2() Symbol Table =====
+return		none
+d		int
+
+===== Function main() Symbol Table =====
+return		none
+
+Program
+..FuncDecl
+....FuncHeader
+......Id(funcao1)
+......FuncParams
+....FuncBody
+......VarDecl
+........Int
+........Id(a)
+......VarDecl
+........Int
+........Id(b)
+......VarDecl
+........Int
+........Id(c)
+......If
+........And - bool
+..........Id(a) - int
+..........Id(b) - int
+........Block
+..........If
+............Or - bool
+..............Id(b) - int
+..............Id(c) - int
+............Block
+..............If
+................Le - bool
+..................Id(c) - int
+..................RealLit(6.3) - float32
+................Block
+..................Assign - int
+....................Id(c) - int
+....................Add - int
+......................Mul - int
+........................Id(c) - int
+........................Id(a) - int
+......................RealLit(1e-2) - float32
+................Block
+..................Assign - int
+....................Id(c) - int
+....................Sub - int
+......................Div - int
+........................Id(a) - int
+........................Id(b) - int
+......................RealLit(1E21) - float32
+............Block
+........Block
+..FuncDecl
+....FuncHeader
+......Id(funcao2)
+......FuncParams
+....FuncBody
+......Block
+........Assign - int
+..........Id(c) - int
+..........IntLit(1) - int
+........Block
+..........Assign - int
+............Id(a) - int
+............IntLit(2) - int
+..........Assign - int
+............Id(b) - int
+............IntLit(3) - int
+........Assign - int
+..........Id(d) - int
+..........RealLit(4.3) - float32
+......For
+........Eq - bool
+..........Id(a) - int
+..........IntLit(2) - int
+........Block
+..........For
+............Lt - bool
+..............Mul - int
+................Id(b) - int
+................Id(c) - int
+..............Id(a) - int
+............Block
+..............Print
+................StrLit("loop")
+..............Assign - int
+................Id(a) - int
+................Id(d) - int
+..............Block
+................Print
+..................StrLit("block me")
+................Print
+..................StrLit("and me")
+..FuncDecl
+....FuncHeader
+......Id(main)
+......FuncParams
+....FuncBody
+......Block
+........ParseArgs - int
+..........Id(arg) - int
+..........IntLit(1) - int
+........ParseArgs - int
+..........Id(arg) - int
+..........IntLit(2) - int
+......Print
+........StrLit("Vou embora")

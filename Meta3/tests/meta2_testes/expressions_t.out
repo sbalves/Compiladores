@@ -1,0 +1,465 @@
+Node id: Program
+Node id: FuncDecl
+Node id: FuncBody
+Node id: NULL
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: VarDecl
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id d
+id annotated
+Node id: Mul
+its an arith Mul
+Node id: Add
+its an arith Add
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id d
+id annotated
+Node id: Minus
+its an unary Minus
+Node id: Add
+its an arith Add
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+annotating unary_operator
+unary_operator annoted
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id d
+id annotated
+Node id: Eq
+its an relational Eq
+Node id: Lt
+its an relational Lt
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: If
+its an statement_token If
+Node id: Eq
+its an relational Eq
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Mul
+its an arith Mul
+Node id: Add
+its an arith Add
+Node id: IntLit
+its an intlit IntLit
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+Node id: Block
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Mul
+its an arith Mul
+Node id: Add
+its an arith Add
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Add
+its an arith Add
+Node id: IntLit
+its an intlit IntLit
+Node id: Id
+its an id Id
+annotating id d
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+Node id: Block
+is null
+is null
+is null
+is null
+annotating statement_token
+has a child
+tatement_token annoted
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id d
+id annotated
+Node id: Ge
+its an relational Ge
+Node id: Lt
+its an relational Lt
+Node id: Add
+its an arith Add
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+Node id: Sub
+its an arith Sub
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Print
+Node id: Add
+its an arith Add
+Node id: Add
+its an arith Add
+Node id: Id
+its an id Id
+annotating id o
+id annotated
+Node id: Id
+its an id Id
+annotating id c
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Minus
+its an unary Minus
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+is null
+annotating unary_operator
+unary_operator annoted
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+Node id: For
+its an statement_token For
+Node id: Gt
+its an relational Gt
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Add
+its an arith Add
+Node id: Sub
+its an arith Sub
+Node id: IntLit
+its an intlit IntLit
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Not
+its an logical Not
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+annotating logical_operator 
+logical_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating relational_operator
+relational_operator annotated
+Node id: Block
+Node id: Assign
+its an arith Assign
+Node id: Id
+its an id Id
+annotating id a
+id annotated
+Node id: Div
+its an arith Div
+Node id: Sub
+its an arith Sub
+Node id: Id
+its an id Id
+annotating id y
+id annotated
+Node id: IntLit
+its an intlit IntLit
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+Node id: Not
+its an logical Not
+Node id: Id
+its an id Id
+annotating id b
+id annotated
+is null
+annotating logical_operator 
+logical_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+annotating arithmetic_operator 
+arithmetic_operator annotated
+is null
+is null
+is null
+annotating statement_token
+has a child
+tatement_token annoted
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+is null
+===== Global Symbol Table =====
+main	()	none
+
+===== Function main() Symbol Table =====
+return		none
+d		int
+a		int
+b		int
+c		int
+y		int
+o		int
+
+Program
+..FuncDecl
+....FuncHeader
+......Id(main)
+......FuncParams
+....FuncBody
+......Assign - int
+........Id(d) - int
+........Mul - int
+..........Add - int
+............Id(a) - int
+............Id(b) - int
+..........Id(c) - int
+......Assign - int
+........Id(d) - int
+........Minus - int
+..........Add - int
+............Id(a) - int
+............Id(b) - int
+......Assign - int
+........Id(d) - int
+........Eq - bool
+..........Lt - bool
+............Id(a) - int
+............Id(b) - int
+..........Id(c) - int
+......If
+........Eq - bool
+..........Id(a) - int
+..........Mul - int
+............Add - int
+..............IntLit(1) - int
+..............IntLit(2) - int
+............IntLit(3) - int
+........Block
+..........Assign - int
+............Id(a) - int
+............Mul - int
+..............Add - int
+................Id(a) - int
+................IntLit(9) - int
+..............Add - int
+................IntLit(3) - int
+................Id(d) - int
+........Block
+......Assign - int
+........Id(d) - int
+........Ge - bool
+..........Lt - bool
+............Add - int
+..............Id(a) - int
+..............Id(b) - int
+............Id(c) - int
+..........Sub - int
+............Id(b) - int
+............Id(b) - int
+......Print
+........Add - int
+..........Add - int
+............Id(o) - int
+............Id(c) - int
+..........Minus - int
+............Id(a) - int
+......For
+........Gt - bool
+..........Id(a) - int
+..........Add - int
+............Sub - int
+..............IntLit(10) - int
+..............Id(b) - int
+............Not - bool
+..............Id(b) - int
+........Block
+..........Assign - int
+............Id(a) - int
+............Div - int
+..............Sub - int
+................Id(y) - int
+................IntLit(8) - int
+..............Not - bool
+................Id(b) - int
